@@ -1,7 +1,7 @@
 {
-  "name": "boilermaker",
+  "name": "sweet-sap",
   "version": "2.0.0",
-  "description": "Some boilerplate code to get you started - get shakin'!",
+  "description": "This is a good fusion restaurant",
   "engines": {
     "node": "~12.11.1"
   },
