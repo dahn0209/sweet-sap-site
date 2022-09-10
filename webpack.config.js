@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV === 'development'
-const path = require('path')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: isDev ? 'development' : 'production',
@@ -7,6 +7,8 @@ module.exports = {
     '@babel/polyfill', // enables async-await
     './client/index.js'
   ],
+  plugins: [new MiniCssExtractPlugin()],
+
   output: {
     path: __dirname,
     filename: './public/bundle.js'
@@ -28,7 +30,7 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          'style-loader',
+          MiniCssExtractPlugin.loader, // instead of style-loader
           {
             loader: 'css-loader',
             options: {
