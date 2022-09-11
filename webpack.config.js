@@ -47,15 +47,6 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
         exclude: /\.module\.css$/
-      },
-      {
-        loader: 'sass-loader',
-        options: {
-          implementation: require('sass'),
-          sassOptions: {
-            fiber: require('fibers')
-          }
-        }
       }
     ]
   }
