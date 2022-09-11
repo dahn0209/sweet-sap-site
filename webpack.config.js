@@ -1,5 +1,5 @@
 const isDev = process.env.NODE_ENV === 'development'
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
   mode: isDev ? 'development' : 'production',
@@ -7,7 +7,7 @@ module.exports = {
     '@babel/polyfill', // enables async-await
     './client/index.js'
   ],
-  plugins: [new MiniCssExtractPlugin()],
+  // plugins: [new MiniCssExtractPlugin()],
 
   output: {
     path: __dirname,
@@ -30,7 +30,9 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          MiniCssExtractPlugin.loader, // instead of style-loader
+          // MiniCssExtractPlugin.loader,
+          // instead of
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -45,6 +47,15 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
         exclude: /\.module\.css$/
+      },
+      {
+        loader: 'sass-loader',
+        options: {
+          implementation: require('sass'),
+          sassOptions: {
+            fiber: require('fibers')
+          }
+        }
       }
     ]
   }

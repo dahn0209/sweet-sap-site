@@ -2,11 +2,11 @@ import React from 'react'
 
 import {Navbar} from './components'
 import Routes from './routes'
-import styles from './app.module.css'
+// import '../public/app.module.css'
 
 const App = () => {
   return (
-    <div className={styles.classTime}>
+    <div className="classTime">
       <Navbar />
       <Routes />
     </div>
