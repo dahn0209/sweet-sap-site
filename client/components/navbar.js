@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import {logout} from '../store'
-// import styles from '../components/navbar.module.css'
+import './navbar.css'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <header>
@@ -11,30 +11,61 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     {isLoggedIn ? (
       <nav>
         {/* The navbar will show these links after you log in */}
-        <div className="navItem">
-          {/* <a> */}
-          <Link to="/home">Home</Link>
-          {/* </a> */}
-        </div>
-        <div className="navItem">
-          <a href="#" onClick={handleClick}>
-            Logout
-          </a>
-        </div>
+        <ul>
+          <li>
+            <Link to="/home">Home</Link>
+          </li>
+          <li>
+            <Link to="/hours-location">Hours & Location</Link>
+          </li>
+          <li>
+            <Link to="/Menu">Menu</Link>
+          </li>
+          <li>
+            <Link to="/private-events">Private Events</Link>
+          </li>
+          <li>
+            <Link to="/happening">Happening</Link>
+          </li>
+          <li>
+            <Link to="/contact-us">Contact Us</Link>
+          </li>
+          <li>
+            <a href="#" onClick={handleClick}>
+              Logout
+            </a>
+          </li>
+        </ul>
       </nav>
     ) : (
       <nav>
         {/* The navbar will show these links before you log in */}
-        <div className="navItem">
-          {/* <a> */}
-          <Link to="/login">Login</Link>
-          {/* </a> */}
-        </div>
-        <div className="navItem">
-          {/* <a> */}
-          <Link to="/signup">Sign Up</Link>
-          {/* </a> */}
-        </div>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/hours-location">Hours & Location</Link>
+          </li>
+          <li>
+            <Link to="/Menu">Menu</Link>
+          </li>
+          <li>
+            <Link to="/private-events">Private Events</Link>
+          </li>
+          <li>
+            <Link to="/happening">Happening</Link>
+          </li>
+          <li>
+            <Link to="/contact-us">Contact Us</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
+        </ul>
       </nav>
     )}
 
