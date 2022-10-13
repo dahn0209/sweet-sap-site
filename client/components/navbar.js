@@ -7,7 +7,10 @@ import './navbar.css'
 
 const Navbar = ({handleClick, isLoggedIn}) => (
   <header>
-    <img src="./header_image.webp" />
+    <Link to="/">
+      <img src="./header_image.webp" />
+    </Link>
+
     {isLoggedIn ? (
       <nav>
         {/* The navbar will show these links after you log in */}
