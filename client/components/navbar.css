@@ -1,6 +1,6 @@
-/* header{
-  align-content: center;
-} */
+header {
+  justify-content: center;
+}
 
 header img {
   display: flex;
@@ -8,33 +8,35 @@ header img {
   margin-right: auto;
 }
 
+header h4 {
+  text-align: center;
+  color: gray;
+}
+
 nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 20px;
+  padding: 20px;
   padding-left: 10%;
   padding-right: 10%;
+  padding-bottom: 20px;
 }
 
 ul {
-  display: flex;
-  list-style-type: none;
-  /* overflow: hidden;  */
-  margin-left: auto;
-  margin-right: auto;
+  border: 1px solid #ccc;
+  border-width: 1px 0;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
-li {
-  float: left;
+ul li {
+  display: inline;
 }
 
 li a {
-  display: flex;
-  text-align: center;
   color: gray;
-  padding: 14px 16px;
-  text-decoration: none;
+  display: inline-block;
+  padding: 10px;
 }
 
 li a:hover {

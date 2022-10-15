@@ -10,6 +10,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
     <Link to="/">
       <img src="./header_image.webp" />
     </Link>
+    <h4>Restaurant & Bar</h4>
 
     {isLoggedIn ? (
       <nav>
