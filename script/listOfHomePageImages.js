@@ -1,6 +1,6 @@
 const homePageImages = [
   {
-    imageUrl: './IMG_1407.web'
+    imageUrl: './IMG_1407.webp'
   },
   {
     imageUrl: './IMG_1449.webp'

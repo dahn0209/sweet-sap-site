@@ -23,6 +23,7 @@ export const setHomepageImages = homePageImages => {
 export const fetchHomepageImages = () => {
   return async dispatch => {
     const {data} = await axios.get('/api/homePageImages')
+    console.log('data in homePageImages THunk==>', data)
     dispatch(setHomepageImages(data))
   }
 }
