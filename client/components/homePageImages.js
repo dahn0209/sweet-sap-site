@@ -11,16 +11,16 @@ class HomePageImages extends React.Component {
   render() {
     const homePageImages = this.props.homePageImages
     return (
-      <section>
-        <div className="homePageImagesWrapper">
-          {homePageImages.map(homePageImage => {
-            return (
-              <div className="eachHomePageImage" key={homePageImage.id}>
-                <img src={homePageImage.imageUrl} />
-              </div>
-            )
-          })}
-        </div>
+      <section className="homePageImagesContainer">
+        {homePageImages.map(homePageImage => {
+          return (
+            <img
+              className="homePageImagesGridItem"
+              src={homePageImage.imageUrl}
+              key={homePageImage.id}
+            />
+          )
+        })}
       </section>
     )
   }
