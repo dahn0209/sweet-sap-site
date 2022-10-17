@@ -1,15 +1,12 @@
 footer {
   /* position: absolute; */
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: white;
-  height: auto;
-  width: 100vw;
   padding-top: 40px;
   color: black;
   font-family: 'Open Sans';
   padding-top: 40px;
+  margin-left: 10%;
+  margin-right: 10%;
+  justify-content: center;
 }
 
 .footer-content {
@@ -53,7 +50,6 @@ footer {
 }
 
 .footer-bottom {
-  width: 100vw;
   padding: 10px 0;
   text-align: center;
 }
