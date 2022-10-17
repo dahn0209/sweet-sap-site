@@ -1,19 +1,31 @@
 'use strict'
 
 const db = require('../server/db')
-const {User} = require('../server/db/models')
+const {User, HomePageImage} = require('../server/db/models')
+const homePageImages = require('./listOfHomePageImages')
 
 async function seed() {
-  await db.sync({force: true})
-  console.log('db synced!')
+  try {
+    await db.sync({force: true})
+    console.log('db synced!')
 
-  const users = await Promise.all([
-    User.create({email: 'cody@email.com', password: '123'}),
-    User.create({email: 'murphy@email.com', password: '123'})
-  ])
+    const users = await Promise.all([
+      User.create({email: 'cody@email.com', password: '123'}),
+      User.create({email: 'murphy@email.com', password: '123'})
+    ])
 
-  console.log(`seeded ${users.length} users`)
-  console.log(`seeded successfully`)
+    const homeImages = await Promise.all(
+      homePageImages.map(homePageImage => {
+        return HomePageImage.create(homePageImage)
+      })
+    )
+
+    console.log(`seeded ${users.length} users`)
+    console.log(`seeded ${homeImages.length} homePageImages`)
+    console.log(`seeded successfully`)
+  } catch (err) {
+    console.log(err)
+  }
 }
 
 // We've separated the `seed` function from the `runSeed` function.
