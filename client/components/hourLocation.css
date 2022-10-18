@@ -1,0 +1,31 @@
+/* .mainHourLocationContainer{
+    margin-left: 10%;
+    margin-right: 10%;
+} */
+
+.hourLocationContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.hourLocationGridItem {
+  display: block;
+  /* width:50%; */
+  padding: 10px;
+  box-sizing: border-box;
+  justify-content: center;
+  object-fit: cover;
+  height: 623px;
+  width: 623px;
+}
+
+.hourLocationHeader h3 {
+  text-align: center;
+}
+
+.hourLocationHeader h5 {
+  text-align: center;
+}

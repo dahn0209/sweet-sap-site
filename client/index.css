@@ -8,28 +8,10 @@
 body {
   font-family: sans-serif;
   display: flex;
-}
-
-/* #root {
-  height: 100vh;
+  height: 100%;
   width: 100%;
-  background-size: cover;
-  background-position: center;
-} */
+}
 
 a {
   text-decoration: none;
-}
-
-label {
-  display: block;
-}
-s nav a {
-  display: inline-block;
-  margin: 1em;
-}
-
-form div {
-  margin: 1em;
-  display: inline-block;
 }

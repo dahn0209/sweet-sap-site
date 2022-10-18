@@ -7,7 +7,6 @@ router.get('/', async (req, res, next) => {
   try {
     const allHomePageImages = await HomePageImage.findAll()
     allHomePageImages.map(homePageImage => {
-      console.log('homePageImage server=>', homePageImage)
       return homePageImage
     })
     res.json(allHomePageImages)
