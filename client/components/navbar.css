@@ -1,9 +1,7 @@
 header {
-  /* display: flex; */
   margin-left: 10%;
   margin-right: 10%;
   justify-content: center;
-  /* width:100%; */
 }
 
 header img {
@@ -13,22 +11,18 @@ header img {
 }
 
 header h4 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
   text-align: center;
   color: gray;
 }
 
 nav {
-  /* padding: 20px;
-  padding-left: 10%;
-  padding-right: 10%;
-  padding-bottom: 20px; */
+  overflow: hidden;
+  justify-content: center;
+  display: flex;
   margin: 20px;
 }
 
-ul {
+nav ul {
   border: 1px solid #ccc;
   border-width: 1px 0;
   list-style: none;
@@ -37,16 +31,29 @@ ul {
   text-align: center;
   /* width: 100%; */
 }
-ul li {
-  display: inline;
+nav ul li {
+  float: left;
+  text-align: center;
+  padding: 16px;
 }
 
-li a {
+ul li a {
   color: gray;
-  display: inline-block;
-  padding: 10px;
+  /* display: inline-block;
+  padding: 10px; */
 }
 
 li a:hover {
   color: #111;
+}
+
+@media screen and (max-width: 600px) {
+  nav ul li {
+    float: none;
+    display: block;
+    text-align: center;
+    width: 100%;
+    margin: 0;
+    padding: 14px;
+  }
 }

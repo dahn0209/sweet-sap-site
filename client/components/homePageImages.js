@@ -9,20 +9,21 @@ class HomePageImages extends React.Component {
   }
 
   render() {
-    const homePageImages = this.props.homePageImages
-    return (
-      <section className="homePageImagesContainer">
-        {homePageImages.map(homePageImage => {
-          return (
-            <img
-              className="homePageImagesGridItem"
-              src={homePageImage.imageUrl}
-              key={homePageImage.id}
-            />
-          )
-        })}
-      </section>
-    )
+    return null
+    // const homePageImages = this.props.homePageImages
+    // return (
+    //   <section className="homePageImagesContainer">
+    //     {homePageImages.map(homePageImage => {
+    //       return (
+    //         <img
+    //           className="homePageImagesGridItem"
+    //           src={homePageImage.imageUrl}
+    //           key={homePageImage.id}
+    //         />
+    //       )
+    //     })}
+    //   </section>
+    // )
   }
 }
 
