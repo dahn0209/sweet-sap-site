@@ -9,59 +9,58 @@ class HourLocation extends React.Component {
   //   }
 
   render() {
-    return null
-    // const homePageImages = this.props.homePageImages
-    // return (
-    //   <section className="mainHourLocationContainer">
-    //     <header className="hourLocationHeader">
-    //       <h3>Indoor & Patio Dining Open!</h3>
-    //       <h5>Walk-ins and reservations welcome!</h5>
-    //     </header>
+    const homePageImages = this.props.homePageImages
+    return (
+      <section className="mainHourLocationContainer">
+        <header className="hourLocationHeader">
+          <h3>Indoor & Patio Dining Open!</h3>
+          <h5>Walk-ins and reservations welcome!</h5>
+        </header>
 
-    //     <div className="hourLocationContainer">
-    //       {/* {homePageImages.map(homePageImage => {
-    //           return (
-    //             <img
-    //               className="hourLocationGridItem"
-    //               src={homePageImage.imageUrl}
-    //               key={homePageImage.id}
-    //             />
-    //           )
-    //         })} */}
-    //       <div className="hourLocationGridItem" id="location">
-    //         <h3>Location</h3>
-    //         <p>189-11 Northern Boulevard</p>
-    //         <p>Flushing NY, 11358</p>
-    //         <p>Tel: 718-225-1000</p>
-    //         <p>Wnat to make a reservation?</p>
-    //         <p>Give us a call!</p>
-    //         <p>Reservations requests made via email will NOT be accepted.</p>
-    //       </div>
-    //       <div className="hourLocationGridItem">
-    //         <h3>Location</h3>
-    //         <p>189-11 Northern Boulevard</p>
-    //         <p>Flushing NY, 11358</p>
-    //         <p>Tel: 718-225-1000</p>
-    //         <p>Wnat to make a reservation?</p>
-    //         <p>Give us a call!</p>
-    //         <p>Reservations requests made via email will NOT be accepted.</p>
-    //       </div>
-    //       <div className="hourLocationGridItem">
-    //         <h3>Location</h3>
-    //         <p>189-11 Northern Boulevard</p>
-    //         <p>Flushing NY, 11358</p>
-    //         <p>Tel: 718-225-1000</p>
-    //         <p>Wnat to make a reservation?</p>
-    //         <p>Give us a call!</p>
-    //         <p>Reservations requests made via email will NOT be accepted.</p>
-    //       </div>
+        <div className="hourLocationContainer">
+          {/* {homePageImages.map(homePageImage => {
+              return (
+                <img
+                  className="hourLocationGridItem"
+                  src={homePageImage.imageUrl}
+                  key={homePageImage.id}
+                />
+              )
+            })} */}
+          <div className="hourLocationGridItem" id="location">
+            <h3>Location</h3>
+            <p>189-11 Northern Boulevard</p>
+            <p>Flushing NY, 11358</p>
+            <p>Tel: 718-225-1000</p>
+            <p>Want to make a reservation?</p>
+            <p>Give us a call!</p>
+            <p>Reservations requests made via email will NOT be accepted.</p>
+          </div>
+          <div className="hourLocationGridItem">
+            <h3>Location</h3>
+            <p>189-11 Northern Boulevard</p>
+            <p>Flushing NY, 11358</p>
+            <p>Tel: 718-225-1000</p>
+            <p>Wnat to make a reservation?</p>
+            <p>Give us a call!</p>
+            <p>Reservations requests made via email will NOT be accepted.</p>
+          </div>
+          <div className="hourLocationGridItem">
+            <h3>Location</h3>
+            <p>189-11 Northern Boulevard</p>
+            <p>Flushing NY, 11358</p>
+            <p>Tel: 718-225-1000</p>
+            <p>Wnat to make a reservation?</p>
+            <p>Give us a call!</p>
+            <p>Reservations requests made via email will NOT be accepted.</p>
+          </div>
 
-    //       {/* <img className="hourLocationGridItem"src='./IMG_0722.webp'/>
-    //         <img className="hourLocationGridItem"src='./IMG_0722.webp'/>
-    //         <img className="hourLocationGridItem"src='./IMG_0722.webp'/> */}
-    //     </div>
-    //   </section>
-    // )
+          {/* <img className="hourLocationGridItem"src='./IMG_0722.webp'/>
+            <img className="hourLocationGridItem"src='./IMG_0722.webp'/>
+            <img className="hourLocationGridItem"src='./IMG_0722.webp'/> */}
+        </div>
+      </section>
+    )
   }
 }
 
