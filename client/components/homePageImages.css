@@ -1,3 +1,18 @@
+/* .homePageImagesGridItem {
+  grid-area: 'eachImg';
+}
+
+
+
+.homePageImagesContainer {
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas:
+  "eachImg eachImg"
+  "eachImg eachImg";
+  justify-content: center;
+} */
+
 .homePageImagesContainer {
   display: flex;
   flex-wrap: wrap;
@@ -12,5 +27,13 @@
   padding: 10px;
   box-sizing: border-box;
   justify-content: center;
-  object-fit: cover;
+  /* object-fit: cover; */
+}
+
+@media screen and (max-width: 600px) {
+  .homePageImagesContainer .homePageImagesGridItem {
+    float: none;
+    display: block;
+    width: 100%;
+  }
 }

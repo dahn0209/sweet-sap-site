@@ -72,8 +72,6 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         </ul>
       </nav>
     )}
-
-    <hr />
   </header>
 )
 

@@ -15,9 +15,9 @@ class HomePageImages extends React.Component {
         {homePageImages.map(homePageImage => {
           return (
             <img
+              key={homePageImage.id}
               className="homePageImagesGridItem"
               src={homePageImage.imageUrl}
-              key={homePageImage.id}
             />
           )
         })}
