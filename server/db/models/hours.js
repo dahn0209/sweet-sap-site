@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize')
 const db = require('../db')
 
-const Hours = db.define('hours', {
+const HoursSweetsap = db.define('hoursSweetsap', {
   Monday: {
-    type: Sequelize.TIME
+    type: Sequelize.TIME,
+    allowNull: false
   },
   Thursday: {
     type: Sequelize.TIME,
@@ -23,4 +24,4 @@ const Hours = db.define('hours', {
   }
 })
 
-module.exports = Hours
+module.exports = HoursSweetsap

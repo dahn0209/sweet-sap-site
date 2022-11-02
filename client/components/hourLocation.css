@@ -1,31 +1,68 @@
-/* .mainHourLocationContainer{
-    margin-left: 10%;
-    margin-right: 10%;
-} */
+#hourLocationHeader {
+  grid-area: 'header';
+}
 
-.hourLocationContainer {
+h2 #title {
+  font-size: 23px;
+  text-align: center;
+  line-height: normal;
+  color: #8b0000;
+  letter-spacing: normal;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+h2 #description {
+  font-size: 17px;
+  text-align: center;
+  line-height: normal;
+  color: #8b0000;
+  letter-spacing: normal;
+  font-family: sans-serif;
+  font-weight: normal;
+}
+
+#locationGrid {
+  grid-area: 'location';
+}
+
+#timeGrid {
+  grid-area: 'time';
+}
+
+#columnLocationHourContainer {
+  grid-area: 'column';
+}
+
+#mapContainer {
+  grid-area: 'map';
+}
+
+#columnLocationHourContainer {
   display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.eachColumns {
+  margin: 30px;
+  border: 5px solid yellow;
+}
+
+.mainHourLocationContainer {
+  /* display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-left: 10%;
-  margin-right: 10%;
-}
-
-.hourLocationGridItem {
-  display: block;
-  /* width:50%; */
-  padding: 10px;
-  box-sizing: border-box;
-  justify-content: center;
-  object-fit: cover;
-  height: 623px;
-  width: 623px;
-}
-
-.hourLocationHeader h3 {
+  margin-right: 10%; */
+  display: grid;
+  /* height: 100%; */
+  grid-template-rows: 0.25fr 1fr 1fr;
+  /* grid-template-columns: 1fr 1fr; */
+  grid-template:
+    'header header header header'
+    'location location time time'
+    'map map map map map map map'
+    'map map map map map map map';
   text-align: center;
-}
-
-.hourLocationHeader h5 {
-  text-align: center;
+  grid-gap: 20px;
 }

@@ -9,25 +9,28 @@ class HourLocation extends React.Component {
   //   }
 
   render() {
-    const homePageImages = this.props.homePageImages
+    // const homePageImages = this.props.homePageImages
     return (
       <section className="mainHourLocationContainer">
-        <header className="hourLocationHeader">
-          <h3>Indoor & Patio Dining Open!</h3>
-          <h5>Walk-ins and reservations welcome!</h5>
+        <header className="hourLocationRow" id="hourLocationHeader">
+          <h2>
+            <span id="title">Indoor & Patio Dining Open!</span>
+            <br />
+            <span id="description">Walk-ins and reservations welcome!</span>
+          </h2>
         </header>
 
-        <div className="hourLocationContainer">
-          {/* {homePageImages.map(homePageImage => {
-              return (
-                <img
-                  className="hourLocationGridItem"
-                  src={homePageImage.imageUrl}
-                  key={homePageImage.id}
-                />
-              )
-            })} */}
-          <div className="hourLocationGridItem" id="location">
+        <div className="hourLocationRow" id="columnLocationHourContainer">
+          <div className="eachColumns" id="locationGrid">
+            <h2>- LOCATION -</h2>
+            <p>189-11 Northern Boulevard</p>
+            <p>Flushing NY, 11358</p>
+            <p>Tel: 718-225-1000</p>
+            <p>Want to make a reservation?</p>
+            <p>Give us a call!</p>
+            <p>Reservations requests made via email will NOT be accepted.</p>
+          </div>
+          <div className="eachColumns" id="timeGrid">
             <h3>Location</h3>
             <p>189-11 Northern Boulevard</p>
             <p>Flushing NY, 11358</p>
@@ -36,28 +39,10 @@ class HourLocation extends React.Component {
             <p>Give us a call!</p>
             <p>Reservations requests made via email will NOT be accepted.</p>
           </div>
-          <div className="hourLocationGridItem">
-            <h3>Location</h3>
-            <p>189-11 Northern Boulevard</p>
-            <p>Flushing NY, 11358</p>
-            <p>Tel: 718-225-1000</p>
-            <p>Wnat to make a reservation?</p>
-            <p>Give us a call!</p>
-            <p>Reservations requests made via email will NOT be accepted.</p>
-          </div>
-          <div className="hourLocationGridItem">
-            <h3>Location</h3>
-            <p>189-11 Northern Boulevard</p>
-            <p>Flushing NY, 11358</p>
-            <p>Tel: 718-225-1000</p>
-            <p>Wnat to make a reservation?</p>
-            <p>Give us a call!</p>
-            <p>Reservations requests made via email will NOT be accepted.</p>
-          </div>
+        </div>
 
-          {/* <img className="hourLocationGridItem"src='./IMG_0722.webp'/>
-            <img className="hourLocationGridItem"src='./IMG_0722.webp'/>
-            <img className="hourLocationGridItem"src='./IMG_0722.webp'/> */}
+        <div className="hourLocationRow" id="mapContainer">
+          <iframe src="https://www.google.com/maps/embed/v1/place?q=97+warren+st+new+york+city&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8" />
         </div>
       </section>
     )
