@@ -1,31 +1,102 @@
-/* .mainHourLocationContainer{
-    margin-left: 10%;
-    margin-right: 10%;
-} */
-
-.hourLocationContainer {
-  display: flex;
-  flex-wrap: wrap;
+.mainHourLocationContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    'header header header header'
+    'location location time time'
+    'map     map     map     map';
+  grid-auto-columns: minmax(200px, auto);
   justify-content: center;
-  margin-left: 10%;
-  margin-right: 10%;
+  row-gap: 50px;
+  column-gap: 30px;
 }
 
-.hourLocationGridItem {
-  display: block;
-  /* width:50%; */
-  padding: 10px;
-  box-sizing: border-box;
+/* /////header//// */
+#hourLocationHeader {
+  grid-area: header;
+  text-align: center;
+  letter-spacing: normal;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: #8b0000;
+  line-height: normal;
+}
+
+header h2 #title {
+  font-size: 23px;
+  font-weight: normal;
+}
+
+header h2 #description {
+  font-size: 17px;
+  font-weight: normal;
+}
+
+/* ////Location//// */
+
+#locationGrid {
+  padding: 20px;
+  grid-area: location;
+  text-align: center;
+  border: 5px solid rgb(235, 206, 121);
+  font-family: sans-serif;
+}
+
+#locationGrid h2 {
+  margin-bottom: 80px;
+  font-size: 25px;
+  color: #cf7979;
+}
+
+#locationGrid p {
+  line-height: 1.5em;
+  margin: 30px;
+  font-size: 15px;
+}
+
+#locationGrid p span {
+  font-style: italic;
+}
+
+/* /////time////// */
+#timeGrid {
+  padding: 20px;
+  grid-area: time;
+  text-align: center;
+  font-family: sans-serif;
+  border: 5px solid rgb(235, 206, 121);
+}
+
+#timeGrid h2 {
+  font-size: 25px;
+  margin-bottom: 80px;
+  color: #cf7979;
+}
+
+#timeGrid p {
+  margin: 30px;
+  line-height: 1.5em;
+  font-size: 15px;
+}
+
+/* ////map//// */
+#mapContainer {
+  grid-area: map;
+  border: 5px solid rgb(235, 206, 121);
+}
+
+#mapContainer iframe {
   justify-content: center;
-  object-fit: cover;
-  height: 623px;
-  width: 623px;
+  width: 100%;
 }
 
-.hourLocationHeader h3 {
-  text-align: center;
-}
-
-.hourLocationHeader h5 {
-  text-align: center;
+@media screen and (max-width: 600px) {
+  .mainHourLocationContainer {
+    grid-template-areas:
+      'header'
+      'location'
+      'time'
+      'map';
+  }
 }
