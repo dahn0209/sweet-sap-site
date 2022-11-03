@@ -83,6 +83,7 @@ header h2 #description {
 /* ////map//// */
 #mapContainer {
   grid-area: map;
+  border: 5px solid rgb(235, 206, 121);
 }
 
 #mapContainer iframe {
