@@ -1,39 +1,24 @@
-/* .homePageImagesGridItem {
-  grid-area: 'eachImg';
-}
-
-
-
-.homePageImagesContainer {
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-  "eachImg eachImg"
-  "eachImg eachImg";
-  justify-content: center;
-} */
-
 .homePageImagesContainer {
   display: flex;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin: 30px;
 }
 
 .homePageImagesGridItem {
-  display: block;
-  /* flex-basis:50%; */
+  width: 50%;
   padding: 10px;
-  box-sizing: border-box;
   justify-content: center;
-  /* object-fit: cover; */
 }
 
 @media screen and (max-width: 600px) {
-  .homePageImagesContainer .homePageImagesGridItem {
-    float: none;
-    display: block;
+  .homePageImagesContainer {
     width: 100%;
+    margin: 0px;
+  }
+  .homePageImagesContainer .homePageImagesGridItem {
+    width: 100%;
+    padding: 5px;
   }
 }
