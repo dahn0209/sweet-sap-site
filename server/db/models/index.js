@@ -1,6 +1,6 @@
 const User = require('./user')
 const HomePageImage = require('./homePageImage')
-const LocationsweetSap = require('./location')
+const Location = require('./location')
 // const HoursSweetsap=require('./hours')
 
 /**
@@ -11,7 +11,7 @@ const LocationsweetSap = require('./location')
  */
 
 HomePageImage.belongsTo(User)
-LocationsweetSap.belongsTo(User)
+Location.belongsTo(User)
 // HoursSweetsap.belongsTo(User);
 
 /**
@@ -23,6 +23,6 @@ LocationsweetSap.belongsTo(User)
 module.exports = {
   User,
   HomePageImage,
-  LocationsweetSap
+  Location
   // HoursSweetsap
 }

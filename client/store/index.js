@@ -4,10 +4,12 @@ import thunkMiddleware from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import user from './user'
 import homePageImagesReducer from './homePageImages'
+import locationsReducer from './locations'
 
 const reducer = combineReducers({
   user,
-  homePageImages: homePageImagesReducer
+  homePageImages: homePageImagesReducer,
+  locations: locationsReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
