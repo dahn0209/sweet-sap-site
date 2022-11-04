@@ -25,7 +25,12 @@ class HourLocation extends React.Component {
           {locations.map(eachLocation => {
             return (
               <div key={eachLocation.id}>
-                <p>{eachLocation.address}</p>
+                <p>
+                  {eachLocation.address}
+                  <br />
+                  {eachLocation.street}, {eachLocation.state},{' '}
+                  {eachLocation.zipCode}
+                </p>
                 <p>Tel: {eachLocation.phone}</p>
               </div>
             )
