@@ -4,9 +4,10 @@
   display: grid;
   grid-template-areas:
     'header header header header'
-    'location location time time'
-    'map     map     map     map';
-  grid-auto-columns: minmax(200px, auto);
+    '...location time...'
+    '...map      map...';
+  /* grid-auto-columns: minmax(300px, auto); */
+  grid-auto-columns: 0.25fr 1fr 1fr 0.25fr;
   justify-content: center;
   row-gap: 50px;
   column-gap: 30px;
@@ -98,5 +99,7 @@ header h2 #description {
       'location'
       'time'
       'map';
+
+    grid-auto-columns: 1fr;
   }
 }
