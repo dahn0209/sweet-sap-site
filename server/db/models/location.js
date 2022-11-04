@@ -3,7 +3,7 @@ const db = require('../db')
 
 const phoneValidationRegex = /\d{3}-\d{3}-\d{4}/
 
-const LocationsweetSap = db.define('locationsweetSap', {
+const Location = db.define('location', {
   address: {
     type: Sequelize.STRING,
     allowNull: false,
@@ -21,4 +21,4 @@ const LocationsweetSap = db.define('locationsweetSap', {
   }
 })
 
-module.exports = LocationsweetSap
+module.exports = Location

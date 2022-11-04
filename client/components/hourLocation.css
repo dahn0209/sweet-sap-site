@@ -6,7 +6,6 @@
     'header header header header'
     '...location time...'
     '...map      map...';
-  /* grid-auto-columns: minmax(300px, auto); */
   grid-auto-columns: 0.25fr 1fr 1fr 0.25fr;
   justify-content: center;
   row-gap: 50px;

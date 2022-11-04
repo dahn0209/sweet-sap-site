@@ -1,15 +1,16 @@
 import React from 'react'
-// import {fetchHomepageImages} from '../store/homePageImages'
-// import {connect} from 'react-redux'
+import {fetchLocations} from '../store/locations'
+import {connect} from 'react-redux'
 import './hourLocation.css'
 
 class HourLocation extends React.Component {
-  // componentDidMount() {
-  //     this.props.getHomepageImages()
-  //   }
+  componentDidMount() {
+    this.props.getLocations()
+  }
 
   render() {
-    // const homePageImages = this.props.homePageImages
+    const locations = this.props.locations
+    console.log('locations=>', locations)
     return (
       <section className="mainHourLocationContainer">
         <header className="hourLocationRow" id="hourLocationHeader">
@@ -19,15 +20,17 @@ class HourLocation extends React.Component {
             <span id="description">Walk-ins and reservations welcome!</span>
           </h2>
         </header>
-
-        {/* <div  className='hourLocationRow' id="columnLocationHourContainer"> */}
         <div className="eachColumns" id="locationGrid">
           <h2>- LOCATION -</h2>
-          <p>
-            189-11 Northern Boulevard <br />Flushing NY, 11358
-          </p>
+          {locations.map(eachLocation => {
+            return (
+              <div key={eachLocation.id}>
+                <p>{eachLocation.address}</p>
+                <p>Tel: {eachLocation.phone}</p>
+              </div>
+            )
+          })}
 
-          <p>Tel: 718-225-1000</p>
           <p>Want to make a reservation?</p>
           <p>Give us a call!</p>
           <p>
@@ -63,8 +66,6 @@ class HourLocation extends React.Component {
             <span>Kitchen and Bar closes 30 minutes before closing</span>
           </p>
         </div>
-        {/* </div> */}
-
         <div className="hourLocationRow" id="mapContainer">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1775338783327!2d-73.7937772842866!3d40.75811984272898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c261d263657dd5%3A0xec358a3e06259896!2s189-11%20Northern%20Blvd%2C%20Queens%2C%20NY%2011358!5e0!3m2!1sen!2sus!4v1667436757937!5m2!1sen!2sus"
@@ -82,19 +83,18 @@ class HourLocation extends React.Component {
   }
 }
 
-// const mapState = state => {
-//   return {
-//     homePageImages: state.homePageImages
-//   }
-// }
+const mapState = state => {
+  return {
+    locations: state.locations
+  }
+}
 
-// const mapDispatch = dispatch => {
-//   return {
-//     getHomepageImages: () => {
-//       return dispatch(fetchHomepageImages())
-//     }
-//   }
-// }
+const mapDispatch = dispatch => {
+  return {
+    getLocations: () => {
+      return dispatch(fetchLocations())
+    }
+  }
+}
 
-export default // connect(mapState, mapDispatch)
-HourLocation
+export default connect(mapState, mapDispatch)(HourLocation)

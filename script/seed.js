@@ -1,7 +1,7 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, HomePageImage, LocationsweetSap} = require('../server/db/models')
+const {User, HomePageImage, Location} = require('../server/db/models')
 const homePageImages = require('./listOfHomePageImages')
 const locations = require('./listOfLocation')
 
@@ -20,15 +20,16 @@ async function seed() {
         return HomePageImage.create(homePageImage)
       })
     )
-    const locationSpots = await Promise.all(
-      locations.map(location => {
-        return LocationsweetSap.create(location)
+    const locationLists = await Promise.all(
+      locations.map(eachLocation => {
+        console.log('eachLocation->', eachLocation)
+        return Location.create(eachLocation)
       })
     )
 
     console.log(`seeded ${users.length} users`)
     console.log(`seeded ${homeImages.length} homePageImages`)
-    console.log(`seeded ${locationSpots.length} locationSpots`)
+    console.log(`seeded ${locationLists.length} locationLists`)
 
     console.log(`seeded successfully`)
   } catch (err) {
