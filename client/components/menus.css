@@ -1,0 +1,24 @@
+.menuContainer {
+  /* display: flex; */
+  /* flex-wrap: wrap;  */
+  /* justify-content: center; */
+  /* margin: 50px; */
+  /* padding:50px; */
+}
+
+.menuGridItem {
+  /* width: 50%; */
+  /* padding: 8px; */
+  /* justify-content: center; */
+}
+
+@media screen and (max-width: 600px) {
+  .menuContainer {
+    width: 100%;
+    margin: 0px;
+  }
+  .menuContainer .menuGridItem {
+    width: 100%;
+    padding: 10px;
+  }
+}

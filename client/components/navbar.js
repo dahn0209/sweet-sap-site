@@ -17,22 +17,22 @@ const Navbar = ({handleClick, isLoggedIn}) => (
         {/* The navbar will show these links after you log in */}
         <ul>
           <li>
-            <Link to="/home">Home</Link>
+            <Link to="/edit-home">Home</Link>
           </li>
           <li>
-            <Link to="/hours-location">Hours & Location</Link>
+            <Link to="/edit-hours-location">Hours & Location</Link>
           </li>
           <li>
-            <Link to="/Menu">Menu</Link>
+            <Link to="/edit-menu">Menu</Link>
           </li>
           <li>
-            <Link to="/private-events">Private Events</Link>
+            <Link to="/edit-private-events">Private Events</Link>
           </li>
           <li>
-            <Link to="/happening">Happening</Link>
+            <Link to="/edit-happening">Happening</Link>
           </li>
           <li>
-            <Link to="/contact-us">Contact Us</Link>
+            <Link to="/edit-contact-us">Contact Us</Link>
           </li>
           <li>
             <a href="#" onClick={handleClick}>
@@ -52,7 +52,7 @@ const Navbar = ({handleClick, isLoggedIn}) => (
             <Link to="/hours-location">Hours & Location</Link>
           </li>
           <li>
-            <Link to="/Menu">Menu</Link>
+            <Link to="/menu">Menu</Link>
           </li>
           <li>
             <Link to="/private-events">Private Events</Link>

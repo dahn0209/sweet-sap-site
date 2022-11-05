@@ -1,7 +1,8 @@
 const User = require('./user')
 const HomePageImage = require('./homePageImage')
 const Location = require('./location')
-// const HoursSweetsap=require('./hours')
+// const HoursSweetsap=require('./hours');
+const Menu = require('./menu')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -13,6 +14,7 @@ const Location = require('./location')
 HomePageImage.belongsTo(User)
 Location.belongsTo(User)
 // HoursSweetsap.belongsTo(User);
+Menu.belongsTo(User)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -23,6 +25,7 @@ Location.belongsTo(User)
 module.exports = {
   User,
   HomePageImage,
-  Location
-  // HoursSweetsap
+  Location,
+  // HoursSweetsap,
+  Menu
 }

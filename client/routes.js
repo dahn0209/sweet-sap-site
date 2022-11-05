@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import {Login, Signup, UserHome} from './components'
 import HomePageImages from './components/homePageImages'
 import HourLocation from './components/hourLocation'
+import Menus from './components/menus'
 import {me} from './store'
 
 /**
@@ -33,6 +34,7 @@ class Routes extends Component {
         {/* <Route component={Login} /> */}
         <Route exact path="/" component={HomePageImages} />
         <Route exact path="/hours-location" component={HourLocation} />
+        <Route exact path="/menu" component={Menus} />
       </Switch>
     )
   }
