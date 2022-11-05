@@ -6,9 +6,8 @@ const {Menu} = require('../db/models')
 router.get('/', async (req, res, next) => {
   try {
     const allMenus = await Menu.findAll()
-    allMenus.map(menu => {
-      console.log('menu in api==>', menu)
-      return menu
+    allMenus.map(eachMenu => {
+      return eachMenu
     })
     res.json(allMenus)
   } catch (err) {
