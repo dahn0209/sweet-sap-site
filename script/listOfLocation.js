@@ -4,7 +4,8 @@ const locations = [
     street: 'Flushing',
     state: 'NY',
     zipCode: 11358,
-    phone: '(718)-225-1000'
+    phone: '(718)-225-1000',
+    email: 'customerservice@thesweetsap.com'
   }
 ]
 

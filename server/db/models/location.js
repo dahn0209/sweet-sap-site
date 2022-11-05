@@ -33,6 +33,11 @@ const Location = db.define('location', {
       }
     },
     defaultValue: '718-225-1000'
+  },
+  email: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    defaultValue: 'customerservice@thesweetsap.com'
   }
 })
 

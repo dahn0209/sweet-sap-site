@@ -17,6 +17,7 @@ class Menus extends React.Component {
           return (
             <div key={eachMenu.id}>
               <span>{eachMenu.description}</span>
+              <br />
               <img className="menuGridItem" src={eachMenu.imageUrl} />
             </div>
           )
