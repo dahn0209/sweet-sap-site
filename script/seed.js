@@ -1,8 +1,9 @@
 'use strict'
 
 const db = require('../server/db')
-const {User, HomePageImage, Location} = require('../server/db/models')
+const {User, HomePageImage, Location, Menu} = require('../server/db/models')
 const homePageImages = require('./listOfHomePageImages')
+const menus = require('./listOfMenus')
 const locations = require('./listOfLocation')
 
 async function seed() {
@@ -27,9 +28,17 @@ async function seed() {
       })
     )
 
+    const menuLists = await Promise.all(
+      menus.map(menu => {
+        console.log('menu->', menu)
+        return Menu.create(menu)
+      })
+    )
+
     console.log(`seeded ${users.length} users`)
     console.log(`seeded ${homeImages.length} homePageImages`)
     console.log(`seeded ${locationLists.length} locationLists`)
+    console.log(`seeded ${menuLists.length} menuLists`)
 
     console.log(`seeded successfully`)
   } catch (err) {
