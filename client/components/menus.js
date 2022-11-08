@@ -15,11 +15,11 @@ class Menus extends React.Component {
       <section className="menuContainer">
         {menus.map(eachMenu => {
           return (
-            <div key={eachMenu.id}>
-              <span>{eachMenu.description}</span>
+            <figure key={eachMenu.id} className="eachMenu">
+              <span className="description">{eachMenu.description}</span>
               <br />
               <img className="menuGridItem" src={eachMenu.imageUrl} />
-            </div>
+            </figure>
           )
         })}
       </section>
