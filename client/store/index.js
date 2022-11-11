@@ -6,12 +6,13 @@ import user from './user'
 import homePageImagesReducer from './homePageImages'
 import locationsReducer from './locations'
 import menusReducer from './menus'
-
+import privateEventsReducer from './privateEvents'
 const reducer = combineReducers({
   user,
   homePageImages: homePageImagesReducer,
   locations: locationsReducer,
-  menus: menusReducer
+  menus: menusReducer,
+  privateEvents: privateEventsReducer
 })
 const middleware = composeWithDevTools(
   applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))

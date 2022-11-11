@@ -75,7 +75,7 @@
 }
 .slick-slide img {
   display: block;
-  max-width: 250px;
+  max-width: 300px;
 }
 .slick-slide.slick-loading img {
   display: none;

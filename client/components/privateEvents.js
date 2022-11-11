@@ -1,7 +1,6 @@
 import React from 'react'
-import {fetchHomepageImages} from '../store/homePageImages'
+import {fetchPrivateEvents} from '../store/privateEvents'
 import {connect} from 'react-redux'
-// import './homePageImages.css'
 import './privateEvents.css'
 import Slider from 'react-slick'
 import './slick.css'
@@ -9,11 +8,11 @@ import './slick-theme.css'
 
 class PrivateEvents extends React.Component {
   componentDidMount() {
-    this.props.getHomepageImages()
+    this.props.getPrivateEvents()
   }
 
   render() {
-    const homePageImages = this.props.homePageImages
+    const privateEvents = this.props.privateEvents
     const settings = {
       dots: true,
       infinite: false,
@@ -49,31 +48,39 @@ class PrivateEvents extends React.Component {
       ]
     }
     return (
-      <Slider className="section" {...settings}>
-        {homePageImages.map(homePageImage => {
-          return (
-            <img
-              key={homePageImage.id}
-              className="privateEventsGridItem"
-              src={homePageImage.imageUrl}
-            />
-          )
-        })}
-      </Slider>
+      <div>
+        <Slider className="section" {...settings}>
+          {privateEvents.map(privateEvent => {
+            return (
+              <img
+                key={privateEvent.id}
+                className="privateEventsGridItem"
+                src={privateEvent.imageUrl}
+              />
+            )
+          })}
+        </Slider>
+        <div id="privateEvent">
+          <h2>Private Event</h2>
+          <p>
+            Due to Covid-19, private events are unavailable till further notice.
+          </p>
+        </div>
+      </div>
     )
   }
 }
 
 const mapState = state => {
   return {
-    homePageImages: state.homePageImages
+    privateEvents: state.privateEvents
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getHomepageImages: () => {
-      return dispatch(fetchHomepageImages())
+    getPrivateEvents: () => {
+      return dispatch(fetchPrivateEvents())
     }
   }
 }
