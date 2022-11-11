@@ -1,0 +1,10 @@
+.section {
+  /* justify-content: center;  */
+  /* margin: 100px; */
+}
+
+.privateEventsGridItem {
+  /* max-width: 250px; */
+  position: 'relative';
+  border-radius: 50%;
+}
