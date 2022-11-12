@@ -1,0 +1,33 @@
+.section {
+  /* justify-content: center;  */
+  /* margin: 100px; */
+  margin: 100px 30px 100px 30px;
+}
+
+.privateEventsGridItem {
+  max-width: 300px;
+  position: 'relative';
+  border-radius: 50%;
+}
+
+#privateEvent {
+  padding: 20px;
+  grid-area: time;
+  text-align: center;
+  font-family: sans-serif;
+  border: 5px solid rgb(235, 206, 121);
+  width: 50%;
+  margin: auto;
+}
+
+#privateEvent h2 {
+  font-size: 25px;
+  margin-bottom: 80px;
+  color: #cf7979;
+}
+
+#privateEvent p {
+  margin: 30px;
+  line-height: 1.5em;
+  font-size: 15px;
+}

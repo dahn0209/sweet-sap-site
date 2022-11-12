@@ -91,7 +91,7 @@ header h2 #description {
   width: 100%;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1100px) {
   .mainHourLocationContainer {
     grid-template-areas:
       'header'

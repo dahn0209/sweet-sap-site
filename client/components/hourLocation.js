@@ -10,7 +10,6 @@ class HourLocation extends React.Component {
 
   render() {
     const locations = this.props.locations
-    console.log('locations=>', locations)
     return (
       <section className="mainHourLocationContainer">
         <header className="hourLocationRow" id="hourLocationHeader">
