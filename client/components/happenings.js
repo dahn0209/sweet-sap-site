@@ -1,7 +1,7 @@
 import React from 'react'
 import {fetchPrivateEvents} from '../store/privateEvents'
 import {connect} from 'react-redux'
-import './happening.css'
+import './happenings.css'
 import Slider from 'react-slick'
 import './slick.css'
 import './slick-theme.css'
