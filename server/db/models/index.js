@@ -4,6 +4,7 @@ const Location = require('./location')
 // const HoursSweetsap=require('./hours');
 const Menu = require('./menu')
 const PrivateEvents = require('./privateEvents')
+const Happening = require('./happening')
 
 /**
  * If we had any associations to make, this would be a great place to put them!
@@ -17,6 +18,7 @@ Location.belongsTo(User)
 // HoursSweetsap.belongsTo(User);
 Menu.belongsTo(User)
 PrivateEvents.belongsTo(User)
+Happening.belongsTo(User)
 
 /**
  * We'll export all of our models here, so that any time a module needs a model,
@@ -30,5 +32,6 @@ module.exports = {
   Location,
   // HoursSweetsap,
   Menu,
-  PrivateEvents
+  PrivateEvents,
+  Happening
 }

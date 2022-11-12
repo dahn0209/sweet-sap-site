@@ -6,12 +6,14 @@ const {
   HomePageImage,
   Location,
   Menu,
-  PrivateEvents
+  PrivateEvents,
+  Happening
 } = require('../server/db/models')
 const homePageImages = require('./listOfHomePageImages')
 const menus = require('./listOfMenus')
 const locations = require('./listOfLocation')
 const privateEvents = require('./listOfPrivateEvents')
+const happenings = require('./listHappenings')
 
 async function seed() {
   try {
@@ -45,11 +47,18 @@ async function seed() {
       })
     )
 
+    const happeningsList = await Promise.all(
+      happenings.map(happening => {
+        return Happening.create(happening)
+      })
+    )
+
     console.log(`seeded ${users.length} users`)
     console.log(`seeded ${homeImages.length} homePageImages`)
     console.log(`seeded ${locationLists.length} locationLists`)
     console.log(`seeded ${menuLists.length} menuLists`)
     console.log(`seeded ${privateEventsLists.length} privateEventsLists`)
+    console.log(`seeded ${happeningsList.length} happeningsList`)
 
     console.log(`seeded successfully`)
   } catch (err) {
