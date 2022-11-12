@@ -6,6 +6,7 @@ router.use('/homePageImages', require('./homePageImages'))
 router.use('/locations', require('./locations'))
 router.use('/menus', require('./menus'))
 router.use('/privateEvents', require('./privateEvents'))
+router.use('/happenings', require('./happenings'))
 
 router.use((req, res, next) => {
   const error = new Error('Not Found')

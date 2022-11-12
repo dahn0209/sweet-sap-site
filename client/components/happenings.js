@@ -1,18 +1,18 @@
 import React from 'react'
-import {fetchPrivateEvents} from '../store/privateEvents'
+import {fetchHappenings} from '../store/happenings'
 import {connect} from 'react-redux'
-import './happening.css'
+import './happenings.css'
 import Slider from 'react-slick'
 import './slick.css'
 import './slick-theme.css'
 
 class Happening extends React.Component {
   componentDidMount() {
-    this.props.getPrivateEvents()
+    this.props.getHappenings()
   }
 
   render() {
-    const privateEvents = this.props.privateEvents
+    const happenings = this.props.happenings
     const settings = {
       dots: true,
       infinite: false,
@@ -55,12 +55,12 @@ class Happening extends React.Component {
         <div className="pastHappening">
           <h1>PAST HAPPENINGS</h1>
           <Slider className="happeningSection" {...settings}>
-            {privateEvents.map(privateEvent => {
+            {happenings.map(happening => {
               return (
                 <img
-                  key={privateEvent.id}
+                  key={happening.id}
                   className="happeningGridItem"
-                  src={privateEvent.imageUrl}
+                  src={happening.imageUrl}
                 />
               )
             })}
@@ -73,14 +73,14 @@ class Happening extends React.Component {
 
 const mapState = state => {
   return {
-    privateEvents: state.privateEvents
+    happenings: state.happenings
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    getPrivateEvents: () => {
-      return dispatch(fetchPrivateEvents())
+    getHappenings: () => {
+      return dispatch(fetchHappenings())
     }
   }
 }

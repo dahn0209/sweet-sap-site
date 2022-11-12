@@ -7,7 +7,7 @@ import HomePageImages from './components/homePageImages'
 import HourLocation from './components/hourLocation'
 import Menus from './components/menus'
 import PrivateEvents from './components/privateEvents'
-import Happening from './components/happening'
+import Happening from './components/happenings'
 import {me} from './store'
 
 /**
