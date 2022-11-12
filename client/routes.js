@@ -7,6 +7,7 @@ import HomePageImages from './components/homePageImages'
 import HourLocation from './components/hourLocation'
 import Menus from './components/menus'
 import PrivateEvents from './components/privateEvents'
+import Happening from './components/happening'
 import {me} from './store'
 
 /**
@@ -37,6 +38,7 @@ class Routes extends Component {
         <Route exact path="/hours-location" component={HourLocation} />
         <Route exact path="/menu" component={Menus} />
         <Route exact path="/private-events" component={PrivateEvents} />
+        <Route exact path="/happening" component={Happening} />
       </Switch>
     )
   }

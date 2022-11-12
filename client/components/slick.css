@@ -4,7 +4,6 @@
   display: block;
   box-sizing: border-box;
   text-align: center;
-  margin: 100px 30px 100px 30px;
 
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -75,7 +74,7 @@
 }
 .slick-slide img {
   display: block;
-  max-width: 300px;
+  /* max-width: 300px; */
 }
 .slick-slide.slick-loading img {
   display: none;
