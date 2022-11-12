@@ -1,0 +1,84 @@
+.contactContainer {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas:
+    'header header header header'
+    '...location location...'
+    '...map      map...';
+  grid-auto-columns: 0.25fr 1fr 1fr 0.25fr;
+  justify-content: center;
+  row-gap: 20px;
+  /* column-gap: 30px; */
+}
+
+/* /////header//// */
+#contactHeader {
+  grid-area: header;
+  text-align: center;
+  letter-spacing: normal;
+  font-family: sans-serif;
+  font-weight: normal;
+  color: #8b0000;
+  line-height: normal;
+}
+
+header h1 #contactTitle {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+/* header h2 #description {
+    font-size: 17px;
+    font-weight: normal;
+  } */
+
+/* ////Location//// */
+
+#contactLocationGrid {
+  padding: 20px;
+  grid-area: location;
+  text-align: center;
+  /* border: 5px solid rgb(235, 206, 121); */
+  color: #8b0000;
+  font-family: sans-serif;
+}
+
+/* #contactLocationGrid h2 {
+    margin-bottom: 80px;
+    font-size: 25px;
+    color: #cf7979;
+  } */
+
+#contactLocationGrid p {
+  line-height: 1.5em;
+  margin: 20px;
+  font-size: 15px;
+}
+
+p span {
+  font-style: italic;
+}
+
+/* ////map//// */
+#contactMapContainer {
+  grid-area: map;
+  border: 5px solid rgb(235, 206, 121);
+}
+
+#contactMapContainer iframe {
+  justify-content: center;
+  width: 100%;
+}
+
+@media screen and (max-width: 1100px) {
+  .mainHourLocationContainer {
+    grid-template-areas:
+      'header'
+      'location'
+      'time'
+      'map';
+
+    grid-auto-columns: 1fr;
+  }
+}
