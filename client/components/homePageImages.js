@@ -16,7 +16,7 @@ class HomePageImages extends React.Component {
           if (!homePageImage.description) {
             return (
               <div
-                className="module"
+                className="homePageImagesGridItem"
                 key={homePageImage.id}
                 style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
               />
@@ -24,7 +24,7 @@ class HomePageImages extends React.Component {
           }
           return (
             <div
-              className="module"
+              className="homePageImagesGridItem"
               key={homePageImage.id}
               style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
             >
