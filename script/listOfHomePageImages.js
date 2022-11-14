@@ -1,12 +1,15 @@
 const homePageImages = [
   {
-    imageUrl: './homePage/IMG_1407.webp'
+    imageUrl: './homePage/IMG_1407.webp',
+    description: 'KOREAN AMERICAN FUSION RESTAURANT & BAR'
   },
   {
-    imageUrl: './homePage/IMG_1449.webp'
+    imageUrl: './homePage/IMG_1449.webp',
+    description: 'WALK-INS WELCOME!'
   },
   {
-    imageUrl: './homePage/IMG_1437.webp'
+    imageUrl: './homePage/IMG_1437.webp',
+    description: 'INDOOR & PATIO DINING OPEN!'
   },
   {
     imageUrl: './homePage/IMG_1421.webp'

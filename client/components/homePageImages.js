@@ -13,12 +13,23 @@ class HomePageImages extends React.Component {
     return (
       <section className="homePageImagesContainer">
         {homePageImages.map(homePageImage => {
+          if (!homePageImage.description) {
+            return (
+              <div
+                className="module"
+                key={homePageImage.id}
+                style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
+              />
+            )
+          }
           return (
-            <img
+            <div
+              className="module"
               key={homePageImage.id}
-              className="homePageImagesGridItem"
-              src={homePageImage.imageUrl}
-            />
+              style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
+            >
+              <h2>{homePageImage.description}</h2>
+            </div>
           )
         })}
       </section>
