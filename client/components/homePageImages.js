@@ -21,17 +21,16 @@ class HomePageImages extends React.Component {
                 style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
               />
             )
-          } else {
-            return (
-              <div
-                className="module"
-                key={homePageImage.id}
-                style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
-              >
-                <h2>{homePageImage.description}</h2>
-              </div>
-            )
           }
+          return (
+            <div
+              className="module"
+              key={homePageImage.id}
+              style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
+            >
+              <h2>{homePageImage.description}</h2>
+            </div>
+          )
         })}
       </section>
     )
