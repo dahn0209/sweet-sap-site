@@ -18,17 +18,35 @@ class HomePageImages extends React.Component {
               <div
                 className="homePageImagesGridItem"
                 key={homePageImage.id}
-                style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
-              />
+                // style={
+                //   {
+                //     backgroundImage:`url(${homePageImage.imageUrl})`
+                //   }
+                // }
+              >
+                <img src={homePageImage.imageUrl} />
+              </div>
             )
           }
           return (
             <div
               className="homePageImagesGridItem"
               key={homePageImage.id}
-              style={{backgroundImage: `url(${homePageImage.imageUrl})`}}
+              // style={
+              //   {
+              //     backgroundImage:`url(${homePageImage.imageUrl})`
+              //   }
+              // }
             >
-              <h2>{homePageImage.description}</h2>
+              <img src={homePageImage.imageUrl} />
+
+              <div className="homePageDescription">
+                <span>{homePageImage.description}</span>
+              </div>
+
+              {/* <span className='homePageDescription'>
+              {homePageImage.description}
+            </span> */}
             </div>
           )
         })}
