@@ -15,38 +15,17 @@ class HomePageImages extends React.Component {
         {homePageImages.map(homePageImage => {
           if (!homePageImage.description) {
             return (
-              <div
-                className="homePageImagesGridItem"
-                key={homePageImage.id}
-                // style={
-                //   {
-                //     backgroundImage:`url(${homePageImage.imageUrl})`
-                //   }
-                // }
-              >
+              <div className="homePageImagesGridItem" key={homePageImage.id}>
                 <img src={homePageImage.imageUrl} />
               </div>
             )
           }
           return (
-            <div
-              className="homePageImagesGridItem"
-              key={homePageImage.id}
-              // style={
-              //   {
-              //     backgroundImage:`url(${homePageImage.imageUrl})`
-              //   }
-              // }
-            >
+            <div className="homePageImagesGridItem" key={homePageImage.id}>
               <img src={homePageImage.imageUrl} />
-
               <div className="homePageDescription">
                 <span>{homePageImage.description}</span>
               </div>
-
-              {/* <span className='homePageDescription'>
-              {homePageImage.description}
-            </span> */}
             </div>
           )
         })}
