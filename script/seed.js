@@ -14,16 +14,23 @@ const menus = require('./listOfMenus')
 const locations = require('./listOfLocation')
 const privateEvents = require('./listOfPrivateEvents')
 const happenings = require('./listHappenings')
+const users = require('./listOfUsers')
 
 async function seed() {
   try {
     await db.sync({force: true})
     console.log('db synced!')
 
-    const users = await Promise.all([
-      User.create({email: 'cody@email.com', password: '123'}),
-      User.create({email: 'murphy@email.com', password: '123'})
-    ])
+    // const users = await Promise.all([
+    //   User.create({email: 'cody@email.com', password: '123'}),
+    //   User.create({email: 'murphy@email.com', password: '123'})
+    // ])
+
+    const allUsers = await Promise.all(
+      users.map(user => {
+        return User.create(user)
+      })
+    )
 
     const homeImages = await Promise.all(
       homePageImages.map(homePageImage => {
@@ -53,7 +60,7 @@ async function seed() {
       })
     )
 
-    console.log(`seeded ${users.length} users`)
+    console.log(`seeded ${allUsers.length} users`)
     console.log(`seeded ${homeImages.length} homePageImages`)
     console.log(`seeded ${locationLists.length} locationLists`)
     console.log(`seeded ${menuLists.length} menuLists`)
