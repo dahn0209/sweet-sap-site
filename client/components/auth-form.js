@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {auth} from '../store'
+import './auth-form.css'
 
 /**
  * COMPONENT
@@ -11,27 +12,31 @@ const AuthForm = props => {
 
   if (displayName === 'Login') {
     return (
-      <div>
-        <form onSubmit={handleSubmit} name={name}>
-          <div>
+      <section className="loginSection">
+        <h2 className="loginTitle">Login Form</h2>
+        <form onSubmit={handleSubmit} name={name} className="loginForm">
+          <div className="loginContainer">
             <label htmlFor="email">
-              <small>Email</small>
+              <b>Email</b>
             </label>
-            <input name="email" type="text" />
+            <input name="email" type="text" placeholder="E-mail" />
           </div>
-          <div>
+          <div className="loginContainer">
             <label htmlFor="password">
-              <small>Password</small>
+              <b>Password</b>
             </label>
-            <input name="password" type="password" />
+            <input name="password" type="password" placeholder="Password" />
           </div>
-          <div>
-            <button type="submit">{displayName}</button>
+          <div className="loginContainer">
+            <button type="submit" className="loginSubmit">
+              {displayName}
+            </button>
           </div>
           {error && error.response && <div> {error.response.data} </div>}
         </form>
+
         {/* <a href="/auth/google">{displayName} with Google</a> */}
-      </div>
+      </section>
     )
   }
 }
