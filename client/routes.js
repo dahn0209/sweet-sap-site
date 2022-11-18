@@ -9,6 +9,7 @@ import Menus from './components/menus'
 import PrivateEvents from './components/privateEvents'
 import Happening from './components/happenings'
 import ContactUs from './components/contactUs'
+import updateUser from './components/updateUser'
 import {me} from './store'
 
 /**
@@ -31,6 +32,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route exact path="/update-profile" component={updateUser} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

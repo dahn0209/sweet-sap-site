@@ -8,8 +8,11 @@ import locationsReducer from './locations'
 import menusReducer from './menus'
 import privateEventsReducer from './privateEvents'
 import happeningsReducer from './happenings'
+import usersReducer from './users'
+
 const reducer = combineReducers({
   user,
+  users: usersReducer,
   homePageImages: homePageImagesReducer,
   locations: locationsReducer,
   menus: menusReducer,
