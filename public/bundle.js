@@ -2489,6 +2489,14 @@ var AuthForm = function AuthForm(props) {
     })), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
       className: "signUpContainer"
     }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      htmlFor: "email"
+    }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "E-mail")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      name: "email",
+      type: "text",
+      required: true
+    })), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      className: "signUpContainer"
+    }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
       htmlFor: "password"
     }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Password")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
       name: "password",
