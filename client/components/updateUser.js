@@ -108,7 +108,7 @@ export class UpdateUser extends React.Component {
             <input
               name="password"
               type="password"
-              //   value={this.state.password}
+              value={this.state.password}
               onChange={this.handleChange}
             />
           </div>
