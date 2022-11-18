@@ -3640,8 +3640,8 @@ var UpdateUser = /*#__PURE__*/function (_React$Component) {
         htmlFor: "password"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Password")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         name: "password",
-        type: "password" //   value={this.state.password}
-        ,
+        type: "password",
+        value: this.state.password,
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "submit",

@@ -108,7 +108,7 @@ export class UpdateUser extends React.Component {
             <input
               name="password"
               type="password"
-              //   value={this.state.password}
+              value={this.state.password}
               onChange={this.handleChange}
             />
           </div>
@@ -122,7 +122,9 @@ export class UpdateUser extends React.Component {
   }
 }
 const mapState = state => {
-  return {user: state.user}
+  return {
+    user: state.user
+  }
 }
 const mapDispatch = dispatch => {
   return {
