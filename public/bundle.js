@@ -2672,6 +2672,133 @@ var mapDispatch = function mapDispatch(dispatch) {
 
 /***/ }),
 
+/***/ "./client/components/editHome.js":
+/*!***************************************!*\
+  !*** ./client/components/editHome.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EditHome": () => (/* binding */ EditHome),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _store_homePageImages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/homePageImages */ "./client/store/homePageImages.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _editHome_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editHome.css */ "./client/components/editHome.css");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+ // import AddProductForm from './AddProductForm'
+
+
+var EditHome = /*#__PURE__*/function (_React$Component) {
+  _inherits(EditHome, _React$Component);
+
+  function EditHome() {
+    _classCallCheck(this, EditHome);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(EditHome).apply(this, arguments));
+  }
+
+  _createClass(EditHome, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchHomePageImages();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var homePageImages = this.props.homePageImages;
+      return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+        className: "homePageImagesContainer"
+      }, homePageImages.map(function (homePageImage) {
+        if (!homePageImage.description) {
+          return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "homePageImagesGridItem",
+            key: homePageImage.id
+          }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+            src: homePageImage.imageUrl
+          }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+            to: "/homePageImages/".concat(homePageImage.id, "/edit")
+          }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            type: "button"
+          }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            type: "button",
+            onClick: function onClick() {
+              return _this.props.deleteHomePageImageThunk(homePageImage);
+            }
+          }, "Remove")));
+        }
+
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "homePageImagesGridItem",
+          key: homePageImage.id
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          src: homePageImage.imageUrl
+        }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "homePageDescription"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, homePageImage.description)), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          to: "/homePageImages/".concat(homePageImage.id, "/edit")
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button",
+          onClick: function onClick() {
+            return _this.props.deleteHomePageImageThunk(homePageImage);
+          }
+        }, "Remove")));
+      }));
+    }
+  }]);
+
+  return EditHome;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    homePageImages: state.homePageImages
+  };
+};
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    fetchHomePageImages: function fetchHomePageImages() {
+      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.fetchHomepageImages)());
+    },
+    deleteHomePageImageThunk: function deleteHomePageImageThunk(homePageImageId) {
+      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.deleteHomePageImageThunk)(homePageImageId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapStateToProps, mapDispatchToProps)(EditHome));
+
+/***/ }),
+
 /***/ "./client/components/footer.js":
 /*!*************************************!*\
   !*** ./client/components/footer.js ***!
@@ -3759,9 +3886,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_12___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_12__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_13___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_13__);
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
 /* harmony import */ var _components_homePageImages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/homePageImages */ "./client/components/homePageImages.js");
 /* harmony import */ var _components_hourLocation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/hourLocation */ "./client/components/hourLocation.js");
@@ -3770,7 +3897,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_happenings__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/happenings */ "./client/components/happenings.js");
 /* harmony import */ var _components_contactUs__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/contactUs */ "./client/components/contactUs.js");
 /* harmony import */ var _components_updateUser__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/updateUser */ "./client/components/updateUser.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+/* harmony import */ var _components_editHome__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/editHome */ "./client/components/editHome.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -3788,6 +3916,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -3824,40 +3953,43 @@ var Routes = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var isLoggedIn = this.props.isLoggedIn;
-      return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/login",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.Login
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/signup",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.Signup
-      }), isLoggedIn && react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), isLoggedIn && react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.UserHome
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
+        path: "/edit-home",
+        component: _components_editHome__WEBPACK_IMPORTED_MODULE_10__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/update-profile",
         component: _components_updateUser__WEBPACK_IMPORTED_MODULE_9__["default"]
-      })), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      })), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/",
         component: _components_homePageImages__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/hours-location",
         component: _components_hourLocation__WEBPACK_IMPORTED_MODULE_4__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/menu",
         component: _components_menus__WEBPACK_IMPORTED_MODULE_5__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/private-events",
         component: _components_privateEvents__WEBPACK_IMPORTED_MODULE_6__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/happening",
         component: _components_happenings__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_11__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_12__.Route, {
         exact: true,
         path: "/contact-us",
         component: _components_contactUs__WEBPACK_IMPORTED_MODULE_8__["default"]
@@ -3883,21 +4015,21 @@ var mapState = function mapState(state) {
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     loadInitialData: function loadInitialData() {
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_10__.me)());
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_11__.me)());
     }
   };
 }; // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_11__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_12__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
 /**
  * PROP TYPES
  */
 
 Routes.propTypes = {
-  loadInitialData: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().func.isRequired),
-  isLoggedIn: (prop_types__WEBPACK_IMPORTED_MODULE_12___default().bool.isRequired)
+  loadInitialData: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().func.isRequired),
+  isLoggedIn: (prop_types__WEBPACK_IMPORTED_MODULE_13___default().bool.isRequired)
 };
 
 /***/ }),
@@ -14616,6 +14748,33 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".contactContainer {\n  width: 100%;\n  height: 100%;\n  display: grid;\n  grid-template-areas:\n    'header header header header'\n    '...location location...'\n    '...map      map...';\n  grid-auto-columns: 0.25fr 1fr 1fr 0.25fr;\n  justify-content: center;\n  row-gap: 20px;\n  /* column-gap: 30px; */\n}\n\n/* /////header//// */\n#contactHeader {\n  grid-area: header;\n  text-align: center;\n  letter-spacing: normal;\n  font-family: sans-serif;\n  font-weight: normal;\n  color: #8b0000;\n  line-height: normal;\n}\n\nheader h1 #contactTitle {\n  font-size: 30px;\n  font-weight: bold;\n}\n\n/* header h2 #description {\n    font-size: 17px;\n    font-weight: normal;\n  } */\n\n/* ////Location//// */\n\n#contactLocationGrid {\n  padding: 20px;\n  grid-area: location;\n  text-align: center;\n  /* border: 5px solid rgb(235, 206, 121); */\n  color: #8b0000;\n  font-family: sans-serif;\n}\n\n/* #contactLocationGrid h2 {\n    margin-bottom: 80px;\n    font-size: 25px;\n    color: #cf7979;\n  } */\n\n#contactLocationGrid p {\n  line-height: 1.5em;\n  margin: 20px;\n  font-size: 15px;\n}\n\np span {\n  font-style: italic;\n}\n\n/* ////map//// */\n#contactMapContainer {\n  grid-area: map;\n  border: 5px solid rgb(235, 206, 121);\n}\n\n#contactMapContainer iframe {\n  justify-content: center;\n  width: 100%;\n}\n\n@media screen and (max-width: 1100px) {\n  .mainHourLocationContainer {\n    grid-template-areas:\n      'header'\n      'location'\n      'time'\n      'map';\n\n    grid-auto-columns: 1fr;\n  }\n}\n", "",{"version":3,"sources":["webpack://./client/components/contactUs.css"],"names":[],"mappings":"AAAA;EACE,WAAW;EACX,YAAY;EACZ,aAAa;EACb;;;wBAGsB;EACtB,wCAAwC;EACxC,uBAAuB;EACvB,aAAa;EACb,sBAAsB;AACxB;;AAEA,oBAAoB;AACpB;EACE,iBAAiB;EACjB,kBAAkB;EAClB,sBAAsB;EACtB,uBAAuB;EACvB,mBAAmB;EACnB,cAAc;EACd,mBAAmB;AACrB;;AAEA;EACE,eAAe;EACf,iBAAiB;AACnB;;AAEA;;;KAGK;;AAEL,qBAAqB;;AAErB;EACE,aAAa;EACb,mBAAmB;EACnB,kBAAkB;EAClB,0CAA0C;EAC1C,cAAc;EACd,uBAAuB;AACzB;;AAEA;;;;KAIK;;AAEL;EACE,kBAAkB;EAClB,YAAY;EACZ,eAAe;AACjB;;AAEA;EACE,kBAAkB;AACpB;;AAEA,gBAAgB;AAChB;EACE,cAAc;EACd,oCAAoC;AACtC;;AAEA;EACE,uBAAuB;EACvB,WAAW;AACb;;AAEA;EACE;IACE;;;;WAIO;;IAEP,sBAAsB;EACxB;AACF","sourcesContent":[".contactContainer {\n  width: 100%;\n  height: 100%;\n  display: grid;\n  grid-template-areas:\n    'header header header header'\n    '...location location...'\n    '...map      map...';\n  grid-auto-columns: 0.25fr 1fr 1fr 0.25fr;\n  justify-content: center;\n  row-gap: 20px;\n  /* column-gap: 30px; */\n}\n\n/* /////header//// */\n#contactHeader {\n  grid-area: header;\n  text-align: center;\n  letter-spacing: normal;\n  font-family: sans-serif;\n  font-weight: normal;\n  color: #8b0000;\n  line-height: normal;\n}\n\nheader h1 #contactTitle {\n  font-size: 30px;\n  font-weight: bold;\n}\n\n/* header h2 #description {\n    font-size: 17px;\n    font-weight: normal;\n  } */\n\n/* ////Location//// */\n\n#contactLocationGrid {\n  padding: 20px;\n  grid-area: location;\n  text-align: center;\n  /* border: 5px solid rgb(235, 206, 121); */\n  color: #8b0000;\n  font-family: sans-serif;\n}\n\n/* #contactLocationGrid h2 {\n    margin-bottom: 80px;\n    font-size: 25px;\n    color: #cf7979;\n  } */\n\n#contactLocationGrid p {\n  line-height: 1.5em;\n  margin: 20px;\n  font-size: 15px;\n}\n\np span {\n  font-style: italic;\n}\n\n/* ////map//// */\n#contactMapContainer {\n  grid-area: map;\n  border: 5px solid rgb(235, 206, 121);\n}\n\n#contactMapContainer iframe {\n  justify-content: center;\n  width: 100%;\n}\n\n@media screen and (max-width: 1100px) {\n  .mainHourLocationContainer {\n    grid-template-areas:\n      'header'\n      'location'\n      'time'\n      'map';\n\n    grid-auto-columns: 1fr;\n  }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/components/editHome.css":
+/*!******************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/components/editHome.css ***!
+  \******************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -57356,6 +57515,61 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_contactUs_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_contactUs_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_contactUs_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./client/components/editHome.css":
+/*!****************************************!*\
+  !*** ./client/components/editHome.css ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_editHome_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./editHome.css */ "./node_modules/css-loader/dist/cjs.js!./client/components/editHome.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_editHome_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_editHome_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_editHome_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_editHome_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
