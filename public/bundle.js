@@ -2736,8 +2736,8 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
 
       if (homePageImages.length === 0) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
-          className: "editHomePageImagesContainer"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "No images! Please uphold new images!"));
+          id: "noImagePresentEditHomeImages"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "No Images present! Please upload new images!"));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
