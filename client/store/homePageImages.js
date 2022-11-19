@@ -4,6 +4,9 @@ import axios from 'axios'
  * ACTION TYPES
  */
 const SET_HOMEPAGEIMAGES = 'SET_HOMEPAGEIMAGES'
+const CREATE_HOMEPAGEIMAGE = 'CREATE_HOMEPAGEIMAGE'
+const DELETE_HOMEPAGEIMAGE = 'DELETE_HOMEPAGEIMAGE'
+const UPDATE_HOMEPAGEIMAGE = 'UPDATE_HOMEPAGEIMAGE'
 
 /**
  * ACTION CREATORS
@@ -16,6 +19,27 @@ export const setHomepageImages = homePageImages => {
   }
 }
 
+export const createHomePageImage = homePageImage => {
+  return {
+    type: CREATE_HOMEPAGEIMAGE,
+    homePageImage
+  }
+}
+
+export const deleteHomePageImage = homePageImage => {
+  return {
+    type: DELETE_HOMEPAGEIMAGE,
+    homePageImage
+  }
+}
+
+export const updateHomePageImage = homePageImage => {
+  return {
+    type: UPDATE_HOMEPAGEIMAGE,
+    homePageImage
+  }
+}
+
 /**
  * THUNK CREATORS
  */
@@ -23,8 +47,45 @@ export const setHomepageImages = homePageImages => {
 export const fetchHomepageImages = () => {
   return async dispatch => {
     const {data} = await axios.get('/api/homePageImages')
-    console.log('data in homePageImages THunk==>', data)
     dispatch(setHomepageImages(data))
+  }
+}
+
+export const createNewHomePageImage = homePageImage => {
+  return async dispatch => {
+    try {
+      const response = await axios.post('/api/homePageImages', homePageImage)
+      const newhomePageImage = response.data
+      dispatch(createHomePageImage(newhomePageImage))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const deleteHomePageImageThunk = homePageImage => {
+  return async dispatch => {
+    try {
+      await axios.post(`/api/homePageImages/${homePageImage}`)
+      dispatch(deleteHomePageImage(homePageImage))
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
+export const updateHomePageImageThunk = homePageImage => {
+  return async dispatch => {
+    try {
+      const response = await axios.post(
+        `/api/homePageImages/${homePageImage}`,
+        homePageImage
+      )
+      const updatedHomePageImage = response.data
+      dispatch(updateHomePageImage(updatedHomePageImage))
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
 
@@ -41,6 +102,18 @@ export default function homePageImagesReducer(state = initialState, action) {
   switch (action.type) {
     case SET_HOMEPAGEIMAGES:
       return action.homePageImages
+    case CREATE_HOMEPAGEIMAGE:
+      return [...state, action.homePageImage]
+    case DELETE_HOMEPAGEIMAGE:
+      return state.filter(
+        homePageImage => homePageImage.id !== action.homePageImage.id
+      )
+    case UPDATE_HOMEPAGEIMAGE:
+      return state.map(homePageImage => {
+        return homePageImage.id === action.homePageImage.id
+          ? action.homePageImage
+          : homePageImage
+      })
     default:
       return state
   }
