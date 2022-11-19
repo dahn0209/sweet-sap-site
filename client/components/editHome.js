@@ -15,6 +15,14 @@ export class EditHome extends React.Component {
 
   render() {
     const homePageImages = this.props.homePageImages
+
+    if (homePageImages.length === 0) {
+      return (
+        <section className="editHomePageImagesContainer">
+          <h1>No images! Please uphold new images!</h1>
+        </section>
+      )
+    }
     return (
       <section className="editHomePageImagesContainer">
         {homePageImages.map(homePageImage => {
