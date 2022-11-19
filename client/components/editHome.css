@@ -1,0 +1,114 @@
+#noImagePresentEditHomeImages {
+  text-align: center;
+}
+
+.editHomePageImagesContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 100px 300px;
+  justify-content: center;
+}
+
+.editHomePageImagesGridItem img {
+  width: 100%;
+}
+
+.editHomePageImagesGridItem {
+  position: relative;
+}
+
+.editHomePageImagesDescription {
+  width: 100%;
+  position: absolute;
+  background-color: rgb(235, 206, 121);
+  bottom: 20%;
+  opacity: 0.85;
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+  padding: 30px;
+  opacity: 0.85;
+}
+
+.editHomePageImagesEditDelete {
+  width: 100%;
+  text-align: center;
+}
+
+.editHomePageImagesEditDelete button {
+  width: 45%;
+  background-color: rgb(28, 186, 78);
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 5px;
+  color: white;
+}
+
+.editHomePageImagesEditDelete #deleteBtn {
+  background-color: rgba(186, 7, 7, 0.708);
+}
+
+@media screen and (max-width: 600px) {
+  .editHomePageImagesContainer {
+    grid-template-columns: 1fr;
+    justify-content: center;
+    margin: 20px;
+  }
+
+  .editHomePageImagesGridItem {
+    text-align: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .editHomePageImagesGridItem img {
+    width: 100%;
+  }
+
+  .editHomePageImagesDescription {
+    position: absolute;
+    background-color: rgb(235, 206, 121);
+    opacity: 0.85;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding: 30px;
+    opacity: 0.85;
+    object-fit: contain;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1300px) {
+  .editHomePageImagesContainer {
+    grid-template-columns: 1fr 1fr;
+    justify-content: center;
+    margin: 60px;
+  }
+
+  .editHomePageImagesGridItem {
+    text-align: center;
+    width: 100%;
+    position: relative;
+  }
+
+  .editHomePageImagesGridItem img {
+    width: 100%;
+  }
+
+  .editHomePageImagesDescription {
+    position: absolute;
+    background-color: rgb(235, 206, 121);
+    opacity: 0.85;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: center;
+    padding: 30px;
+    opacity: 0.85;
+    object-fit: contain;
+  }
+}
