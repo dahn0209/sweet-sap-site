@@ -2734,19 +2734,22 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
 
       var homePageImages = this.props.homePageImages;
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
-        className: "homePageImagesContainer"
+        className: "editHomePageImagesContainer"
       }, homePageImages.map(function (homePageImage) {
         if (!homePageImage.description) {
           return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-            className: "homePageImagesGridItem",
+            className: "editHomePageImagesGridItem",
             key: homePageImage.id
           }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
             src: homePageImage.imageUrl
-          }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "editHomePageImagesEditDelete"
+          }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
             to: "/homePageImages/".concat(homePageImage.id, "/edit")
           }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
             type: "button"
           }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+            id: "deleteBtn",
             type: "button",
             onClick: function onClick() {
               return _this.props.deleteHomePageImageThunk(homePageImage);
@@ -2755,18 +2758,21 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
         }
 
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "homePageImagesGridItem",
+          className: "editHomePageImagesGridItem",
           key: homePageImage.id
         }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
           src: homePageImage.imageUrl
         }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "homePageDescription"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, homePageImage.description)), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          className: "editHomePageImagesDescription"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, homePageImage.description)), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "editHomePageImagesEditDelete"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
           to: "/homePageImages/".concat(homePageImage.id, "/edit")
         }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           type: "button"
         }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           type: "button",
+          id: "deleteBtn",
           onClick: function onClick() {
             return _this.props.deleteHomePageImageThunk(homePageImage);
           }
@@ -4298,7 +4304,7 @@ var deleteHomePageImageThunk = function deleteHomePageImageThunk(homePageImage) 
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/homePageImages/".concat(homePageImage));
+              return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/homePageImages/".concat(homePageImage.id));
 
             case 3:
               dispatch(deleteHomePageImage(homePageImage));
@@ -4333,7 +4339,7 @@ var updateHomePageImageThunk = function updateHomePageImageThunk(homePageImage) 
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/homePageImages/".concat(homePageImage), homePageImage);
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/homePageImages/".concat(homePageImage.id), homePageImage);
 
             case 3:
               response = _context4.sent;
@@ -14774,7 +14780,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", "",{"version":3,"sources":[],"names":[],"mappings":"","sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".editHomePageImagesContainer {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 10px;\n  margin: 100px 300px;\n  justify-content: center;\n}\n\n.editHomePageImagesGridItem img {\n  width: 100%;\n}\n\n.editHomePageImagesGridItem {\n  position: relative;\n}\n\n.editHomePageImagesDescription {\n  width: 100%;\n  position: absolute;\n  background-color: rgb(235, 206, 121);\n  bottom: 20%;\n  opacity: 0.85;\n  font-weight: bold;\n  font-size: 20px;\n  text-align: center;\n  padding: 30px;\n  opacity: 0.85;\n}\n\n.editHomePageImagesEditDelete {\n  width: 100%;\n  text-align: center;\n}\n\n.editHomePageImagesEditDelete button {\n  width: 45%;\n  background-color: rgb(28, 186, 78);\n  font-weight: bold;\n  font-size: 15px;\n  padding: 10px;\n  border: none;\n  cursor: pointer;\n  border-radius: 5px;\n  margin: 5px;\n  color: white;\n}\n\n.editHomePageImagesEditDelete #deleteBtn {\n  background-color: rgba(186, 7, 7, 0.708);\n}\n\n@media screen and (max-width: 600px) {\n  .editHomePageImagesContainer {\n    grid-template-columns: 1fr;\n    justify-content: center;\n    margin: 20px;\n  }\n\n  .editHomePageImagesGridItem {\n    text-align: center;\n    width: 100%;\n    position: relative;\n  }\n\n  .editHomePageImagesGridItem img {\n    width: 100%;\n  }\n\n  .editHomePageImagesDescription {\n    position: absolute;\n    background-color: rgb(235, 206, 121);\n    opacity: 0.85;\n    font-weight: bold;\n    font-size: 20px;\n    text-align: center;\n    padding: 30px;\n    opacity: 0.85;\n    object-fit: contain;\n  }\n}\n\n@media screen and (min-width: 600px) and (max-width: 1300px) {\n  .editHomePageImagesContainer {\n    grid-template-columns: 1fr 1fr;\n    justify-content: center;\n    margin: 60px;\n  }\n\n  .editHomePageImagesGridItem {\n    text-align: center;\n    width: 100%;\n    position: relative;\n  }\n\n  .editHomePageImagesGridItem img {\n    width: 100%;\n  }\n\n  .editHomePageImagesDescription {\n    position: absolute;\n    background-color: rgb(235, 206, 121);\n    opacity: 0.85;\n    font-weight: bold;\n    font-size: 20px;\n    text-align: center;\n    padding: 30px;\n    opacity: 0.85;\n    object-fit: contain;\n  }\n}\n", "",{"version":3,"sources":["webpack://./client/components/editHome.css"],"names":[],"mappings":"AAAA;EACE,aAAa;EACb,8BAA8B;EAC9B,SAAS;EACT,mBAAmB;EACnB,uBAAuB;AACzB;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,oCAAoC;EACpC,WAAW;EACX,aAAa;EACb,iBAAiB;EACjB,eAAe;EACf,kBAAkB;EAClB,aAAa;EACb,aAAa;AACf;;AAEA;EACE,WAAW;EACX,kBAAkB;AACpB;;AAEA;EACE,UAAU;EACV,kCAAkC;EAClC,iBAAiB;EACjB,eAAe;EACf,aAAa;EACb,YAAY;EACZ,eAAe;EACf,kBAAkB;EAClB,WAAW;EACX,YAAY;AACd;;AAEA;EACE,wCAAwC;AAC1C;;AAEA;EACE;IACE,0BAA0B;IAC1B,uBAAuB;IACvB,YAAY;EACd;;EAEA;IACE,kBAAkB;IAClB,WAAW;IACX,kBAAkB;EACpB;;EAEA;IACE,WAAW;EACb;;EAEA;IACE,kBAAkB;IAClB,oCAAoC;IACpC,aAAa;IACb,iBAAiB;IACjB,eAAe;IACf,kBAAkB;IAClB,aAAa;IACb,aAAa;IACb,mBAAmB;EACrB;AACF;;AAEA;EACE;IACE,8BAA8B;IAC9B,uBAAuB;IACvB,YAAY;EACd;;EAEA;IACE,kBAAkB;IAClB,WAAW;IACX,kBAAkB;EACpB;;EAEA;IACE,WAAW;EACb;;EAEA;IACE,kBAAkB;IAClB,oCAAoC;IACpC,aAAa;IACb,iBAAiB;IACjB,eAAe;IACf,kBAAkB;IAClB,aAAa;IACb,aAAa;IACb,mBAAmB;EACrB;AACF","sourcesContent":[".editHomePageImagesContainer {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 10px;\n  margin: 100px 300px;\n  justify-content: center;\n}\n\n.editHomePageImagesGridItem img {\n  width: 100%;\n}\n\n.editHomePageImagesGridItem {\n  position: relative;\n}\n\n.editHomePageImagesDescription {\n  width: 100%;\n  position: absolute;\n  background-color: rgb(235, 206, 121);\n  bottom: 20%;\n  opacity: 0.85;\n  font-weight: bold;\n  font-size: 20px;\n  text-align: center;\n  padding: 30px;\n  opacity: 0.85;\n}\n\n.editHomePageImagesEditDelete {\n  width: 100%;\n  text-align: center;\n}\n\n.editHomePageImagesEditDelete button {\n  width: 45%;\n  background-color: rgb(28, 186, 78);\n  font-weight: bold;\n  font-size: 15px;\n  padding: 10px;\n  border: none;\n  cursor: pointer;\n  border-radius: 5px;\n  margin: 5px;\n  color: white;\n}\n\n.editHomePageImagesEditDelete #deleteBtn {\n  background-color: rgba(186, 7, 7, 0.708);\n}\n\n@media screen and (max-width: 600px) {\n  .editHomePageImagesContainer {\n    grid-template-columns: 1fr;\n    justify-content: center;\n    margin: 20px;\n  }\n\n  .editHomePageImagesGridItem {\n    text-align: center;\n    width: 100%;\n    position: relative;\n  }\n\n  .editHomePageImagesGridItem img {\n    width: 100%;\n  }\n\n  .editHomePageImagesDescription {\n    position: absolute;\n    background-color: rgb(235, 206, 121);\n    opacity: 0.85;\n    font-weight: bold;\n    font-size: 20px;\n    text-align: center;\n    padding: 30px;\n    opacity: 0.85;\n    object-fit: contain;\n  }\n}\n\n@media screen and (min-width: 600px) and (max-width: 1300px) {\n  .editHomePageImagesContainer {\n    grid-template-columns: 1fr 1fr;\n    justify-content: center;\n    margin: 60px;\n  }\n\n  .editHomePageImagesGridItem {\n    text-align: center;\n    width: 100%;\n    position: relative;\n  }\n\n  .editHomePageImagesGridItem img {\n    width: 100%;\n  }\n\n  .editHomePageImagesDescription {\n    position: absolute;\n    background-color: rgb(235, 206, 121);\n    opacity: 0.85;\n    font-weight: bold;\n    font-size: 20px;\n    text-align: center;\n    padding: 30px;\n    opacity: 0.85;\n    object-fit: contain;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

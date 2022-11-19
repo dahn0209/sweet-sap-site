@@ -16,17 +16,21 @@ export class EditHome extends React.Component {
   render() {
     const homePageImages = this.props.homePageImages
     return (
-      <section className="homePageImagesContainer">
+      <section className="editHomePageImagesContainer">
         {homePageImages.map(homePageImage => {
           if (!homePageImage.description) {
             return (
-              <div className="homePageImagesGridItem" key={homePageImage.id}>
+              <div
+                className="editHomePageImagesGridItem"
+                key={homePageImage.id}
+              >
                 <img src={homePageImage.imageUrl} />
-                <div>
+                <div className="editHomePageImagesEditDelete">
                   <Link to={`/homePageImages/${homePageImage.id}/edit`}>
                     <button type="button">Edit</button>
                   </Link>
                   <button
+                    id="deleteBtn"
                     type="button"
                     onClick={() =>
                       this.props.deleteHomePageImageThunk(homePageImage)
@@ -39,17 +43,18 @@ export class EditHome extends React.Component {
             )
           }
           return (
-            <div className="homePageImagesGridItem" key={homePageImage.id}>
+            <div className="editHomePageImagesGridItem" key={homePageImage.id}>
               <img src={homePageImage.imageUrl} />
-              <div className="homePageDescription">
+              <div className="editHomePageImagesDescription">
                 <span>{homePageImage.description}</span>
               </div>
-              <div>
+              <div className="editHomePageImagesEditDelete">
                 <Link to={`/homePageImages/${homePageImage.id}/edit`}>
                   <button type="button">Edit</button>
                 </Link>
                 <button
                   type="button"
+                  id="deleteBtn"
                   onClick={() =>
                     this.props.deleteHomePageImageThunk(homePageImage)
                   }
