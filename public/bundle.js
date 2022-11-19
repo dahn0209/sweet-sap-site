@@ -4025,12 +4025,26 @@ function happeningsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createHomePageImage": () => (/* binding */ createHomePageImage),
+/* harmony export */   "createNewHomePageImage": () => (/* binding */ createNewHomePageImage),
 /* harmony export */   "default": () => (/* binding */ homePageImagesReducer),
+/* harmony export */   "deleteHomePageImage": () => (/* binding */ deleteHomePageImage),
+/* harmony export */   "deleteHomePageImageThunk": () => (/* binding */ deleteHomePageImageThunk),
 /* harmony export */   "fetchHomepageImages": () => (/* binding */ fetchHomepageImages),
-/* harmony export */   "setHomepageImages": () => (/* binding */ setHomepageImages)
+/* harmony export */   "setHomepageImages": () => (/* binding */ setHomepageImages),
+/* harmony export */   "updateHomePageImage": () => (/* binding */ updateHomePageImage),
+/* harmony export */   "updateHomePageImageThunk": () => (/* binding */ updateHomePageImageThunk)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -4041,6 +4055,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  */
 
 var SET_HOMEPAGEIMAGES = 'SET_HOMEPAGEIMAGES';
+var CREATE_HOMEPAGEIMAGE = 'CREATE_HOMEPAGEIMAGE';
+var DELETE_HOMEPAGEIMAGE = 'DELETE_HOMEPAGEIMAGE';
+var UPDATE_HOMEPAGEIMAGE = 'UPDATE_HOMEPAGEIMAGE';
 /**
  * ACTION CREATORS
  */
@@ -4049,6 +4066,24 @@ var setHomepageImages = function setHomepageImages(homePageImages) {
   return {
     type: SET_HOMEPAGEIMAGES,
     homePageImages: homePageImages
+  };
+};
+var createHomePageImage = function createHomePageImage(homePageImage) {
+  return {
+    type: CREATE_HOMEPAGEIMAGE,
+    homePageImage: homePageImage
+  };
+};
+var deleteHomePageImage = function deleteHomePageImage(homePageImage) {
+  return {
+    type: DELETE_HOMEPAGEIMAGE,
+    homePageImage: homePageImage
+  };
+};
+var updateHomePageImage = function updateHomePageImage(homePageImage) {
+  return {
+    type: UPDATE_HOMEPAGEIMAGE,
+    homePageImage: homePageImage
   };
 };
 /**
@@ -4070,10 +4105,9 @@ var fetchHomepageImages = function fetchHomepageImages() {
             case 2:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
-              console.log('data in homePageImages THunk==>', data);
               dispatch(setHomepageImages(data));
 
-            case 6:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -4083,6 +4117,114 @@ var fetchHomepageImages = function fetchHomepageImages() {
 
     return function (_x) {
       return _ref.apply(this, arguments);
+    };
+  }();
+};
+var createNewHomePageImage = function createNewHomePageImage(homePageImage) {
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+      var response, newhomePageImage;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/homePageImages', homePageImage);
+
+            case 3:
+              response = _context2.sent;
+              newhomePageImage = response.data;
+              dispatch(createHomePageImage(newhomePageImage));
+              _context2.next = 11;
+              break;
+
+            case 8:
+              _context2.prev = 8;
+              _context2.t0 = _context2["catch"](0);
+              console.log(_context2.t0);
+
+            case 11:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 8]]);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+};
+var deleteHomePageImageThunk = function deleteHomePageImageThunk(homePageImage) {
+  return /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch) {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/homePageImages/".concat(homePageImage));
+
+            case 3:
+              dispatch(deleteHomePageImage(homePageImage));
+              _context3.next = 9;
+              break;
+
+            case 6:
+              _context3.prev = 6;
+              _context3.t0 = _context3["catch"](0);
+              console.log(_context3.t0);
+
+            case 9:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 6]]);
+    }));
+
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+};
+var updateHomePageImageThunk = function updateHomePageImageThunk(homePageImage) {
+  return /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(dispatch) {
+      var response, updatedHomePageImage;
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/homePageImages/".concat(homePageImage), homePageImage);
+
+            case 3:
+              response = _context4.sent;
+              updatedHomePageImage = response.data;
+              dispatch(updateHomePageImage(updatedHomePageImage));
+              _context4.next = 11;
+              break;
+
+            case 8:
+              _context4.prev = 8;
+              _context4.t0 = _context4["catch"](0);
+              console.log(_context4.t0);
+
+            case 11:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 8]]);
+    }));
+
+    return function (_x4) {
+      return _ref4.apply(this, arguments);
     };
   }();
 }; // Take a look at app/redux/index.js to see where this reducer is
@@ -4100,6 +4242,19 @@ function homePageImagesReducer() {
   switch (action.type) {
     case SET_HOMEPAGEIMAGES:
       return action.homePageImages;
+
+    case CREATE_HOMEPAGEIMAGE:
+      return [].concat(_toConsumableArray(state), [action.homePageImage]);
+
+    case DELETE_HOMEPAGEIMAGE:
+      return state.filter(function (homePageImage) {
+        return homePageImage.id !== action.homePageImage.id;
+      });
+
+    case UPDATE_HOMEPAGEIMAGE:
+      return state.map(function (homePageImage) {
+        return homePageImage.id === action.homePageImage.id ? action.homePageImage : homePageImage;
+      });
 
     default:
       return state;
