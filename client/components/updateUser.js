@@ -122,7 +122,9 @@ export class UpdateUser extends React.Component {
   }
 }
 const mapState = state => {
-  return {user: state.user}
+  return {
+    user: state.user
+  }
 }
 const mapDispatch = dispatch => {
   return {
