@@ -2733,6 +2733,13 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
       var _this = this;
 
       var homePageImages = this.props.homePageImages;
+
+      if (homePageImages.length === 0) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+          className: "editHomePageImagesContainer"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "No images! Please uphold new images!"));
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "editHomePageImagesContainer"
       }, homePageImages.map(function (homePageImage) {
