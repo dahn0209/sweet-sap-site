@@ -10,6 +10,7 @@ import PrivateEvents from './components/privateEvents'
 import Happening from './components/happenings'
 import ContactUs from './components/contactUs'
 import updateUser from './components/updateUser'
+import EditHome from './components/editHome'
 import {me} from './store'
 
 /**
@@ -32,6 +33,7 @@ class Routes extends Component {
           <Switch>
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
+            <Route path="/edit-home" component={EditHome} />
             <Route exact path="/update-profile" component={updateUser} />
           </Switch>
         )}
