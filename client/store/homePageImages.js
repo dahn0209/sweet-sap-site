@@ -66,7 +66,7 @@ export const createNewHomePageImage = homePageImage => {
 export const deleteHomePageImageThunk = homePageImage => {
   return async dispatch => {
     try {
-      await axios.post(`/api/homePageImages/${homePageImage}`)
+      await axios.delete(`/api/homePageImages/${homePageImage.id}`)
       dispatch(deleteHomePageImage(homePageImage))
     } catch (error) {
       console.log(error)
@@ -77,8 +77,8 @@ export const deleteHomePageImageThunk = homePageImage => {
 export const updateHomePageImageThunk = homePageImage => {
   return async dispatch => {
     try {
-      const response = await axios.post(
-        `/api/homePageImages/${homePageImage}`,
+      const response = await axios.put(
+        `/api/homePageImages/${homePageImage.id}`,
         homePageImage
       )
       const updatedHomePageImage = response.data

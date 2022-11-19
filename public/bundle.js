@@ -4298,7 +4298,7 @@ var deleteHomePageImageThunk = function deleteHomePageImageThunk(homePageImage) 
             case 0:
               _context3.prev = 0;
               _context3.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/homePageImages/".concat(homePageImage));
+              return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/homePageImages/".concat(homePageImage.id));
 
             case 3:
               dispatch(deleteHomePageImage(homePageImage));
@@ -4333,7 +4333,7 @@ var updateHomePageImageThunk = function updateHomePageImageThunk(homePageImage) 
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/homePageImages/".concat(homePageImage), homePageImage);
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/homePageImages/".concat(homePageImage.id), homePageImage);
 
             case 3:
               response = _context4.sent;
