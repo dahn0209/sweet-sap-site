@@ -18,7 +18,7 @@ export class EditHome extends React.Component {
     if (homePageImages.length === 0) {
       return (
         <section id="noImagePresentEditHomeImages">
-          <h1>No Images Present! Add New Images NOW!</h1>
+          <h1>No Images Present! Add New Images NOW Please!</h1>
         </section>
       )
     }
