@@ -43,7 +43,7 @@ export class EditHome extends React.Component {
                       this.props.deleteHomePageImageThunk(homePageImage)
                     }
                   >
-                    Remove
+                    Delete
                   </button>
                 </div>
               </div>
@@ -66,7 +66,7 @@ export class EditHome extends React.Component {
                     this.props.deleteHomePageImageThunk(homePageImage)
                   }
                 >
-                  Remove
+                  Delete
                 </button>
               </div>
             </div>

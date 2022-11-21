@@ -2737,7 +2737,7 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
       if (homePageImages.length === 0) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
           id: "noImagePresentEditHomeImages"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "No Images Present! Add New Images!"));
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "No Images Present! Add New Images NOW Please!"));
       }
 
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
@@ -2761,7 +2761,7 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
             onClick: function onClick() {
               return _this.props.deleteHomePageImageThunk(homePageImage);
             }
-          }, "Remove")));
+          }, "Delete")));
         }
 
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -2783,7 +2783,7 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
           onClick: function onClick() {
             return _this.props.deleteHomePageImageThunk(homePageImage);
           }
-        }, "Remove")));
+        }, "Delete")));
       }));
     }
   }]);
