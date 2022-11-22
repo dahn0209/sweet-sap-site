@@ -33,11 +33,14 @@ class AddHomePageImageForm extends React.Component {
 
   render() {
     const {imageUrl, description} = this.state
-    console.log('history==>', this.props.history)
     return (
       <section className="addNewHomeImageSection">
         <h2 className="addNewHomeImageTitle">New Image Detail</h2>
-        <form onSubmit={this.handleSubmit}>
+        <form
+          onSubmit={this.handleSubmit}
+          method="post"
+          encType="multipart/form-data"
+        >
           <div className="addNewHomeImageContainer">
             <label htmlFor="imageUrl">
               <b>Image</b>
