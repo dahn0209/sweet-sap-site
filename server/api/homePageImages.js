@@ -1,23 +1,10 @@
 const router = require('express').Router()
 const {HomePageImage} = require('../db/models')
 const multer = require('multer')
+const upload = multer({dest: './images/'})
 
 ////multer middleware section for storage///
 ///file storage
-const fileStorageEngine = multer.diskStorage({
-  destination: (req, file, cb) => {
-    /////where to save in folder
-    cb(null, './images')
-  },
-
-  filename: (req, file, cb) => {
-    cb(null, Date.now() + '--' + file.originalname)
-    console.log('file-->', file)
-  }
-})
-const upload = multer({storage: fileStorageEngine})
-
-console.log('this is upload=>', upload)
 
 // <-- assumes main route to home image set up with app.use in index.js -->  //
 
@@ -35,13 +22,16 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', upload.single('imageUrl'), async (req, res, next) => {
   try {
-    const newHomepageImage = await HomePageImage.create({
-      imageUrl: req.file,
-      description: req.body.description
-    })
-    console.log('this is req.file=>', req.file)
-    console.log('post new Image=>', newHomepageImage)
-    res.send(newHomepageImage)
+    // const newHomepageImage = await HomePageImage.create({
+    //   imageUrl: req.body.imageUrl,
+    //   description: req.body.description
+    // })
+    // console.log('post new Image=>', newHomepageImage)
+    // res.send(newHomepageImage)
+    console.log('req.file=>', req.file)
+    let fileType = req.file.mimetype.split('/')[1] ////this will get the webp file type
+    console.log('this is fileType=>', fileType)
+    await res.send('this works!!!!')
   } catch (error) {
     next(error)
   }
