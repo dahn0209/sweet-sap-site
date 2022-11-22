@@ -4335,13 +4335,14 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           imageUrl = _this$state.imageUrl,
           description = _this$state.description;
-      console.log('history==>', this.props.history);
       return React__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "addNewHomeImageSection"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         className: "addNewHomeImageTitle"
       }, "New Image Detail"), React__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        onSubmit: this.handleSubmit
+        onSubmit: this.handleSubmit,
+        method: "post",
+        encType: "multipart/form-data"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
