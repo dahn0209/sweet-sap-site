@@ -5,7 +5,6 @@ import {
 } from '../store/homePageImages'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
-// import AddProductForm from './AddProductForm'
 import './editHome.css'
 
 export class EditHome extends React.Component {
@@ -18,9 +17,9 @@ export class EditHome extends React.Component {
     if (homePageImages.length === 0) {
       return (
         <section>
-          <div>
+          <div className="addNewButton">
             <Link to="/add-homepage-image">
-              <h1>Add New Image </h1>
+              <button type="button">Add New Image </button>
             </Link>
           </div>
           <div id="noImagePresentEditHomeImages">
@@ -31,9 +30,9 @@ export class EditHome extends React.Component {
     }
     return (
       <section>
-        <div>
+        <div className="addNewButton">
           <Link to="/add-homepage-image">
-            <h1>Add New Image</h1>
+            <button type="button">Add New Image </button>
           </Link>
         </div>
         <div className="editHomePageImagesContainer">

@@ -1,3 +1,19 @@
+.addNewButton {
+  text-align: center;
+}
+
+.addNewButton button {
+  background-color: greenyellow;
+  padding: 20px;
+  border-radius: 5px;
+  margin-top: 30px;
+  font-weight: bold;
+  font-size: 20px;
+  border: none;
+  cursor: pointer;
+  color: #cf7979;
+}
+
 #noImagePresentEditHomeImages {
   margin: 80px 0px;
   text-align: center;
