@@ -55,6 +55,7 @@
     "flat-carousel": "^0.0.1",
     "history": "^4.9.0",
     "morgan": "^1.9.1",
+    "multer": "^1.4.5-lts.1",
     "passport": "^0.4.0",
     "passport-google-oauth": "^2.0.0",
     "pg": "^8.3.2",
