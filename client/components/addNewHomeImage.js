@@ -1,6 +1,7 @@
 import React from 'React'
 import {createHomePageImage} from '../store/homePageImages'
 import {connect} from 'react-redux'
+import './addNewHomeImage.css'
 
 const defaultState = {
   imageUrl: '',
@@ -26,36 +27,52 @@ class AddHomePageImageForm extends React.Component {
     event.preventDefault()
     this.props.createHomePageImage({...this.state})
     this.setState(defaultState)
+    let path = '/edit-home'
+    this.props.history.push(path)
   }
 
   render() {
     const {imageUrl, description} = this.state
+    console.log('history==>', this.props.history)
     return (
-      <div>
+      <section className="addNewHomeImageSection">
+        <h2 className="addNewHomeImageTitle">New Image Detail</h2>
         <form onSubmit={this.handleSubmit}>
-          <h1>New Image Details</h1>
+          <div className="addNewHomeImageContainer">
+            <label htmlFor="imageUrl">
+              <b>Image</b>
+            </label>
+            <br />
+            <input
+              type="file"
+              name="imageUrl"
+              value={imageUrl}
+              placeholder="imageUrl"
+              accept=".webp"
+              onChange={this.handleChange}
+            />
+          </div>
 
-          <label htmlFor="imageUrl">Image</label>
-          <input
-            type="file"
-            name="imageUrl"
-            value={imageUrl}
-            placeholder="imageUrl"
-            accept="image/*"
-            onChange={this.handleChange}
-          />
+          <div className="addNewHomeImageContainer">
+            <label htmlFor="description">
+              <b>Description</b>
+            </label>
+            <input
+              type="text"
+              name="description"
+              value={description}
+              placeholder="Product Description"
+              onChange={this.handleChange}
+            />
+          </div>
 
-          <label htmlFor="description">Description</label>
-          <input
-            type="text"
-            name="description"
-            value={description}
-            placeholder="Product Description"
-            onChange={this.handleChange}
-          />
-          <button type="submit">Add Image</button>
+          <div className="addNewHomeImageContainer">
+            <button className="addNewHomeImageSubmit" type="submit">
+              Add Image
+            </button>
+          </div>
         </form>
-      </div>
+      </section>
     )
   }
 }

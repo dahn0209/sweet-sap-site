@@ -4266,6 +4266,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
 /* harmony import */ var _store_homePageImages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/homePageImages */ "./client/store/homePageImages.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _addNewHomeImage_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addNewHomeImage.css */ "./client/components/addNewHomeImage.css");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -4289,6 +4290,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -4324,6 +4326,8 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       event.preventDefault();
       this.props.createHomePageImage(_objectSpread({}, this.state));
       this.setState(defaultState);
+      var path = '/edit-home';
+      this.props.history.push(path);
     }
   }, {
     key: "render",
@@ -4331,28 +4335,40 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           imageUrl = _this$state.imageUrl,
           description = _this$state.description;
-      return React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", null, React__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      console.log('history==>', this.props.history);
+      return React__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+        className: "addNewHomeImageSection"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "addNewHomeImageTitle"
+      }, "New Image Detail"), React__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit
-      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "New Image Details"), React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "imageUrl"
-      }, "Image"), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         name: "imageUrl",
         value: imageUrl,
         placeholder: "imageUrl",
-        accept: "image/*",
+        accept: ".webp",
         onChange: this.handleChange
-      }), React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+      })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "description"
-      }, "Description"), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Description")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         name: "description",
         value: description,
         placeholder: "Product Description",
         onChange: this.handleChange
-      }), React__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+      })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "addNewHomeImageSubmit",
         type: "submit"
-      }, "Add Image")));
+      }, "Add Image"))));
     }
   }]);
 
@@ -16761,6 +16777,33 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, "* {\n  box-sizing: border-box;\n  padding: 0;\n  margin: 0;\n  scroll-behavior: smooth;\n}\n\nbody {\n  font-family: sans-serif;\n  height: 100%;\n  width: 100%;\n}\n", "",{"version":3,"sources":["webpack://./client/app.css"],"names":[],"mappings":"AAAA;EACE,sBAAsB;EACtB,UAAU;EACV,SAAS;EACT,uBAAuB;AACzB;;AAEA;EACE,uBAAuB;EACvB,YAAY;EACZ,WAAW;AACb","sourcesContent":["* {\n  box-sizing: border-box;\n  padding: 0;\n  margin: 0;\n  scroll-behavior: smooth;\n}\n\nbody {\n  font-family: sans-serif;\n  height: 100%;\n  width: 100%;\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/components/addNewHomeImage.css":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/components/addNewHomeImage.css ***!
+  \*************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".addNewHomeImageSection {\n  justify-content: center;\n  margin: 50px auto;\n  width: 30%;\n}\n\n.addNewHomeImageTitle {\n  text-align: center;\n}\n\n.updateUserForm {\n  border: 3px solid #f1f1f1;\n}\n\ninput[type='text'],\ninput[type='password'] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n}\n\n.addNewHomeImageContainer {\n  padding: 16px;\n}\n\n.addNewHomeImageSubmit {\n  background-color: #04aa6d;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n}\n\n.addNewHomeImageSubmit:hover {\n  opacity: 0.8;\n}\n\nspan.psw {\n  float: right;\n  padding-top: 16px;\n}\n\n@media screen and (max-width: 600px) {\n  .addNewHomeImageSection {\n    justify-content: center;\n    margin: auto;\n    width: 100%;\n  }\n  span.psw {\n    display: block;\n    float: none;\n  }\n  .cancelbtn {\n    width: 100%;\n  }\n}\n", "",{"version":3,"sources":["webpack://./client/components/addNewHomeImage.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,iBAAiB;EACjB,UAAU;AACZ;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;;EAEE,WAAW;EACX,kBAAkB;EAClB,aAAa;EACb,qBAAqB;EACrB,sBAAsB;EACtB,sBAAsB;AACxB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,yBAAyB;EACzB,YAAY;EACZ,kBAAkB;EAClB,aAAa;EACb,YAAY;EACZ,eAAe;EACf,WAAW;AACb;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE;IACE,uBAAuB;IACvB,YAAY;IACZ,WAAW;EACb;EACA;IACE,cAAc;IACd,WAAW;EACb;EACA;IACE,WAAW;EACb;AACF","sourcesContent":[".addNewHomeImageSection {\n  justify-content: center;\n  margin: 50px auto;\n  width: 30%;\n}\n\n.addNewHomeImageTitle {\n  text-align: center;\n}\n\n.updateUserForm {\n  border: 3px solid #f1f1f1;\n}\n\ninput[type='text'],\ninput[type='password'] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n}\n\n.addNewHomeImageContainer {\n  padding: 16px;\n}\n\n.addNewHomeImageSubmit {\n  background-color: #04aa6d;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n}\n\n.addNewHomeImageSubmit:hover {\n  opacity: 0.8;\n}\n\nspan.psw {\n  float: right;\n  padding-top: 16px;\n}\n\n@media screen and (max-width: 600px) {\n  .addNewHomeImageSection {\n    justify-content: center;\n    margin: auto;\n    width: 100%;\n  }\n  span.psw {\n    display: block;\n    float: none;\n  }\n  .cancelbtn {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -59444,6 +59487,61 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_app_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_app_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_app_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./client/components/addNewHomeImage.css":
+/*!***********************************************!*\
+  !*** ./client/components/addNewHomeImage.css ***!
+  \***********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_addNewHomeImage_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./addNewHomeImage.css */ "./node_modules/css-loader/dist/cjs.js!./client/components/addNewHomeImage.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_addNewHomeImage_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_addNewHomeImage_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_addNewHomeImage_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_addNewHomeImage_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),
