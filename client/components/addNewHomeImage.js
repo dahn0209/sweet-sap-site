@@ -37,11 +37,11 @@ class AddHomePageImageForm extends React.Component {
 
           <label htmlFor="imageUrl">Image</label>
           <input
-            type="text"
+            type="file"
             name="imageUrl"
             value={imageUrl}
             placeholder="imageUrl"
-            accept="image/webp, image/png image/jpeg"
+            accept="image/*"
             onChange={this.handleChange}
           />
 

@@ -11,6 +11,8 @@ import Happening from './components/happenings'
 import ContactUs from './components/contactUs'
 import updateUser from './components/updateUser'
 import EditHome from './components/editHome'
+import AddHomePageImageForm from './components/addNewHomeImage'
+
 import {me} from './store'
 
 /**
@@ -35,6 +37,11 @@ class Routes extends Component {
             <Route path="/home" component={UserHome} />
             <Route path="/edit-home" component={EditHome} />
             <Route exact path="/update-profile" component={updateUser} />
+            <Route
+              exact
+              path="/add-homepage-image"
+              component={AddHomePageImageForm}
+            />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}
