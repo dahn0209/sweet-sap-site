@@ -1,8 +1,8 @@
 const router = require('express').Router()
 const {HomePageImage} = require('../db/models')
 const multer = require('multer')
-const upload = multer({dest: './images/'})
-
+const upload = multer({dest: 'public/newHomeImages/'})
+const fs = require('fs')
 ////multer middleware section for storage///
 ///file storage
 
@@ -22,16 +22,20 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', upload.single('imageUrl'), async (req, res, next) => {
   try {
-    // const newHomepageImage = await HomePageImage.create({
-    //   imageUrl: req.body.imageUrl,
-    //   description: req.body.description
-    // })
-    // console.log('post new Image=>', newHomepageImage)
-    // res.send(newHomepageImage)
-    console.log('req.file=>', req.file)
     let fileType = req.file.mimetype.split('/')[1] ////this will get the webp file type
-    console.log('this is fileType=>', fileType)
-    await res.send('this works!!!!')
+    let imageUrl = req.file.filename + '.' + fileType
+
+    await fs.rename(
+      `public/newHomeImages/${req.file.filename}`,
+      `public/newHomeImages/${imageUrl}`,
+      function() {}
+    )
+    let newImg = `./newHomeImages/${imageUrl}`
+    const newHomepageImage = await HomePageImage.create({
+      imageUrl: newImg,
+      description: req.body.description
+    })
+    res.send(newHomepageImage)
   } catch (error) {
     next(error)
   }
