@@ -3,8 +3,8 @@ const db = require('../db')
 
 const HomePageImage = db.define('homePageImage', {
   imageUrl: {
-    type: Sequelize.STRING,
-    defaultValue: './header_image.webp'
+    type: Sequelize.STRING
+    // defaultValue: './header_image.webp'
   },
   description: {
     type: Sequelize.STRING,

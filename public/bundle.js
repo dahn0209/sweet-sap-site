@@ -4352,7 +4352,7 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         name: "imageUrl",
         value: imageUrl,
         placeholder: "imageUrl",
-        accept: ".webp",
+        accept: ".png",
         onChange: this.handleChange
       })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"

@@ -51,7 +51,7 @@ class AddHomePageImageForm extends React.Component {
               name="imageUrl"
               value={imageUrl}
               placeholder="imageUrl"
-              accept=".webp"
+              accept=".png"
               onChange={this.handleChange}
             />
           </div>

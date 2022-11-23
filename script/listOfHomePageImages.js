@@ -4,7 +4,7 @@ const homePageImages = [
     description: 'KOREAN AMERICAN FUSION RESTAURANT & BAR'
   },
   {
-    imageUrl: './homePage/IMG_1449.webp',
+    imageUrl: './homePage/IMG_1449.png',
     description: 'WALK-INS WELCOME!'
   },
   {
