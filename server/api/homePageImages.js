@@ -3,8 +3,10 @@ const {HomePageImage} = require('../db/models')
 const multer = require('multer')
 const upload = multer({dest: 'public/newHomeImages/'})
 const fs = require('fs')
-////multer middleware section for storage///
-///file storage
+const cors = require('cors')
+const app = require('..')
+
+app.use(cors())
 
 // <-- assumes main route to home image set up with app.use in index.js -->  //
 
@@ -24,7 +26,7 @@ router.post('/', upload.single('imageUrl'), async (req, res, next) => {
   try {
     let fileType = req.file.mimetype.split('/')[1] ////this will get the webp file type
     let imageUrl = req.file.filename + '.' + fileType
-
+    console.log('file request==>', req.file)
     await fs.rename(
       `public/newHomeImages/${req.file.filename}`,
       `public/newHomeImages/${imageUrl}`,

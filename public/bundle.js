@@ -4310,20 +4310,52 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(AddHomePageImageForm).call(this));
     _this.state = defaultState;
-    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleChangeImgUrl = _this.handleChangeImgUrl.bind(_assertThisInitialized(_this));
+    _this.handleChangeDescription = _this.handleChangeDescription.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
   _createClass(AddHomePageImageForm, [{
-    key: "handleChange",
-    value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
+    key: "handleChangeImgUrl",
+    value: function handleChangeImgUrl(event) {
+      var _this2 = this;
+
+      // console.log('event taget files=>',event.target.files)
+      console.log('event taget files[0]=>', event.target.files[0]);
+      var file = event.target.files[0];
+      console.log('file=>', file);
+      console.log('fileName=>', file);
+      this.setState({
+        imageUrl: file
+      }, function () {
+        console.log('this is state imageUrl==>', _this2.state.imageUrl);
+      });
+      console.log('file[0]=>', file[0]);
+    }
+  }, {
+    key: "handleChangeDescription",
+    value: function handleChangeDescription(event) {
+      this.setState({
+        description: event.target.value
+      });
     }
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
+      var formData = new FormData();
+      console.log('sumbut imgURL state=>', this.state.imageUrl);
+      formData.append('imageUrl', this.state.imageUrl);
+      console.log('this is formData=>', formData);
+      fetch('	http://localhost:8080/newHomeImages/', {
+        method: 'post',
+        body: formData
+      }).then(function (res) {
+        res.text();
+      }).then(function (resBody) {
+        console.log('this is resBody=>', resBody);
+      });
       this.props.createHomePageImage(_objectSpread({}, this.state));
       this.setState(defaultState);
       var path = '/edit-home';
@@ -4332,28 +4364,24 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          imageUrl = _this$state.imageUrl,
-          description = _this$state.description;
+      console.log('state addNewHome=>', this.state);
+      var description = this.state.description;
       return React__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "addNewHomeImageSection"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         className: "addNewHomeImageTitle"
       }, "New Image Detail"), React__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
-        onSubmit: this.handleSubmit,
-        method: "post",
-        encType: "multipart/form-data"
+        onSubmit: this.handleSubmit
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "imageUrl"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
-        name: "imageUrl",
-        value: imageUrl,
-        placeholder: "imageUrl",
-        accept: ".png",
-        onChange: this.handleChange
+        name: "imageUrl" // value={imageUrl}
+        ,
+        accept: "image/*",
+        onChange: this.handleChangeImgUrl
       })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
@@ -4362,8 +4390,8 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         name: "description",
         value: description,
-        placeholder: "Product Description",
-        onChange: this.handleChange
+        placeholder: "Image Description",
+        onChange: this.handleChangeDescription
       })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -4378,7 +4406,7 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
 var mapState = function mapState(state) {
   return {
-    newProduct: state.products
+    newHomePageImage: state.homePageImages
   };
 };
 
@@ -6378,21 +6406,22 @@ var createNewHomePageImage = function createNewHomePageImage(homePageImage) {
             case 3:
               response = _context2.sent;
               newhomePageImage = response.data;
+              console.log('newHomePageImage store thunk==>', newhomePageImage);
               dispatch(createHomePageImage(newhomePageImage));
-              _context2.next = 11;
+              _context2.next = 12;
               break;
 
-            case 8:
-              _context2.prev = 8;
+            case 9:
+              _context2.prev = 9;
               _context2.t0 = _context2["catch"](0);
               console.log(_context2.t0);
 
-            case 11:
+            case 12:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 9]]);
     }));
 
     return function (_x2) {

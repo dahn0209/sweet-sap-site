@@ -13,18 +13,47 @@ class AddHomePageImageForm extends React.Component {
     super()
     this.state = defaultState
 
-    this.handleChange = this.handleChange.bind(this)
+    this.handleChangeImgUrl = this.handleChangeImgUrl.bind(this)
+    this.handleChangeDescription = this.handleChangeDescription.bind(this)
+
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(event) {
+  handleChangeImgUrl(event) {
+    // console.log('event taget files=>',event.target.files)
+    console.log('event taget files[0]=>', event.target.files[0])
+    let file = event.target.files[0]
+    console.log('file=>', file)
+    console.log('fileName=>', file)
+    this.setState({imageUrl: file}, () => {
+      console.log('this is state imageUrl==>', this.state.imageUrl)
+    })
+    console.log('file[0]=>', file[0])
+  }
+
+  handleChangeDescription(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      description: event.target.value
     })
   }
 
   handleSubmit(event) {
     event.preventDefault()
+    let formData = new FormData()
+    console.log('sumbut imgURL state=>', this.state.imageUrl)
+    formData.append('imageUrl', this.state.imageUrl)
+    console.log('this is formData=>', formData)
+    fetch('	http://localhost:8080/newHomeImages/', {
+      method: 'post',
+      body: formData
+    })
+      .then(res => {
+        res.text()
+      })
+      .then(resBody => {
+        console.log('this is resBody=>', resBody)
+      })
+
     this.props.createHomePageImage({...this.state})
     this.setState(defaultState)
     let path = '/edit-home'
@@ -32,15 +61,13 @@ class AddHomePageImageForm extends React.Component {
   }
 
   render() {
-    const {imageUrl, description} = this.state
+    console.log('state addNewHome=>', this.state)
+    const {description} = this.state
+
     return (
       <section className="addNewHomeImageSection">
         <h2 className="addNewHomeImageTitle">New Image Detail</h2>
-        <form
-          onSubmit={this.handleSubmit}
-          method="post"
-          encType="multipart/form-data"
-        >
+        <form onSubmit={this.handleSubmit}>
           <div className="addNewHomeImageContainer">
             <label htmlFor="imageUrl">
               <b>Image</b>
@@ -49,10 +76,9 @@ class AddHomePageImageForm extends React.Component {
             <input
               type="file"
               name="imageUrl"
-              value={imageUrl}
-              placeholder="imageUrl"
-              accept=".png"
-              onChange={this.handleChange}
+              // value={imageUrl}
+              accept="image/*"
+              onChange={this.handleChangeImgUrl}
             />
           </div>
 
@@ -64,8 +90,8 @@ class AddHomePageImageForm extends React.Component {
               type="text"
               name="description"
               value={description}
-              placeholder="Product Description"
-              onChange={this.handleChange}
+              placeholder="Image Description"
+              onChange={this.handleChangeDescription}
             />
           </div>
 
@@ -82,7 +108,7 @@ class AddHomePageImageForm extends React.Component {
 
 const mapState = state => {
   return {
-    newProduct: state.products
+    newHomePageImage: state.homePageImages
   }
 }
 
