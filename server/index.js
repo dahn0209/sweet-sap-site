@@ -1,7 +1,6 @@
 const path = require('path')
 const express = require('express')
 const morgan = require('morgan')
-const multer = require('multer')
 const compression = require('compression')
 const session = require('express-session')
 const passport = require('passport')
@@ -11,22 +10,9 @@ const sessionStore = new SequelizeStore({db})
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const cors = require('cors')
+
 module.exports = app
-
-////multer middleware section for storage///
-///file storage
-// const fileStorageEngine=multer.diskStorage({
-//   destination:(req,file,cb)=>{
-//     /////where to save in folder
-//     cb(null,'./images');
-//   },
-
-//   filename:(req,file,cb)=>{
-//      cb(null, Date.now() + "--" + file.originalname)
-
-//   }
-// })
-// const upload=multer({storage:fileStorageEngine})
 
 // This is a global Mocha hook, used for resource cleanup.
 // Otherwise, Mocha v4+ never quits after tests.
@@ -96,6 +82,8 @@ const createApp = () => {
       next()
     }
   })
+
+  app.use(cors())
 
   // sends index.html
   app.use('*', (req, res) => {
