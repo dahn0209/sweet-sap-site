@@ -21,7 +21,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({storage: storage})
 
-// router.use(cors())
+router.use(cors())
 // <-- assumes main route to home image set up with app.use in index.js -->  //
 
 router.get('/', async (req, res, next) => {
@@ -39,12 +39,14 @@ router.get('/', async (req, res, next) => {
 
 router.post('/', upload.single('imageUrl'), async (req, res, next) => {
   try {
+    // const formData=new FormData()
     let imageUrl = req.file.filename
     console.log('req.file=>', req.file)
     console.log('imageUrl=>', imageUrl)
 
     let newImg = `./newHomeImages/${imageUrl}`
     const newHomepageImage = await HomePageImage.create({
+      // imageFile:req.file,
       imageUrl: newImg,
       // imageUrl:req.file.path,
       description: req.body.description

@@ -36,29 +36,15 @@ class AddHomePageImageForm extends React.Component {
   }
 
   handleSubmit(event) {
-    console.log('this.state.imageFile in submit->', this.state.imageFile)
+    // console.log('this.state.imageFile in submit->', this.state.imageFile)
     event.preventDefault()
-    let formData = new FormData()
-    formData.append('imageFile', this.state.imageFile)
-    formData.append('imageUrl', this.state.imageUrl)
-    formData.append('description', this.state.description)
-    axios({
-      url: 'api/homePageImages',
-      method: 'POST',
-      headers: {
-        authorization: 'your token'
-      },
-      data: formData
-    }).then(
-      res => {
-        res.text()
-      },
-      err => {
-        console.log('this is in error', err)
-      }
-    )
-    console.log('formData==>', formData)
-    this.props.createHomePageImage(formData)
+    const fd = new FormData()
+    fd.append('imageFile', this.state.imageFile, this.state.imageFile.name)
+    axios.post('http://localhost:8080/newHomeImages', fd).then(res => {
+      console.log('res->', res)
+    })
+
+    this.props.createHomePageImage({...this.state})
     this.setState(defaultState)
     let path = '/edit-home'
     this.props.history.push(path)
@@ -67,7 +53,7 @@ class AddHomePageImageForm extends React.Component {
   render() {
     const {imageUrl, description} = this.state
     console.log('this.state=>', this.state)
-    console.log('this.state.imageFile=>', this.state.imageFile)
+    // console.log('this.state.imageFile=>', this.state.imageFile)
     console.log('this.state.imageUrl=>', this.state.imageUrl)
     console.log('this.state.description=>', this.state.description)
     return (
@@ -75,8 +61,8 @@ class AddHomePageImageForm extends React.Component {
         <h2 className="addNewHomeImageTitle">New Image Detail</h2>
         <form
           onSubmit={this.handleSubmit}
-          // method="post"
-          // encType="multipart/form-data"
+          method="post"
+          encType="multipart/form-data"
         >
           <div className="addNewHomeImageContainer">
             <label htmlFor="imageUrl">
