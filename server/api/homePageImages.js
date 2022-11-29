@@ -11,7 +11,7 @@ const cors = require('cors')
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
     ///destination:where file is stgored
-    cb(null, 'public/newHomeImages/')
+    cb(null, 'public/homePage/')
   },
   filename: function(req, file, cb) {
     ///defines how file is named
@@ -44,7 +44,7 @@ router.post('/', upload.single('imageUrl'), async (req, res, next) => {
     console.log('req.file=>', req.file)
     console.log('imageUrl=>', imageUrl)
 
-    let newImg = `./newHomeImages/${imageUrl}`
+    let newImg = `./homePage/${imageUrl}`
     const newHomepageImage = await HomePageImage.create({
       // imageFile:req.file,
       imageUrl: newImg,

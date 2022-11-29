@@ -5,7 +5,6 @@ import './addNewHomeImage.css'
 import axios from 'axios'
 
 const defaultState = {
-  imageFile: null,
   imageUrl: '',
   description: ''
 }
@@ -23,8 +22,8 @@ class AddHomePageImageForm extends React.Component {
   handleChange(event) {
     let eachFile = event.target.files[0]
     this.setState({
-      imageFile: eachFile,
-      imageUrl: `./newHomeImages/${eachFile.name}`
+      // imageUrl: `./newHomeImages/${eachFile.name}`;
+      imageUrl: eachFile
     })
   }
 
@@ -35,25 +34,33 @@ class AddHomePageImageForm extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     // console.log('this.state.imageFile in submit->', this.state.imageFile)
-    event.preventDefault()
     const fd = new FormData()
-    fd.append('imageFile', this.state.imageFile, this.state.imageFile.name)
-    axios.post('http://localhost:8080/newHomeImages', fd).then(res => {
-      console.log('res->', res)
-    })
-
-    this.props.createHomePageImage({...this.state})
+    fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name)
+    fd.append('description', this.state.description)
+    axios
+      .post('/api/homePageImages', fd)
+      .then(res => {
+        console.log('res->', res)
+      })
+      .then(body => {
+        console.log('body=>', body)
+        this.setState({
+          imageUrl: `./newHomeImages/${this.state.imageUrl.name}`
+        })
+      })
+    await this.props.createHomePageImage({...this.state})
     this.setState(defaultState)
+    event.preventDefault()
     let path = '/edit-home'
     this.props.history.push(path)
+    // alert("The image has loaded!!!!")
   }
 
   render() {
-    const {imageUrl, description} = this.state
+    const {description} = this.state
     console.log('this.state=>', this.state)
-    // console.log('this.state.imageFile=>', this.state.imageFile)
     console.log('this.state.imageUrl=>', this.state.imageUrl)
     console.log('this.state.description=>', this.state.description)
     return (
@@ -72,7 +79,6 @@ class AddHomePageImageForm extends React.Component {
             <input
               type="file"
               name="imageUrl"
-              // value={imageUrl}
               placeholder="imageUrl"
               accept="image/*"
               onChange={this.handleChange}

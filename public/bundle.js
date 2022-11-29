@@ -4277,6 +4277,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -4299,7 +4303,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var defaultState = {
-  imageFile: null,
   imageUrl: '',
   description: ''
 };
@@ -4325,8 +4328,8 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     value: function handleChange(event) {
       var eachFile = event.target.files[0];
       this.setState({
-        imageFile: eachFile,
-        imageUrl: "./newHomeImages/".concat(eachFile.name)
+        // imageUrl: `./newHomeImages/${eachFile.name}`;
+        imageUrl: eachFile
       });
     }
   }, {
@@ -4339,27 +4342,56 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(event) {
-      // console.log('this.state.imageFile in submit->', this.state.imageFile)
-      event.preventDefault();
-      var fd = new FormData();
-      fd.append("imageFile", this.state.imageFile, this.state.imageFile.name);
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('http://localhost:8080/newHomeImages', fd).then(function (res) {
-        console.log("res->", res);
-      });
-      this.props.createHomePageImage(_objectSpread({}, this.state));
-      this.setState(defaultState);
-      var path = '/edit-home';
-      this.props.history.push(path);
-    }
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+        var _this2 = this;
+
+        var fd, path;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                // console.log('this.state.imageFile in submit->', this.state.imageFile)
+                fd = new FormData();
+                fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name);
+                fd.append('description', this.state.description);
+                axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd).then(function (res) {
+                  console.log('res->', res);
+                }).then(function (body) {
+                  console.log('body=>', body);
+
+                  _this2.setState({
+                    imageUrl: "./newHomeImages/".concat(_this2.state.imageUrl.name)
+                  });
+                });
+                _context.next = 6;
+                return this.props.createHomePageImage(_objectSpread({}, this.state));
+
+              case 6:
+                this.setState(defaultState);
+                event.preventDefault();
+                path = '/edit-home';
+                this.props.history.push(path); // alert("The image has loaded!!!!")
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   }, {
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          imageUrl = _this$state.imageUrl,
-          description = _this$state.description;
-      console.log('this.state=>', this.state); // console.log('this.state.imageFile=>', this.state.imageFile)
-
+      var description = this.state.description;
+      console.log('this.state=>', this.state);
       console.log('this.state.imageUrl=>', this.state.imageUrl);
       console.log('this.state.description=>', this.state.description);
       return React__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
@@ -4376,8 +4408,7 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "imageUrl"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
-        name: "imageUrl" // value={imageUrl}
-        ,
+        name: "imageUrl",
         placeholder: "imageUrl",
         accept: "image/*",
         onChange: this.handleChange
