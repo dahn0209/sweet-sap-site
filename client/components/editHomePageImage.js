@@ -1,15 +1,14 @@
-import React from 'React'
-import {createHomePageImage} from '../store/homePageImages'
+import React from 'react'
+import {updateHomepageImageThunk} from '../store/homePageImages'
 import {connect} from 'react-redux'
-import './addNewHomeImage.css'
-import axios from 'axios'
+import {fetchSingleHomepageImage} from '../store/singleHomePageImage'
 
 const defaultState = {
   imageUrl: '',
   description: ''
 }
 
-class AddHomePageImageForm extends React.Component {
+class EditHomePageImageForm extends React.Component {
   constructor() {
     super()
     this.state = defaultState
@@ -18,52 +17,60 @@ class AddHomePageImageForm extends React.Component {
     this.handleChangeDescription = this.handleChangeDescription.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+  componentDidMount() {
+    const homepageImageId = this.props.match.params.homepageImageId
+    this.props.fetchSingleHomepageImage(homepageImageId)
+    const {imageUrl, description} = this.props.updatedHomepageImage
+    if (homepageImageId) {
+      this.setState({
+        imageUrl,
+        description
+      })
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const {imageUrl, description, id} = this.props.updatedHomepageImage
+    if (prevProps.updatedHomepageImage.id !== id) {
+      this.setState({
+        imageUrl,
+        description
+      })
+    }
+  }
 
   handleChange(event) {
     let eachFile = event.target.files[0]
     this.setState({
-      // imageUrl: `./newHomeImages/${eachFile.name}`;
       imageUrl: eachFile
     })
   }
 
   handleChangeDescription(event) {
-    console.log('event.target.value in description=>', event.target.value)
     this.setState({
       description: event.target.value
     })
   }
 
-  async handleSubmit(event) {
-    // console.log('this.state.imageFile in submit->', this.state.imageFile)
-    const fd = new FormData()
-    fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name)
-    fd.append('description', this.state.description)
-    axios
-      .post('/api/homePageImages', fd)
-      .then(res => {
-        console.log('res->', res)
-      })
-      .then(body => {
-        console.log('body=>', body)
-        this.setState({
-          imageUrl: `./newHomeImages/${this.state.imageUrl.name}`
-        })
-      })
-    await this.props.createHomePageImage({...this.state})
-    this.setState(defaultState)
+  handleSubmit(event) {
     event.preventDefault()
-    let path = '/edit-home'
-    this.props.history.push(path)
-    // alert("The image has loaded!!!!")
+    this.props.updateHomepageImageThunk({
+      ...this.props.updatedHomepageImage,
+      ...this.state
+    })
   }
 
   render() {
     const {description} = this.state
-
     return (
       <section className="addNewHomeImageSection">
-        <h2 className="addNewHomeImageTitle">New Image Detail</h2>
+        <h2 className="addNewHomeImageTitle">Edit Image Detail</h2>
+        {/* <div>
+          <h3>THIS INFORMATION WILL BE SAVED UPON SUBMIT:</h3>
+          <p>Name: {name}</p>
+          <p>Description: {description}</p>
+          <p>Price: {price}</p>
+        </div> */}
         <form
           onSubmit={this.handleSubmit}
           method="post"
@@ -98,7 +105,7 @@ class AddHomePageImageForm extends React.Component {
 
           <div className="addNewHomeImageContainer">
             <button className="addNewHomeImageSubmit" type="submit">
-              Add Image
+              Submit
             </button>
           </div>
         </form>
@@ -107,17 +114,21 @@ class AddHomePageImageForm extends React.Component {
   }
 }
 
-const mapState = state => {
+const mapStateToProps = state => {
   return {
-    newProduct: state.products
+    updatedHomepageImage: state.homepageImage
   }
 }
 
-const mapDispatch = dispatch => {
+const mapDispatchToProps = dispatch => {
   return {
-    createHomePageImage: homePageImage =>
-      dispatch(createHomePageImage(homePageImage))
+    updateHomepageImageThunk: homepageImage =>
+      dispatch(updateHomepageImageThunk(homepageImage)),
+    fetchSingleHomepageImage: homepageImageId =>
+      dispatch(fetchSingleHomepageImage(homepageImageId))
   }
 }
 
-export default connect(mapState, mapDispatch)(AddHomePageImageForm)
+export default connect(mapStateToProps, mapDispatchToProps)(
+  EditHomePageImageForm
+)

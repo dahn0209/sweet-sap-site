@@ -76,7 +76,7 @@ export const deleteHomePageImageThunk = homePageImage => {
   }
 }
 
-export const updateHomePageImageThunk = homePageImage => {
+export const updateHomepageImageThunk = homePageImage => {
   return async dispatch => {
     try {
       const response = await axios.put(
