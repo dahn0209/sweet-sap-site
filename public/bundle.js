@@ -4267,6 +4267,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_homePageImages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/homePageImages */ "./client/store/homePageImages.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _addNewHomeImage_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addNewHomeImage.css */ "./client/components/addNewHomeImage.css");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -4274,6 +4276,10 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -4295,6 +4301,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var defaultState = {
   imageUrl: '',
   description: ''
@@ -4311,6 +4318,7 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     _this = _possibleConstructorReturn(this, _getPrototypeOf(AddHomePageImageForm).call(this));
     _this.state = defaultState;
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleChangeDescription = _this.handleChangeDescription.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
@@ -4318,23 +4326,74 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   _createClass(AddHomePageImageForm, [{
     key: "handleChange",
     value: function handleChange(event) {
-      this.setState(_defineProperty({}, event.target.name, event.target.value));
+      var eachFile = event.target.files[0];
+      this.setState({
+        // imageUrl: `./newHomeImages/${eachFile.name}`;
+        imageUrl: eachFile
+      });
+    }
+  }, {
+    key: "handleChangeDescription",
+    value: function handleChangeDescription(event) {
+      console.log('event.target.value in description=>', event.target.value);
+      this.setState({
+        description: event.target.value
+      });
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(event) {
-      event.preventDefault();
-      this.props.createHomePageImage(_objectSpread({}, this.state));
-      this.setState(defaultState);
-      var path = '/edit-home';
-      this.props.history.push(path);
-    }
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+        var _this2 = this;
+
+        var fd, path;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                // console.log('this.state.imageFile in submit->', this.state.imageFile)
+                fd = new FormData();
+                fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name);
+                fd.append('description', this.state.description);
+                axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd).then(function (res) {
+                  console.log('res->', res);
+                }).then(function (body) {
+                  console.log('body=>', body);
+
+                  _this2.setState({
+                    imageUrl: "./newHomeImages/".concat(_this2.state.imageUrl.name)
+                  });
+                });
+                _context.next = 6;
+                return this.props.createHomePageImage(_objectSpread({}, this.state));
+
+              case 6:
+                this.setState(defaultState);
+                event.preventDefault();
+                path = '/edit-home';
+                this.props.history.push(path); // alert("The image has loaded!!!!")
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   }, {
     key: "render",
     value: function render() {
-      var _this$state = this.state,
-          imageUrl = _this$state.imageUrl,
-          description = _this$state.description;
+      var description = this.state.description;
+      console.log('this.state=>', this.state);
+      console.log('this.state.imageUrl=>', this.state.imageUrl);
+      console.log('this.state.description=>', this.state.description);
       return React__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "addNewHomeImageSection"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
@@ -4350,9 +4409,8 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         name: "imageUrl",
-        value: imageUrl,
         placeholder: "imageUrl",
-        accept: ".png",
+        accept: "image/*",
         onChange: this.handleChange
       })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
@@ -4363,7 +4421,7 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         name: "description",
         value: description,
         placeholder: "Product Description",
-        onChange: this.handleChange
+        onChange: this.handleChangeDescription
       })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
@@ -6378,21 +6436,22 @@ var createNewHomePageImage = function createNewHomePageImage(homePageImage) {
             case 3:
               response = _context2.sent;
               newhomePageImage = response.data;
+              console.log('newHomePageImage store thunk==>', newhomePageImage);
               dispatch(createHomePageImage(newhomePageImage));
-              _context2.next = 11;
+              _context2.next = 12;
               break;
 
-            case 8:
-              _context2.prev = 8;
+            case 9:
+              _context2.prev = 9;
               _context2.t0 = _context2["catch"](0);
               console.log(_context2.t0);
 
-            case 11:
+            case 12:
             case "end":
               return _context2.stop();
           }
         }
-      }, _callee2, null, [[0, 8]]);
+      }, _callee2, null, [[0, 9]]);
     }));
 
     return function (_x2) {

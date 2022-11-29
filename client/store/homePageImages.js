@@ -54,8 +54,10 @@ export const fetchHomepageImages = () => {
 export const createNewHomePageImage = homePageImage => {
   return async dispatch => {
     try {
+      // const formData = new FormData()
       const response = await axios.post('/api/homePageImages', homePageImage)
       const newhomePageImage = response.data
+      console.log('newHomePageImage store thunk==>', newhomePageImage)
       dispatch(createHomePageImage(newhomePageImage))
     } catch (error) {
       console.log(error)

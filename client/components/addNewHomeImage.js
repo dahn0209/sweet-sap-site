@@ -2,6 +2,7 @@ import React from 'React'
 import {createHomePageImage} from '../store/homePageImages'
 import {connect} from 'react-redux'
 import './addNewHomeImage.css'
+import axios from 'axios'
 
 const defaultState = {
   imageUrl: '',
@@ -14,25 +15,54 @@ class AddHomePageImageForm extends React.Component {
     this.state = defaultState
 
     this.handleChange = this.handleChange.bind(this)
+    this.handleChangeDescription = this.handleChangeDescription.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(event) {
+    let eachFile = event.target.files[0]
     this.setState({
-      [event.target.name]: event.target.value
+      // imageUrl: `./newHomeImages/${eachFile.name}`;
+      imageUrl: eachFile
     })
   }
 
-  handleSubmit(event) {
-    event.preventDefault()
-    this.props.createHomePageImage({...this.state})
+  handleChangeDescription(event) {
+    console.log('event.target.value in description=>', event.target.value)
+    this.setState({
+      description: event.target.value
+    })
+  }
+
+  async handleSubmit(event) {
+    // console.log('this.state.imageFile in submit->', this.state.imageFile)
+    const fd = new FormData()
+    fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name)
+    fd.append('description', this.state.description)
+    axios
+      .post('/api/homePageImages', fd)
+      .then(res => {
+        console.log('res->', res)
+      })
+      .then(body => {
+        console.log('body=>', body)
+        this.setState({
+          imageUrl: `./newHomeImages/${this.state.imageUrl.name}`
+        })
+      })
+    await this.props.createHomePageImage({...this.state})
     this.setState(defaultState)
+    event.preventDefault()
     let path = '/edit-home'
     this.props.history.push(path)
+    // alert("The image has loaded!!!!")
   }
 
   render() {
-    const {imageUrl, description} = this.state
+    const {description} = this.state
+    console.log('this.state=>', this.state)
+    console.log('this.state.imageUrl=>', this.state.imageUrl)
+    console.log('this.state.description=>', this.state.description)
     return (
       <section className="addNewHomeImageSection">
         <h2 className="addNewHomeImageTitle">New Image Detail</h2>
@@ -49,9 +79,8 @@ class AddHomePageImageForm extends React.Component {
             <input
               type="file"
               name="imageUrl"
-              value={imageUrl}
               placeholder="imageUrl"
-              accept=".png"
+              accept="image/*"
               onChange={this.handleChange}
             />
           </div>
@@ -65,7 +94,7 @@ class AddHomePageImageForm extends React.Component {
               name="description"
               value={description}
               placeholder="Product Description"
-              onChange={this.handleChange}
+              onChange={this.handleChangeDescription}
             />
           </div>
 
