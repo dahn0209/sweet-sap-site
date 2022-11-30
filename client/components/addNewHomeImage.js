@@ -34,9 +34,8 @@ class AddHomePageImageForm extends React.Component {
     })
   }
 
-  async handleSubmit(event) {
-    // console.log('this.state.imageFile in submit->', this.state.imageFile)
-    const fd = await new FormData()
+  handleSubmit(event) {
+    const fd = new FormData()
     fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name)
     fd.append('description', this.state.description)
     axios.post('/api/homePageImages', fd)
@@ -44,11 +43,13 @@ class AddHomePageImageForm extends React.Component {
     this.setState({
       imageUrl: `./homePage/${this.state.imageUrl.name}`
     })
-    await this.props.createHomePageImage({...this.state})
+
+    this.props.createHomePageImage({...this.state})
     event.preventDefault()
     this.setState(defaultState)
     let path = '/edit-home'
     this.props.history.push(path)
+
     // alert("The image has loaded!!!!")
   }
 
