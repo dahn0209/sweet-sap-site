@@ -36,21 +36,49 @@ export class EditHome extends React.Component {
           </Link>
         </div>
         <div className="editHomePageImagesContainer">
-          {homePageImages.map(homePageImage => {
-            if (!homePageImage.description) {
+          {homePageImages
+            .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+            .map(homePageImage => {
+              if (!homePageImage.description) {
+                return (
+                  <div
+                    className="editHomePageImagesGridItem"
+                    key={homePageImage.id}
+                  >
+                    <img src={homePageImage.imageUrl} />
+                    <div className="editHomePageImagesEditDelete">
+                      <Link to={`/homePageImages/${homePageImage.id}/edit`}>
+                        <button type="button">Edit</button>
+                      </Link>
+                      <button
+                        id="deleteBtn"
+                        type="button"
+                        onClick={() =>
+                          this.props.deleteHomePageImageThunk(homePageImage)
+                        }
+                      >
+                        Delete
+                      </button>
+                    </div>
+                  </div>
+                )
+              }
               return (
                 <div
                   className="editHomePageImagesGridItem"
                   key={homePageImage.id}
                 >
                   <img src={homePageImage.imageUrl} />
+                  <div className="editHomePageImagesDescription">
+                    <span>{homePageImage.description}</span>
+                  </div>
                   <div className="editHomePageImagesEditDelete">
                     <Link to={`/homePageImages/${homePageImage.id}/edit`}>
                       <button type="button">Edit</button>
                     </Link>
                     <button
-                      id="deleteBtn"
                       type="button"
+                      id="deleteBtn"
                       onClick={() =>
                         this.props.deleteHomePageImageThunk(homePageImage)
                       }
@@ -60,33 +88,7 @@ export class EditHome extends React.Component {
                   </div>
                 </div>
               )
-            }
-            return (
-              <div
-                className="editHomePageImagesGridItem"
-                key={homePageImage.id}
-              >
-                <img src={homePageImage.imageUrl} />
-                <div className="editHomePageImagesDescription">
-                  <span>{homePageImage.description}</span>
-                </div>
-                <div className="editHomePageImagesEditDelete">
-                  <Link to={`/homePageImages/${homePageImage.id}/edit`}>
-                    <button type="button">Edit</button>
-                  </Link>
-                  <button
-                    type="button"
-                    id="deleteBtn"
-                    onClick={() =>
-                      this.props.deleteHomePageImageThunk(homePageImage)
-                    }
-                  >
-                    Delete
-                  </button>
-                </div>
-              </div>
-            )
-          })}
+            })}
         </div>
       </section>
     )

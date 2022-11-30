@@ -4351,8 +4351,11 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                // console.log('this.state.imageFile in submit->', this.state.imageFile)
-                fd = new FormData();
+                _context.next = 2;
+                return new FormData();
+
+              case 2:
+                fd = _context.sent;
                 fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name);
                 fd.append('description', this.state.description);
                 axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd).then(function (res) {
@@ -4361,19 +4364,19 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
                   console.log('body=>', body);
 
                   _this2.setState({
-                    imageUrl: "./newHomeImages/".concat(_this2.state.imageUrl.name)
+                    imageUrl: "./homePage/".concat(_this2.state.imageUrl.name)
                   });
                 });
-                _context.next = 6;
+                _context.next = 8;
                 return this.props.createHomePageImage(_objectSpread({}, this.state));
 
-              case 6:
-                this.setState(defaultState);
+              case 8:
                 event.preventDefault();
+                this.setState(defaultState);
                 path = '/edit-home';
                 this.props.history.push(path); // alert("The image has loaded!!!!")
 
-              case 10:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -4889,7 +4892,11 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
         type: "button"
       }, "Add New Image "))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "editHomePageImagesContainer"
-      }, homePageImages.map(function (homePageImage) {
+      }, homePageImages.sort(function (_ref, _ref2) {
+        var previousID = _ref.id;
+        var currentID = _ref2.id;
+        return previousID - currentID;
+      }).map(function (homePageImage) {
         if (!homePageImage.description) {
           return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "editHomePageImagesGridItem",
