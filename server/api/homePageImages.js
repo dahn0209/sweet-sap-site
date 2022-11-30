@@ -60,14 +60,10 @@ router.put('/:id', upload.single('imageUrl'), async (req, res, next) => {
     const homePageImageId = req.params.id
     const updateHomePageImage = await HomePageImage.findByPk(homePageImageId)
     res.send(
-      await updateHomePageImage.update(
-        // req.body
-        {
-          imageUrl: newImg,
-          // imageUrl:req.file.path,
-          description: req.body.description
-        }
-      )
+      await updateHomePageImage.update({
+        imageUrl: newImg,
+        description: req.body.description
+      })
     )
   } catch (error) {
     next(error)
