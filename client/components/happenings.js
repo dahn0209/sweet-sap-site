@@ -55,15 +55,19 @@ class Happening extends React.Component {
         <div className="pastHappening">
           <h1>PAST HAPPENINGS</h1>
           <Slider className="happeningSection" {...settings}>
-            {happenings.map(happening => {
-              return (
-                <img
-                  key={happening.id}
-                  className="happeningGridItem"
-                  src={happening.imageUrl}
-                />
+            {happenings
+              .sort(
+                ({id: previousID}, {id: currentID}) => previousID - currentID
               )
-            })}
+              .map(happening => {
+                return (
+                  <img
+                    key={happening.id}
+                    className="happeningGridItem"
+                    src={happening.imageUrl}
+                  />
+                )
+              })}
           </Slider>
         </div>
       </section>

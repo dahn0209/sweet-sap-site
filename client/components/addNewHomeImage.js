@@ -39,17 +39,11 @@ class AddHomePageImageForm extends React.Component {
     const fd = await new FormData()
     fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name)
     fd.append('description', this.state.description)
-    axios
-      .post('/api/homePageImages', fd)
-      .then(res => {
-        console.log('res->', res)
-      })
-      .then(body => {
-        console.log('body=>', body)
-        this.setState({
-          imageUrl: `./homePage/${this.state.imageUrl.name}`
-        })
-      })
+    axios.post('/api/homePageImages', fd)
+
+    this.setState({
+      imageUrl: `./homePage/${this.state.imageUrl.name}`
+    })
     await this.props.createHomePageImage({...this.state})
     event.preventDefault()
     this.setState(defaultState)
