@@ -4277,6 +4277,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -4338,20 +4342,44 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(event) {
-      var fd = new FormData();
-      fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name);
-      fd.append('description', this.state.description);
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
-      this.setState({
-        imageUrl: "./homePage/".concat(this.state.imageUrl.name)
-      });
-      this.props.createHomePageImage(_objectSpread({}, this.state));
-      event.preventDefault();
-      this.setState(defaultState);
-      var path = '/edit-home';
-      this.props.history.push(path); // alert("The image has loaded!!!!")
-    }
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+        var imageUrl, fd, path;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                imageUrl = this.state.imageUrl;
+                fd = new FormData();
+                fd.append('imageUrl', imageUrl, imageUrl.name);
+                fd.append('description', this.state.description);
+                axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
+                this.setState({
+                  imageUrl: "./homePage/".concat(imageUrl.name)
+                });
+                _context.next = 8;
+                return this.props.createHomePageImage(_objectSpread({}, this.state));
+
+              case 8:
+                event.preventDefault();
+                this.setState(defaultState);
+                path = '/edit-home';
+                this.props.history.push(path); // alert("The image has loaded!!!!")
+
+              case 12:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   }, {
     key: "render",
     value: function render() {
