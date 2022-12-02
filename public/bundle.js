@@ -4328,7 +4328,6 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     value: function handleChange(event) {
       var eachFile = event.target.files[0];
       this.setState({
-        // imageUrl: `./newHomeImages/${eachFile.name}`;
         imageUrl: eachFile
       });
     }
@@ -4349,6 +4348,7 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
+                event.preventDefault();
                 imageUrl = this.state.imageUrl;
                 fd = new FormData();
                 fd.append('imageUrl', imageUrl, imageUrl.name);
@@ -4357,11 +4357,10 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
                 this.setState({
                   imageUrl: "./homePage/".concat(imageUrl.name)
                 });
-                _context.next = 8;
+                _context.next = 9;
                 return this.props.createHomePageImage(_objectSpread({}, this.state));
 
-              case 8:
-                event.preventDefault();
+              case 9:
                 this.setState(defaultState);
                 path = '/edit-home';
                 this.props.history.push(path); // alert("The image has loaded!!!!")

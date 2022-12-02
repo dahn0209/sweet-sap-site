@@ -22,7 +22,6 @@ class AddHomePageImageForm extends React.Component {
   handleChange(event) {
     let eachFile = event.target.files[0]
     this.setState({
-      // imageUrl: `./newHomeImages/${eachFile.name}`;
       imageUrl: eachFile
     })
   }
@@ -35,6 +34,7 @@ class AddHomePageImageForm extends React.Component {
   }
 
   async handleSubmit(event) {
+    event.preventDefault()
     let {imageUrl} = this.state
     const fd = new FormData()
     fd.append('imageUrl', imageUrl, imageUrl.name)
@@ -46,7 +46,6 @@ class AddHomePageImageForm extends React.Component {
     })
 
     await this.props.createHomePageImage({...this.state})
-    event.preventDefault()
     this.setState(defaultState)
     let path = '/edit-home'
     this.props.history.push(path)
