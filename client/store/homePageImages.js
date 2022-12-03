@@ -79,7 +79,7 @@ export const updateHomePageImageThunk = homePageImage => {
   return async dispatch => {
     try {
       const response = await axios.put(
-        `/api/homePageImages/${homePageImage.id}/`,
+        `/api/homePageImages/${homePageImage.id}`,
         homePageImage
       )
       const updatedHomePageImage = response.data

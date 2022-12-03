@@ -21,7 +21,8 @@ class EditHomePageImageForm extends React.Component {
   componentDidMount() {
     const homePageImageId = this.props.match.params.homePageImageId
     this.props.fetchSingleHomePageImage(homePageImageId)
-    const {imageUrl, description} = this.props.updatedHomepageImage
+    // const { description} = this.props.updatedHomepageImage;
+    // console.log('description in edit=>',description)
     // if (homePageImageId) {
     //   this.setState({
     //     imageUrl,

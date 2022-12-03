@@ -4993,10 +4993,9 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var homePageImageId = this.props.match.params.homePageImageId;
-      this.props.fetchSingleHomePageImage(homePageImageId);
-      var _this$props$updatedHo = this.props.updatedHomepageImage,
-          imageUrl = _this$props$updatedHo.imageUrl,
-          description = _this$props$updatedHo.description; // if (homePageImageId) {
+      this.props.fetchSingleHomePageImage(homePageImageId); // const { description} = this.props.updatedHomepageImage;
+      // console.log('description in edit=>',description)
+      // if (homePageImageId) {
       //   this.setState({
       //     imageUrl,
       //     description
@@ -5006,10 +5005,10 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      var _this$props$updatedHo2 = this.props.updatedHomePageImage,
-          imageUrl = _this$props$updatedHo2.imageUrl,
-          description = _this$props$updatedHo2.description,
-          id = _this$props$updatedHo2.id;
+      var _this$props$updatedHo = this.props.updatedHomePageImage,
+          imageUrl = _this$props$updatedHo.imageUrl,
+          description = _this$props$updatedHo.description,
+          id = _this$props$updatedHo.id;
 
       if (prevProps.updatedHomePageImageThunk.id !== id) {
         this.setState({
@@ -6669,7 +6668,7 @@ var updateHomePageImageThunk = function updateHomePageImageThunk(homePageImage) 
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/homePageImages/".concat(homePageImage.id, "/"), homePageImage);
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/homePageImages/".concat(homePageImage.id), homePageImage);
 
             case 3:
               response = _context4.sent;
