@@ -4,26 +4,26 @@ const initialState = {}
 
 const SET_SINGLE_HOMEPAGEIMAGE = 'SET_SINGLE_HOMEPAGEIMAGE'
 
-export const setSingleHomepageImage = homePageImage => {
+export const setSingleHomePageImage = homePageImage => {
   return {
     type: SET_SINGLE_HOMEPAGEIMAGE,
     homePageImage
   }
 }
 
-export const fetchSingleHomepageImage = id => {
+export const fetchSingleHomePageImage = id => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/homePageImages/${id}`)
 
-      dispatch(setSingleHomepageImage(data))
+      dispatch(setSingleHomePageImage(data))
     } catch (err) {
       throw err
     }
   }
 }
 
-export default function singleHomepageImageReducer(
+export default function singleHomePageImageReducer(
   state = initialState,
   action
 ) {

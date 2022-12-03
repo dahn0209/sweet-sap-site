@@ -1,7 +1,7 @@
 import React from 'react'
-import {updateHomepageImageThunk} from '../store/homePageImages'
+import {updateHomePageImageThunk} from '../store/homePageImages'
 import {connect} from 'react-redux'
-import {fetchSingleHomepageImage} from '../store/singleHomePageImage'
+import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 
 const defaultState = {
   imageUrl: '',
@@ -17,21 +17,22 @@ class EditHomePageImageForm extends React.Component {
     this.handleChangeDescription = this.handleChangeDescription.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
+
   componentDidMount() {
-    const homepageImageId = this.props.match.params.homepageImageId
-    this.props.fetchSingleHomepageImage(homepageImageId)
+    const homePageImageId = this.props.match.params.homePageImageId
+    this.props.fetchSingleHomePageImage(homePageImageId)
     const {imageUrl, description} = this.props.updatedHomepageImage
-    if (homepageImageId) {
-      this.setState({
-        imageUrl,
-        description
-      })
-    }
+    // if (homePageImageId) {
+    //   this.setState({
+    //     imageUrl,
+    //     description
+    //   })
+    // }
   }
 
   componentDidUpdate(prevProps) {
-    const {imageUrl, description, id} = this.props.updatedHomepageImage
-    if (prevProps.updatedHomepageImage.id !== id) {
+    const {imageUrl, description, id} = this.props.updatedHomePageImage
+    if (prevProps.updatedHomePageImageThunk.id !== id) {
       this.setState({
         imageUrl,
         description
@@ -55,13 +56,15 @@ class EditHomePageImageForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     this.props.updateHomepageImageThunk({
-      ...this.props.updatedHomepageImage,
+      ...this.props.updatedHomePageImage,
       ...this.state
     })
   }
 
   render() {
-    const {description} = this.state
+    const {imageUrl, description} = this.state
+    console.log('imageUrl=>', imageUrl)
+    console.log('description=>', description)
     return (
       <section className="addNewHomeImageSection">
         <h2 className="addNewHomeImageTitle">Edit Image Detail</h2>
@@ -116,16 +119,16 @@ class EditHomePageImageForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    updatedHomepageImage: state.homepageImage
+    updatedHomePageImage: state.homePageImage
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateHomepageImageThunk: homepageImage =>
-      dispatch(updateHomepageImageThunk(homepageImage)),
-    fetchSingleHomepageImage: homepageImageId =>
-      dispatch(fetchSingleHomepageImage(homepageImageId))
+    updateHomePageImageThunk: homePageImage =>
+      dispatch(updateHomePageImageThunk(homePageImage)),
+    fetchSingleHomePageImage: homePageImageId =>
+      dispatch(fetchSingleHomePageImage(homePageImageId))
   }
 }
 

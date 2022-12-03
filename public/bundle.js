@@ -4277,10 +4277,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -4341,44 +4337,18 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function () {
-      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-        var imageUrl, fd, path;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                event.preventDefault();
-                imageUrl = this.state.imageUrl;
-                fd = new FormData();
-                fd.append('imageUrl', imageUrl, imageUrl.name);
-                fd.append('description', this.state.description);
-                axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
-                this.setState({
-                  imageUrl: "./homePage/".concat(imageUrl.name)
-                });
-                _context.next = 9;
-                return this.props.createHomePageImage(_objectSpread({}, this.state));
-
-              case 9:
-                this.setState(defaultState);
-                path = '/edit-home';
-                this.props.history.push(path); // alert("The image has loaded!!!!")
-
-              case 12:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function handleSubmit(_x) {
-        return _handleSubmit.apply(this, arguments);
-      }
-
-      return handleSubmit;
-    }()
+    value: function handleSubmit(event) {
+      event.preventDefault();
+      var imageUrl = this.state.imageUrl;
+      var fd = new FormData();
+      fd.append('imageUrl', imageUrl, imageUrl.name);
+      fd.append('description', this.state.description);
+      axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
+      this.props.createHomePageImage(_objectSpread({}, this.state));
+      this.setState(defaultState);
+      var path = '/edit-home';
+      this.props.history.push(path); // alert("The image has loaded!!!!")
+    }
   }, {
     key: "render",
     value: function render() {
@@ -4861,7 +4831,7 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
 
       var homePageImages = this.props.homePageImages;
 
-      if (homePageImages.length === 0) {
+      if (!homePageImages.length) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "addNewButton"
         }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
@@ -5022,28 +4992,26 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   _createClass(EditHomePageImageForm, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var homepageImageId = this.props.match.params.homepageImageId;
-      this.props.fetchSingleHomepageImage(homepageImageId);
+      var homePageImageId = this.props.match.params.homePageImageId;
+      this.props.fetchSingleHomePageImage(homePageImageId);
       var _this$props$updatedHo = this.props.updatedHomepageImage,
           imageUrl = _this$props$updatedHo.imageUrl,
-          description = _this$props$updatedHo.description;
-
-      if (homepageImageId) {
-        this.setState({
-          imageUrl: imageUrl,
-          description: description
-        });
-      }
+          description = _this$props$updatedHo.description; // if (homePageImageId) {
+      //   this.setState({
+      //     imageUrl,
+      //     description
+      //   })
+      // }
     }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
-      var _this$props$updatedHo2 = this.props.updatedHomepageImage,
+      var _this$props$updatedHo2 = this.props.updatedHomePageImage,
           imageUrl = _this$props$updatedHo2.imageUrl,
           description = _this$props$updatedHo2.description,
           id = _this$props$updatedHo2.id;
 
-      if (prevProps.updatedHomepageImage.id !== id) {
+      if (prevProps.updatedHomePageImageThunk.id !== id) {
         this.setState({
           imageUrl: imageUrl,
           description: description
@@ -5069,12 +5037,16 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
-      this.props.updateHomepageImageThunk(_objectSpread({}, this.props.updatedHomepageImage, {}, this.state));
+      this.props.updateHomepageImageThunk(_objectSpread({}, this.props.updatedHomePageImage, {}, this.state));
     }
   }, {
     key: "render",
     value: function render() {
-      var description = this.state.description;
+      var _this$state = this.state,
+          imageUrl = _this$state.imageUrl,
+          description = _this$state.description;
+      console.log('imageUrl=>', imageUrl);
+      console.log('description=>', description);
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "addNewHomeImageSection"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
@@ -5117,17 +5089,17 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    updatedHomepageImage: state.homepageImage
+    updatedHomePageImage: state.homePageImage
   };
 };
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    updateHomepageImageThunk: function updateHomepageImageThunk(homepageImage) {
-      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.updateHomepageImageThunk)(homepageImage));
+    updateHomePageImageThunk: function updateHomePageImageThunk(homePageImage) {
+      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.updateHomePageImageThunk)(homePageImage));
     },
-    fetchSingleHomepageImage: function fetchSingleHomepageImage(homepageImageId) {
-      return dispatch((0,_store_singleHomePageImage__WEBPACK_IMPORTED_MODULE_3__.fetchSingleHomepageImage)(homepageImageId));
+    fetchSingleHomePageImage: function fetchSingleHomePageImage(homePageImageId) {
+      return dispatch((0,_store_singleHomePageImage__WEBPACK_IMPORTED_MODULE_3__.fetchSingleHomePageImage)(homePageImageId));
     }
   };
 };
@@ -6528,7 +6500,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "fetchHomepageImages": () => (/* binding */ fetchHomepageImages),
 /* harmony export */   "setHomepageImages": () => (/* binding */ setHomepageImages),
 /* harmony export */   "updateHomePageImage": () => (/* binding */ updateHomePageImage),
-/* harmony export */   "updateHomepageImageThunk": () => (/* binding */ updateHomepageImageThunk)
+/* harmony export */   "updateHomePageImageThunk": () => (/* binding */ updateHomePageImageThunk)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -6687,7 +6659,7 @@ var deleteHomePageImageThunk = function deleteHomePageImageThunk(homePageImage) 
     };
   }();
 };
-var updateHomepageImageThunk = function updateHomepageImageThunk(homePageImage) {
+var updateHomePageImageThunk = function updateHomePageImageThunk(homePageImage) {
   return /*#__PURE__*/function () {
     var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(dispatch) {
       var response, updatedHomePageImage;
@@ -6697,7 +6669,7 @@ var updateHomepageImageThunk = function updateHomepageImageThunk(homePageImage) 
             case 0:
               _context4.prev = 0;
               _context4.next = 3;
-              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/homePageImages/".concat(homePageImage.id), homePageImage);
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/homePageImages/".concat(homePageImage.id, "/"), homePageImage);
 
             case 3:
               response = _context4.sent;
@@ -6802,7 +6774,7 @@ var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_11__.combineReducers)({
   user: _user__WEBPACK_IMPORTED_MODULE_3__["default"],
   users: _users__WEBPACK_IMPORTED_MODULE_9__["default"],
   homePageImages: _homePageImages__WEBPACK_IMPORTED_MODULE_4__["default"],
-  homepageImage: _singleHomePageImage__WEBPACK_IMPORTED_MODULE_10__["default"],
+  homePageImage: _singleHomePageImage__WEBPACK_IMPORTED_MODULE_10__["default"],
   locations: _locations__WEBPACK_IMPORTED_MODULE_5__["default"],
   menus: _menus__WEBPACK_IMPORTED_MODULE_6__["default"],
   privateEvents: _privateEvents__WEBPACK_IMPORTED_MODULE_7__["default"],
@@ -7102,9 +7074,9 @@ function privateEventsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* binding */ singleHomepageImageReducer),
-/* harmony export */   "fetchSingleHomepageImage": () => (/* binding */ fetchSingleHomepageImage),
-/* harmony export */   "setSingleHomepageImage": () => (/* binding */ setSingleHomepageImage)
+/* harmony export */   "default": () => (/* binding */ singleHomePageImageReducer),
+/* harmony export */   "fetchSingleHomePageImage": () => (/* binding */ fetchSingleHomePageImage),
+/* harmony export */   "setSingleHomePageImage": () => (/* binding */ setSingleHomePageImage)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -7115,13 +7087,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var initialState = {};
 var SET_SINGLE_HOMEPAGEIMAGE = 'SET_SINGLE_HOMEPAGEIMAGE';
-var setSingleHomepageImage = function setSingleHomepageImage(homePageImage) {
+var setSingleHomePageImage = function setSingleHomePageImage(homePageImage) {
   return {
     type: SET_SINGLE_HOMEPAGEIMAGE,
     homePageImage: homePageImage
   };
 };
-var fetchSingleHomepageImage = function fetchSingleHomepageImage(id) {
+var fetchSingleHomePageImage = function fetchSingleHomePageImage(id) {
   return /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
       var _yield$axios$get, data;
@@ -7137,7 +7109,7 @@ var fetchSingleHomepageImage = function fetchSingleHomepageImage(id) {
             case 3:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
-              dispatch(setSingleHomepageImage(data));
+              dispatch(setSingleHomePageImage(data));
               _context.next = 11;
               break;
 
@@ -7159,7 +7131,7 @@ var fetchSingleHomepageImage = function fetchSingleHomepageImage(id) {
     };
   }();
 };
-function singleHomepageImageReducer() {
+function singleHomePageImageReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
   var action = arguments.length > 1 ? arguments[1] : undefined;
 

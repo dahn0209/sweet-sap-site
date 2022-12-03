@@ -14,7 +14,7 @@ export class EditHome extends React.Component {
 
   render() {
     const homePageImages = this.props.homePageImages
-    if (homePageImages.length === 0) {
+    if (!homePageImages.length) {
       return (
         <section>
           <div className="addNewButton">

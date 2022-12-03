@@ -54,7 +54,6 @@ export const fetchHomepageImages = () => {
 export const createNewHomePageImage = homePageImage => {
   return async dispatch => {
     try {
-      // const formData = new FormData()
       const response = await axios.post('/api/homePageImages', homePageImage)
       const newhomePageImage = response.data
       console.log('newHomePageImage store thunk==>', newhomePageImage)
@@ -76,11 +75,11 @@ export const deleteHomePageImageThunk = homePageImage => {
   }
 }
 
-export const updateHomepageImageThunk = homePageImage => {
+export const updateHomePageImageThunk = homePageImage => {
   return async dispatch => {
     try {
       const response = await axios.put(
-        `/api/homePageImages/${homePageImage.id}`,
+        `/api/homePageImages/${homePageImage.id}/`,
         homePageImage
       )
       const updatedHomePageImage = response.data
