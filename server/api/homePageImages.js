@@ -36,6 +36,17 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+router.get('/:homePageImageId', async (req, res, next) => {
+  try {
+    const homePageImage = await HomePageImage.findByPk(
+      req.params.homePageImageId
+    )
+    res.json(homePageImage)
+  } catch (err) {
+    next(err)
+  }
+})
+
 router.post('/', upload.single('imageUrl'), async (req, res, next) => {
   try {
     let imageUrl = req.file.filename
@@ -51,26 +62,30 @@ router.post('/', upload.single('imageUrl'), async (req, res, next) => {
   }
 })
 
-router.put('/:id', upload.single('imageUrl'), async (req, res, next) => {
-  try {
-    let imageUrl = req.file.filename
+router.put(
+  '/:homePageImageId',
+  upload.single('imageUrl'),
+  async (req, res, next) => {
+    try {
+      let imageUrl = req.file.filename
 
-    let newImg = `./homePage/${imageUrl}`
+      let newImg = `./homePage/${imageUrl}`
 
-    const homePageImageId = req.params.id
-    const updateHomePageImage = await HomePageImage.findByPk(homePageImageId)
-    res.send(
-      await updateHomePageImage.update({
-        imageUrl: newImg,
-        description: req.body.description
-      })
-    )
-  } catch (error) {
-    next(error)
+      const homePageImageId = req.params.id
+      const updateHomePageImage = await HomePageImage.findByPk(homePageImageId)
+      res.send(
+        await updateHomePageImage.update({
+          imageUrl: newImg,
+          description: req.body.description
+        })
+      )
+    } catch (error) {
+      next(error)
+    }
   }
-})
+)
 
-router.delete('/:id', async (req, res, next) => {
+router.delete('/:homePageImageId', async (req, res, next) => {
   try {
     const homePageImageId = req.params.id
     const deleteHomePageImage = await HomePageImage.findByPk(homePageImageId)

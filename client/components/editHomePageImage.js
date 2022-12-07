@@ -20,8 +20,14 @@ class EditHomePageImageForm extends React.Component {
 
   componentDidMount() {
     const homePageImageId = this.props.match.params.homePageImageId
+    console.log('homePageImageId in edit=>', homePageImageId)
     this.props.fetchSingleHomePageImage(homePageImageId)
-    // const { description} = this.props.updatedHomepageImage;
+    console.log(
+      'this.props.updatedHomePageImage in edit mount=>',
+      this.props.updatedHomePageImage
+    )
+    // const { imageUrl, description} = this.props.updatedHomepageImage;
+    // console.log('imageUrl in edit=>',imageUrl )
     // console.log('description in edit=>',description)
     // if (homePageImageId) {
     //   this.setState({
@@ -31,15 +37,15 @@ class EditHomePageImageForm extends React.Component {
     // }
   }
 
-  componentDidUpdate(prevProps) {
-    const {imageUrl, description, id} = this.props.updatedHomePageImage
-    if (prevProps.updatedHomePageImageThunk.id !== id) {
-      this.setState({
-        imageUrl,
-        description
-      })
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const {imageUrl, description, id} = this.props.updatedHomePageImage
+  //   if (prevProps.updatedHomePageImageThunk.id !== id) {
+  //     this.setState({
+  //       imageUrl,
+  //       description
+  //     })
+  //   }
+  // }
 
   handleChange(event) {
     let eachFile = event.target.files[0]
@@ -64,17 +70,17 @@ class EditHomePageImageForm extends React.Component {
 
   render() {
     const {imageUrl, description} = this.state
-    console.log('imageUrl=>', imageUrl)
-    console.log('description=>', description)
+    console.log('imageUrl render=>', imageUrl)
+    console.log('description render=>', description)
     return (
       <section className="addNewHomeImageSection">
         <h2 className="addNewHomeImageTitle">Edit Image Detail</h2>
-        {/* <div>
-          <h3>THIS INFORMATION WILL BE SAVED UPON SUBMIT:</h3>
-          <p>Name: {name}</p>
-          <p>Description: {description}</p>
-          <p>Price: {price}</p>
-        </div> */}
+        <div className="editHomePageImagesGridItem">
+          <img src={imageUrl} />
+          <div className="editHomePageImagesDescription">
+            <span>{description}</span>
+          </div>
+        </div>
         <form
           onSubmit={this.handleSubmit}
           method="post"

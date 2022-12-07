@@ -4993,7 +4993,10 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       var homePageImageId = this.props.match.params.homePageImageId;
-      this.props.fetchSingleHomePageImage(homePageImageId); // const { description} = this.props.updatedHomepageImage;
+      console.log('homePageImageId in edit=>', homePageImageId);
+      this.props.fetchSingleHomePageImage(homePageImageId);
+      console.log('this.props.updatedHomePageImage in edit mount=>', this.props.updatedHomePageImage); // const { imageUrl, description} = this.props.updatedHomepageImage;
+      // console.log('imageUrl in edit=>',imageUrl )
       // console.log('description in edit=>',description)
       // if (homePageImageId) {
       //   this.setState({
@@ -5001,22 +5004,16 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       //     description
       //   })
       // }
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      var _this$props$updatedHo = this.props.updatedHomePageImage,
-          imageUrl = _this$props$updatedHo.imageUrl,
-          description = _this$props$updatedHo.description,
-          id = _this$props$updatedHo.id;
+    } // componentDidUpdate(prevProps) {
+    //   const {imageUrl, description, id} = this.props.updatedHomePageImage
+    //   if (prevProps.updatedHomePageImageThunk.id !== id) {
+    //     this.setState({
+    //       imageUrl,
+    //       description
+    //     })
+    //   }
+    // }
 
-      if (prevProps.updatedHomePageImageThunk.id !== id) {
-        this.setState({
-          imageUrl: imageUrl,
-          description: description
-        });
-      }
-    }
   }, {
     key: "handleChange",
     value: function handleChange(event) {
@@ -5044,13 +5041,19 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           imageUrl = _this$state.imageUrl,
           description = _this$state.description;
-      console.log('imageUrl=>', imageUrl);
-      console.log('description=>', description);
+      console.log('imageUrl render=>', imageUrl);
+      console.log('description render=>', description);
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "addNewHomeImageSection"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         className: "addNewHomeImageTitle"
-      }, "Edit Image Detail"), react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+      }, "Edit Image Detail"), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "editHomePageImagesGridItem"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: imageUrl
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "editHomePageImagesDescription"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, description))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit,
         method: "post",
         encType: "multipart/form-data"
@@ -6301,7 +6304,7 @@ var Routes = /*#__PURE__*/function (_Component) {
         path: "/add-homepage-image",
         component: _components_addNewHomeImage__WEBPACK_IMPORTED_MODULE_11__["default"]
       }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
-        path: "/homePageImages/:homepageImageId/edit",
+        path: "/homePageImages/:homePageImageId/edit",
         component: _components_editHomePageImage__WEBPACK_IMPORTED_MODULE_12__["default"]
       })), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
         exact: true,
@@ -7108,21 +7111,22 @@ var fetchSingleHomePageImage = function fetchSingleHomePageImage(id) {
             case 3:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
+              console.log('this data in fetch singe=>', data);
               dispatch(setSingleHomePageImage(data));
-              _context.next = 11;
+              _context.next = 12;
               break;
 
-            case 8:
-              _context.prev = 8;
+            case 9:
+              _context.prev = 9;
               _context.t0 = _context["catch"](0);
               throw _context.t0;
 
-            case 11:
+            case 12:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[0, 8]]);
+      }, _callee, null, [[0, 9]]);
     }));
 
     return function (_x) {

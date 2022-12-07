@@ -44,7 +44,7 @@ class Routes extends Component {
               component={AddHomePageImageForm}
             />
             <Route
-              path="/homePageImages/:homepageImageId/edit"
+              path="/homePageImages/:homePageImageId/edit"
               component={editHomePageImage}
             />
           </Switch>
