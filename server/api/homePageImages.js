@@ -41,6 +41,7 @@ router.get('/:homePageImageId', async (req, res, next) => {
     const homePageImage = await HomePageImage.findByPk(
       req.params.homePageImageId
     )
+    console.log('api homePageImageId=>', homePageImage)
     res.json(homePageImage)
   } catch (err) {
     next(err)
@@ -87,7 +88,7 @@ router.put(
 
 router.delete('/:homePageImageId', async (req, res, next) => {
   try {
-    const homePageImageId = req.params.id
+    const homePageImageId = req.params.homePageImageId
     const deleteHomePageImage = await HomePageImage.findByPk(homePageImageId)
 
     if (!deleteHomePageImage) {

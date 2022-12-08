@@ -37,7 +37,7 @@ export class EditHome extends React.Component {
         </div>
         <div className="editHomePageImagesContainer">
           {homePageImages
-            .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+            // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
             .map(homePageImage => {
               if (!homePageImage.description) {
                 return (

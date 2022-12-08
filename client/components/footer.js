@@ -12,7 +12,6 @@ class Footer extends React.Component {
 
   render() {
     const locations = this.props.locations
-    console.log('locations in footer=>', locations)
     return (
       <footer>
         <div className="footer-content">

@@ -65,6 +65,7 @@ export const createNewHomePageImage = homePageImage => {
 }
 
 export const deleteHomePageImageThunk = homePageImage => {
+  console.log('homePageDelete=>', homePageImage)
   return async dispatch => {
     try {
       await axios.delete(`/api/homePageImages/${homePageImage.id}`)
