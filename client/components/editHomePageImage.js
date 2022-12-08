@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 
 const defaultState = {
-  imageUrl: '',
+  imageUrl: null,
   description: ''
 }
 
@@ -13,77 +13,84 @@ class EditHomePageImageForm extends React.Component {
     super()
     this.state = defaultState
 
-    // this.handleChange = this.handleChange.bind(this)
-    // this.handleChangeDescription = this.handleChangeDescription.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
+    this.handleChange = this.handleChange.bind(this)
+    this.handleChangeDescription = this.handleChangeDescription.bind(this)
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   async componentDidMount() {
     const homePageImageId = this.props.match.params.homePageImageId
     await this.props.getSingleHomePageImage(homePageImageId)
-    const {imageUrl, description} = this.props.updatedHomePageImage
-    console.log('imageUrl in edit=>', imageUrl)
+    const {imageUrl, description, id} = this.props.updatedHomePageImage
+    console.log('this is id in edit=>', id)
     console.log('description in edit=>', description)
     if (homePageImageId) {
-      this.setState({
+      await this.setState({
         imageUrl: imageUrl,
         description: description
       })
     }
     console.log('this state=>', this.state)
   }
+  handleChange(event) {
+    let eachFile = event.target.files[0]
+    this.setState({
+      imageUrl: eachFile
+    })
+  }
 
-  // componentDidUpdate(prevProps) {
-  //   const {imageUrl, description, id} = this.props.updatedHomePageImage
-  //   if (prevProps.updatedHomePageImageThunk.id !== id) {
-  //     this.setState({
-  //       imageUrl,
-  //       description
-  //     })
-  //   }
-  // }
+  handleChangeDescription(event) {
+    this.setState({
+      description: event.target.value
+    })
+  }
 
-  // handleChange(event) {
-  //   let eachFile = event.target.files[0]
-  //   this.setState({
-  //     imageUrl: eachFile
-  //   })
-  // }
+  handleSubmit(event) {
+    event.preventDefault()
+    this.props.updateHomepageImageThunk({
+      ...this.props.updatedHomePageImage,
+      ...this.state
+    })
+  }
 
-  // handleChangeDescription(event) {
-  //   this.setState({
-  //     description: event.target.value
-  //   })
-  // }
+  componentDidUpdate(prevProps) {
+    console.log('prevProps in update=>', prevProps)
+    console.log(
+      'prevProps.update dee in update=>',
+      prevProps.updateHomePageImageThunk
+    )
 
-  // handleSubmit(event) {
-  //   event.preventDefault()
-  //   this.props.updateHomepageImageThunk({
-  //     ...this.props.updatedHomePageImage,
-  //     ...this.state
-  //   })
-  // }
+    const {imageUrl, description, id} = this.props.updatedHomePageImage
+    console.log('update imageUrl=>', imageUrl)
+    console.log('update description=>', description)
+    console.log('update id=>', id)
+
+    // if (prevProps.updatedHomePageImageThunk.id !== this.props.updatedHomePageImage.id) {
+    //   this.setState({
+    //     imageUrl:imageUrl,
+    //     description:description
+    //   })
+    // }
+  }
 
   render() {
     console.log('let look at state=>', this.state)
     console.log('updatedHomePageImage at prop', this.props.updatedHomePageImage)
     const {imageUrl, description} = this.state
-    const propImageUrl = this.props.updatedHomePageImage.imageUrl
     console.log('imageUrl render=>', imageUrl)
     console.log('description render=>', description)
-
     return (
       <section className="addNewHomeImageSection">
         <h2 className="addNewHomeImageTitle">Edit Image Detail</h2>
-
+        {/* 
         <div className="editHomePageImagesGridItem">
           <img src={imageUrl} />
           <div className="editHomePageImagesDescription">
             <span>{description}</span>
           </div>
-        </div>
+        </div> */}
 
-        {/* <form
+        <form
           onSubmit={this.handleSubmit}
           method="post"
           encType="multipart/form-data"
@@ -120,7 +127,7 @@ class EditHomePageImageForm extends React.Component {
               Submit
             </button>
           </div>
-        </form> */}
+        </form>
       </section>
     )
   }

@@ -15,7 +15,7 @@ export const fetchSingleHomePageImage = id => {
   return async dispatch => {
     try {
       const {data} = await axios.get(`/api/homePageImages/${id}`)
-      console.log('this data in fetch singe=>', data)
+      console.log('this data in fetch single=>', data)
 
       dispatch(setSingleHomePageImage(data))
     } catch (err) {

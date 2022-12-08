@@ -4966,6 +4966,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_singleHomePageImage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/singleHomePageImage */ "./client/store/singleHomePageImage.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -4978,9 +4984,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
 
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
@@ -4991,7 +4997,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var defaultState = {
-  imageUrl: '',
+  imageUrl: null,
   description: ''
 };
 
@@ -5004,10 +5010,10 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     _classCallCheck(this, EditHomePageImageForm);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this));
-    _this.state = defaultState; // this.handleChange = this.handleChange.bind(this)
-    // this.handleChangeDescription = this.handleChangeDescription.bind(this)
-    // this.handleSubmit = this.handleSubmit.bind(this)
-
+    _this.state = defaultState;
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleChangeDescription = _this.handleChangeDescription.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
     return _this;
   }
 
@@ -5015,7 +5021,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function () {
       var _componentDidMount = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var homePageImageId, _this$props$updatedHo, imageUrl, description;
+        var homePageImageId, _this$props$updatedHo, imageUrl, description, id;
 
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
@@ -5026,20 +5032,25 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
                 return this.props.getSingleHomePageImage(homePageImageId);
 
               case 3:
-                _this$props$updatedHo = this.props.updatedHomePageImage, imageUrl = _this$props$updatedHo.imageUrl, description = _this$props$updatedHo.description;
-                console.log('imageUrl in edit=>', imageUrl);
+                _this$props$updatedHo = this.props.updatedHomePageImage, imageUrl = _this$props$updatedHo.imageUrl, description = _this$props$updatedHo.description, id = _this$props$updatedHo.id;
+                console.log('this is id in edit=>', id);
                 console.log('description in edit=>', description);
 
-                if (homePageImageId) {
-                  this.setState({
-                    imageUrl: imageUrl,
-                    description: description
-                  });
+                if (!homePageImageId) {
+                  _context.next = 9;
+                  break;
                 }
 
+                _context.next = 9;
+                return this.setState({
+                  imageUrl: imageUrl,
+                  description: description
+                });
+
+              case 9:
                 console.log('this state=>', this.state);
 
-              case 8:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -5052,34 +5063,46 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       }
 
       return componentDidMount;
-    }() // componentDidUpdate(prevProps) {
-    //   const {imageUrl, description, id} = this.props.updatedHomePageImage
-    //   if (prevProps.updatedHomePageImageThunk.id !== id) {
-    //     this.setState({
-    //       imageUrl,
-    //       description
-    //     })
-    //   }
-    // }
-    // handleChange(event) {
-    //   let eachFile = event.target.files[0]
-    //   this.setState({
-    //     imageUrl: eachFile
-    //   })
-    // }
-    // handleChangeDescription(event) {
-    //   this.setState({
-    //     description: event.target.value
-    //   })
-    // }
-    // handleSubmit(event) {
-    //   event.preventDefault()
-    //   this.props.updateHomepageImageThunk({
-    //     ...this.props.updatedHomePageImage,
-    //     ...this.state
-    //   })
-    // }
-
+    }()
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var eachFile = event.target.files[0];
+      this.setState({
+        imageUrl: eachFile
+      });
+    }
+  }, {
+    key: "handleChangeDescription",
+    value: function handleChangeDescription(event) {
+      this.setState({
+        description: event.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      event.preventDefault();
+      this.props.updateHomepageImageThunk(_objectSpread({}, this.props.updatedHomePageImage, {}, this.state));
+    }
+  }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      console.log('prevProps in update=>', prevProps);
+      console.log('prevProps.update dee in update=>', prevProps.updateHomePageImageThunk);
+      var _this$props$updatedHo2 = this.props.updatedHomePageImage,
+          imageUrl = _this$props$updatedHo2.imageUrl,
+          description = _this$props$updatedHo2.description,
+          id = _this$props$updatedHo2.id;
+      console.log('update imageUrl=>', imageUrl);
+      console.log('update description=>', description);
+      console.log('update id=>', id); // if (prevProps.updatedHomePageImageThunk.id !== this.props.updatedHomePageImage.id) {
+      //   this.setState({
+      //     imageUrl:imageUrl,
+      //     description:description
+      //   })
+      // }
+    }
   }, {
     key: "render",
     value: function render() {
@@ -5088,20 +5111,42 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       var _this$state = this.state,
           imageUrl = _this$state.imageUrl,
           description = _this$state.description;
-      var propImageUrl = this.props.updatedHomePageImage.imageUrl;
       console.log('imageUrl render=>', imageUrl);
       console.log('description render=>', description);
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "addNewHomeImageSection"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
         className: "addNewHomeImageTitle"
-      }, "Edit Image Detail"), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "editHomePageImagesGridItem"
-      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-        src: imageUrl
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "editHomePageImagesDescription"
-      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, description))));
+      }, "Edit Image Detail"), react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit,
+        method: "post",
+        encType: "multipart/form-data"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "imageUrl"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        name: "imageUrl",
+        placeholder: "imageUrl",
+        accept: "image/*",
+        onChange: this.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "description"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Description")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "text",
+        name: "description",
+        value: description,
+        placeholder: "Product Description",
+        onChange: this.handleChangeDescription
+      })), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "addNewHomeImageSubmit",
+        type: "submit"
+      }, "Submit"))));
     }
   }]);
 
@@ -7129,7 +7174,7 @@ var fetchSingleHomePageImage = function fetchSingleHomePageImage(id) {
             case 3:
               _yield$axios$get = _context.sent;
               data = _yield$axios$get.data;
-              console.log('this data in fetch singe=>', data);
+              console.log('this data in fetch single=>', data);
               dispatch(setSingleHomePageImage(data));
               _context.next = 12;
               break;
