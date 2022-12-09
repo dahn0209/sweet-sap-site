@@ -2,7 +2,7 @@ import React from 'react'
 import {updateHomePageImageThunk} from '../store/homePageImages'
 import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
-
+import axios from 'axios'
 const defaultState = {
   imageUrl: null,
   description: ''
@@ -32,6 +32,28 @@ class EditHomePageImageForm extends React.Component {
     }
     console.log('this state=>', this.state)
   }
+
+  componentDidUpdate(prevProps) {
+    console.log('prevProps in update=>', prevProps)
+    console.log(
+      'prevProps.update dee in update=>',
+      prevProps.updatedHomePageImage
+    )
+
+    const {imageUrl, description, id} = this.props.updatedHomePageImage
+    console.log('update imageUrl=>', imageUrl)
+    console.log('update description=>', description)
+    console.log('update id=>', id)
+
+    if (
+      prevProps.updatedHomePageImage.id !== this.props.updatedHomePageImage.id
+    ) {
+      this.setState({
+        imageUrl: imageUrl,
+        description: description
+      })
+    }
+  }
   handleChange(event) {
     let eachFile = event.target.files[0]
     this.setState({
@@ -47,30 +69,16 @@ class EditHomePageImageForm extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    this.props.updateHomepageImageThunk({
+    let {imageUrl} = this.state
+    const fd = new FormData()
+    fd.append('imageUrl', imageUrl, imageUrl.name)
+    fd.append('description', this.state.description)
+    axios.post('/api/homePageImages', fd)
+
+    this.props.updateHomePageImageThunk({
       ...this.props.updatedHomePageImage,
       ...this.state
     })
-  }
-
-  componentDidUpdate(prevProps) {
-    console.log('prevProps in update=>', prevProps)
-    console.log(
-      'prevProps.update dee in update=>',
-      prevProps.updateHomePageImageThunk
-    )
-
-    const {imageUrl, description, id} = this.props.updatedHomePageImage
-    console.log('update imageUrl=>', imageUrl)
-    console.log('update description=>', description)
-    console.log('update id=>', id)
-
-    // if (prevProps.updatedHomePageImageThunk.id !== this.props.updatedHomePageImage.id) {
-    //   this.setState({
-    //     imageUrl:imageUrl,
-    //     description:description
-    //   })
-    // }
   }
 
   render() {

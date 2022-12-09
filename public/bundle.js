@@ -4964,6 +4964,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_homePageImages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/homePageImages */ "./client/store/homePageImages.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _store_singleHomePageImage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/singleHomePageImage */ "./client/store/singleHomePageImage.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -4991,6 +4993,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -5065,6 +5068,26 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       return componentDidMount;
     }()
   }, {
+    key: "componentDidUpdate",
+    value: function componentDidUpdate(prevProps) {
+      console.log('prevProps in update=>', prevProps);
+      console.log('prevProps.update dee in update=>', prevProps.updatedHomePageImage);
+      var _this$props$updatedHo2 = this.props.updatedHomePageImage,
+          imageUrl = _this$props$updatedHo2.imageUrl,
+          description = _this$props$updatedHo2.description,
+          id = _this$props$updatedHo2.id;
+      console.log('update imageUrl=>', imageUrl);
+      console.log('update description=>', description);
+      console.log('update id=>', id);
+
+      if (prevProps.updatedHomePageImage.id !== this.props.updatedHomePageImage.id) {
+        this.setState({
+          imageUrl: imageUrl,
+          description: description
+        });
+      }
+    }
+  }, {
     key: "handleChange",
     value: function handleChange(event) {
       var eachFile = event.target.files[0];
@@ -5083,25 +5106,12 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
-      this.props.updateHomepageImageThunk(_objectSpread({}, this.props.updatedHomePageImage, {}, this.state));
-    }
-  }, {
-    key: "componentDidUpdate",
-    value: function componentDidUpdate(prevProps) {
-      console.log('prevProps in update=>', prevProps);
-      console.log('prevProps.update dee in update=>', prevProps.updateHomePageImageThunk);
-      var _this$props$updatedHo2 = this.props.updatedHomePageImage,
-          imageUrl = _this$props$updatedHo2.imageUrl,
-          description = _this$props$updatedHo2.description,
-          id = _this$props$updatedHo2.id;
-      console.log('update imageUrl=>', imageUrl);
-      console.log('update description=>', description);
-      console.log('update id=>', id); // if (prevProps.updatedHomePageImageThunk.id !== this.props.updatedHomePageImage.id) {
-      //   this.setState({
-      //     imageUrl:imageUrl,
-      //     description:description
-      //   })
-      // }
+      var imageUrl = this.state.imageUrl;
+      var fd = new FormData();
+      fd.append('imageUrl', imageUrl, imageUrl.name);
+      fd.append('description', this.state.description);
+      axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
+      this.props.updateHomePageImageThunk(_objectSpread({}, this.props.updatedHomePageImage, {}, this.state));
     }
   }, {
     key: "render",
