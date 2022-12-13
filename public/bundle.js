@@ -5106,11 +5106,16 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
-      var imageUrl = this.state.imageUrl;
+      var _this$state = this.state,
+          imageUrl = _this$state.imageUrl,
+          description = _this$state.description,
+          id = _this$state.id;
+      console.log('submit imageUrl=>', imageUrl);
+      console.log('submit id ', description);
       var fd = new FormData();
       fd.append('imageUrl', imageUrl, imageUrl.name);
-      fd.append('description', this.state.description);
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
+      fd.append('description', description);
+      axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/homePageImages/".concat(id), fd);
       this.props.updateHomePageImageThunk(_objectSpread({}, this.props.updatedHomePageImage, {}, this.state));
     }
   }, {
@@ -5118,9 +5123,9 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log('let look at state=>', this.state);
       console.log('updatedHomePageImage at prop', this.props.updatedHomePageImage);
-      var _this$state = this.state,
-          imageUrl = _this$state.imageUrl,
-          description = _this$state.description;
+      var _this$state2 = this.state,
+          imageUrl = _this$state2.imageUrl,
+          description = _this$state2.description;
       console.log('imageUrl render=>', imageUrl);
       console.log('description render=>', description);
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {

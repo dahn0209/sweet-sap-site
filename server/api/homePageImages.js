@@ -41,7 +41,6 @@ router.get('/:homePageImageId', async (req, res, next) => {
     const homePageImage = await HomePageImage.findByPk(
       req.params.homePageImageId
     )
-    console.log('api homePageImageId=>', homePageImage)
     res.json(homePageImage)
   } catch (err) {
     next(err)
@@ -72,8 +71,10 @@ router.put(
 
       let newImg = `./homePage/${imageUrl}`
 
-      const homePageImageId = req.params.id
+      const homePageImageId = req.params.homePageImageId
+      console.log('homepageImageId in put API=>')
       const updateHomePageImage = await HomePageImage.findByPk(homePageImageId)
+      console.log('updateHomePageImage  API=>', updateHomePageImage)
       res.send(
         await updateHomePageImage.update({
           imageUrl: newImg,
