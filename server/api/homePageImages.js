@@ -72,7 +72,6 @@ router.put(
       let newImg = `./homePage/${imageUrl}`
 
       const homePageImageId = req.params.homePageImageId
-      console.log('homepageImageId in put API=>')
       const updateHomePageImage = await HomePageImage.findByPk(homePageImageId)
       console.log('updateHomePageImage  API=>', updateHomePageImage)
       res.send(

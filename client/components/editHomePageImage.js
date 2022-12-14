@@ -4,13 +4,13 @@ import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 import axios from 'axios'
 const defaultState = {
-  imageUrl: null,
+  imageUrl: '',
   description: ''
 }
 
 class EditHomePageImageForm extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = defaultState
 
     this.handleChange = this.handleChange.bind(this)
@@ -18,14 +18,14 @@ class EditHomePageImageForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     const homePageImageId = this.props.match.params.homePageImageId
-    await this.props.getSingleHomePageImage(homePageImageId)
-    const {imageUrl, description, id} = this.props.updatedHomePageImage
+    this.props.getSingleHomePageImage(homePageImageId)
+    const {imageUrl, description, id} = this.props.homePageImage
     console.log('this is id in edit=>', id)
     console.log('description in edit=>', description)
     if (homePageImageId) {
-      await this.setState({
+      this.setState({
         imageUrl: imageUrl,
         description: description
       })
@@ -35,25 +35,21 @@ class EditHomePageImageForm extends React.Component {
 
   componentDidUpdate(prevProps) {
     console.log('prevProps in update=>', prevProps)
-    console.log(
-      'prevProps.update dee in update=>',
-      prevProps.updatedHomePageImage
-    )
+    console.log('prevProps.update dee in update=>', prevProps.homePageImage)
 
-    const {imageUrl, description, id} = this.props.updatedHomePageImage
+    const {imageUrl, description, id} = this.props.homePageImage
     console.log('update imageUrl=>', imageUrl)
     console.log('update description=>', description)
     console.log('update id=>', id)
 
-    if (
-      prevProps.updatedHomePageImage.id !== this.props.updatedHomePageImage.id
-    ) {
+    if (prevProps.homePageImage.id !== id) {
       this.setState({
         imageUrl: imageUrl,
         description: description
       })
     }
   }
+
   handleChange(event) {
     let eachFile = event.target.files[0]
     this.setState({
@@ -75,17 +71,17 @@ class EditHomePageImageForm extends React.Component {
     const fd = new FormData()
     fd.append('imageUrl', imageUrl, imageUrl.name)
     fd.append('description', description)
-    axios.post(`/api/homePageImages/${id}`, fd)
-
+    axios.put(`/api/homePageImages/${id}`, fd)
+    console.log('submit state=>', this.state)
     this.props.updateHomePageImageThunk({
-      ...this.props.updatedHomePageImage,
+      ...this.props.homePageImage,
       ...this.state
     })
   }
 
   render() {
     console.log('let look at state=>', this.state)
-    console.log('updatedHomePageImage at prop', this.props.updatedHomePageImage)
+    console.log('updatedHomePageImage at prop', this.props.homePageImage)
     const {imageUrl, description} = this.state
     console.log('imageUrl render=>', imageUrl)
     console.log('description render=>', description)
@@ -94,7 +90,7 @@ class EditHomePageImageForm extends React.Component {
         <h2 className="addNewHomeImageTitle">Edit Image Detail</h2>
         <form
           onSubmit={this.handleSubmit}
-          method="post"
+          method="put"
           encType="multipart/form-data"
         >
           <div className="addNewHomeImageContainer">
@@ -105,6 +101,7 @@ class EditHomePageImageForm extends React.Component {
             <input
               type="file"
               name="imageUrl"
+              // value={imageUrl}
               placeholder="imageUrl"
               accept="image/*"
               onChange={this.handleChange}
@@ -119,7 +116,7 @@ class EditHomePageImageForm extends React.Component {
               type="text"
               name="description"
               value={description}
-              placeholder="Product Description"
+              placeholder="Description"
               onChange={this.handleChangeDescription}
             />
           </div>
@@ -137,7 +134,7 @@ class EditHomePageImageForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    updatedHomePageImage: state.homePageImage
+    homePageImage: state.homePageImage
   }
 }
 

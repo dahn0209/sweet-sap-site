@@ -4353,16 +4353,19 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
                 fd = new FormData();
                 fd.append('imageUrl', imageUrl, imageUrl.name);
                 fd.append('description', this.state.description);
-                axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
-                _context.next = 8;
+                _context.next = 7;
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
+
+              case 7:
+                _context.next = 9;
                 return this.props.createHomePageImage(_objectSpread({}, this.state));
 
-              case 8:
+              case 9:
                 this.setState(defaultState);
                 path = '/edit-home';
                 this.props.history.push(path); // alert("The image has loaded!!!!")
 
-              case 11:
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -4974,10 +4977,6 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -5000,19 +4999,19 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var defaultState = {
-  imageUrl: null,
+  imageUrl: '',
   description: ''
 };
 
 var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   _inherits(EditHomePageImageForm, _React$Component);
 
-  function EditHomePageImageForm() {
+  function EditHomePageImageForm(props) {
     var _this;
 
     _classCallCheck(this, EditHomePageImageForm);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this, props));
     _this.state = defaultState;
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleChangeDescription = _this.handleChangeDescription.bind(_assertThisInitialized(_this));
@@ -5022,65 +5021,39 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
   _createClass(EditHomePageImageForm, [{
     key: "componentDidMount",
-    value: function () {
-      var _componentDidMount = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var homePageImageId, _this$props$updatedHo, imageUrl, description, id;
+    value: function componentDidMount() {
+      var homePageImageId = this.props.match.params.homePageImageId;
+      this.props.getSingleHomePageImage(homePageImageId);
+      var _this$props$homePageI = this.props.homePageImage,
+          imageUrl = _this$props$homePageI.imageUrl,
+          description = _this$props$homePageI.description,
+          id = _this$props$homePageI.id;
+      console.log('this is id in edit=>', id);
+      console.log('description in edit=>', description);
 
-        return regeneratorRuntime.wrap(function _callee$(_context) {
-          while (1) {
-            switch (_context.prev = _context.next) {
-              case 0:
-                homePageImageId = this.props.match.params.homePageImageId;
-                _context.next = 3;
-                return this.props.getSingleHomePageImage(homePageImageId);
-
-              case 3:
-                _this$props$updatedHo = this.props.updatedHomePageImage, imageUrl = _this$props$updatedHo.imageUrl, description = _this$props$updatedHo.description, id = _this$props$updatedHo.id;
-                console.log('this is id in edit=>', id);
-                console.log('description in edit=>', description);
-
-                if (!homePageImageId) {
-                  _context.next = 9;
-                  break;
-                }
-
-                _context.next = 9;
-                return this.setState({
-                  imageUrl: imageUrl,
-                  description: description
-                });
-
-              case 9:
-                console.log('this state=>', this.state);
-
-              case 10:
-              case "end":
-                return _context.stop();
-            }
-          }
-        }, _callee, this);
-      }));
-
-      function componentDidMount() {
-        return _componentDidMount.apply(this, arguments);
+      if (homePageImageId) {
+        this.setState({
+          imageUrl: imageUrl,
+          description: description
+        });
       }
 
-      return componentDidMount;
-    }()
+      console.log('this state=>', this.state);
+    }
   }, {
     key: "componentDidUpdate",
     value: function componentDidUpdate(prevProps) {
       console.log('prevProps in update=>', prevProps);
-      console.log('prevProps.update dee in update=>', prevProps.updatedHomePageImage);
-      var _this$props$updatedHo2 = this.props.updatedHomePageImage,
-          imageUrl = _this$props$updatedHo2.imageUrl,
-          description = _this$props$updatedHo2.description,
-          id = _this$props$updatedHo2.id;
+      console.log('prevProps.update dee in update=>', prevProps.homePageImage);
+      var _this$props$homePageI2 = this.props.homePageImage,
+          imageUrl = _this$props$homePageI2.imageUrl,
+          description = _this$props$homePageI2.description,
+          id = _this$props$homePageI2.id;
       console.log('update imageUrl=>', imageUrl);
       console.log('update description=>', description);
       console.log('update id=>', id);
 
-      if (prevProps.updatedHomePageImage.id !== this.props.updatedHomePageImage.id) {
+      if (prevProps.homePageImage.id !== id) {
         this.setState({
           imageUrl: imageUrl,
           description: description
@@ -5115,14 +5088,15 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       var fd = new FormData();
       fd.append('imageUrl', imageUrl, imageUrl.name);
       fd.append('description', description);
-      axios__WEBPACK_IMPORTED_MODULE_4___default().post("/api/homePageImages/".concat(id), fd);
-      this.props.updateHomePageImageThunk(_objectSpread({}, this.props.updatedHomePageImage, {}, this.state));
+      axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/homePageImages/".concat(id), fd);
+      console.log('submit state=>', this.state);
+      this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
     }
   }, {
     key: "render",
     value: function render() {
       console.log('let look at state=>', this.state);
-      console.log('updatedHomePageImage at prop', this.props.updatedHomePageImage);
+      console.log('updatedHomePageImage at prop', this.props.homePageImage);
       var _this$state2 = this.state,
           imageUrl = _this$state2.imageUrl,
           description = _this$state2.description;
@@ -5134,7 +5108,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         className: "addNewHomeImageTitle"
       }, "Edit Image Detail"), react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit,
-        method: "post",
+        method: "put",
         encType: "multipart/form-data"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
@@ -5142,7 +5116,8 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         htmlFor: "imageUrl"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
-        name: "imageUrl",
+        name: "imageUrl" // value={imageUrl}
+        ,
         placeholder: "imageUrl",
         accept: "image/*",
         onChange: this.handleChange
@@ -5154,7 +5129,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         name: "description",
         value: description,
-        placeholder: "Product Description",
+        placeholder: "Description",
         onChange: this.handleChangeDescription
       })), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
@@ -5170,7 +5145,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
 var mapStateToProps = function mapStateToProps(state) {
   return {
-    updatedHomePageImage: state.homePageImage
+    homePageImage: state.homePageImage
   };
 };
 
@@ -6755,21 +6730,23 @@ var updateHomePageImageThunk = function updateHomePageImageThunk(homePageImage) 
             case 3:
               response = _context4.sent;
               updatedHomePageImage = response.data;
+              console.log('response in update Redux=>', response);
+              console.log('updatedHomePageImage in Redux update=>', updatedHomePageImage);
               dispatch(updateHomePageImage(updatedHomePageImage));
-              _context4.next = 11;
+              _context4.next = 13;
               break;
 
-            case 8:
-              _context4.prev = 8;
+            case 10:
+              _context4.prev = 10;
               _context4.t0 = _context4["catch"](0);
               console.log(_context4.t0);
 
-            case 11:
+            case 13:
             case "end":
               return _context4.stop();
           }
         }
-      }, _callee4, null, [[0, 8]]);
+      }, _callee4, null, [[0, 10]]);
     }));
 
     return function (_x4) {

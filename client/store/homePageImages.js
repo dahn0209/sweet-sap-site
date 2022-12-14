@@ -84,6 +84,11 @@ export const updateHomePageImageThunk = homePageImage => {
         homePageImage
       )
       const updatedHomePageImage = response.data
+      console.log('response in update Redux=>', response)
+      console.log(
+        'updatedHomePageImage in Redux update=>',
+        updatedHomePageImage
+      )
       dispatch(updateHomePageImage(updatedHomePageImage))
     } catch (error) {
       console.log(error)
