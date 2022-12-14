@@ -63,17 +63,17 @@ class EditHomePageImageForm extends React.Component {
     })
   }
 
-  handleSubmit(event) {
+  async handleSubmit(event) {
     event.preventDefault()
-    let {imageUrl, description, id} = this.state
+    console.log('submit id=>', this.state.id)
+    console.log('submit id props=>', this.props.homePageImage.id)
+    let {imageUrl} = this.state
     console.log('submit imageUrl=>', imageUrl)
-    console.log('submit id ', description)
     const fd = new FormData()
     fd.append('imageUrl', imageUrl, imageUrl.name)
-    fd.append('description', description)
-    axios.put(`/api/homePageImages/${id}`, fd)
-    console.log('submit state=>', this.state)
-    this.props.updateHomePageImageThunk({
+    fd.append('description', this.state.description)
+    await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
+    await this.props.updateHomePageImageThunk({
       ...this.props.homePageImage,
       ...this.state
     })
