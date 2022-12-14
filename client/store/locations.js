@@ -23,7 +23,6 @@ export const setLocations = locations => {
 export const fetchLocations = () => {
   return async dispatch => {
     const {data} = await axios.get('/api/locations')
-    console.log('data locations THunk==>', data)
     dispatch(setLocations(data))
   }
 }

@@ -22,7 +22,6 @@ class AddHomePageImageForm extends React.Component {
   handleChange(event) {
     let eachFile = event.target.files[0]
     this.setState({
-      // imageUrl: `./newHomeImages/${eachFile.name}`;
       imageUrl: eachFile
     })
   }
@@ -35,24 +34,14 @@ class AddHomePageImageForm extends React.Component {
   }
 
   async handleSubmit(event) {
-    // console.log('this.state.imageFile in submit->', this.state.imageFile)
+    event.preventDefault()
+    let {imageUrl} = this.state
     const fd = new FormData()
-    fd.append('imageUrl', this.state.imageUrl, this.state.imageUrl.name)
+    fd.append('imageUrl', imageUrl, imageUrl.name)
     fd.append('description', this.state.description)
-    axios
-      .post('/api/homePageImages', fd)
-      .then(res => {
-        console.log('res->', res)
-      })
-      .then(body => {
-        console.log('body=>', body)
-        this.setState({
-          imageUrl: `./newHomeImages/${this.state.imageUrl.name}`
-        })
-      })
+    await axios.post('/api/homePageImages', fd)
     await this.props.createHomePageImage({...this.state})
     this.setState(defaultState)
-    event.preventDefault()
     let path = '/edit-home'
     this.props.history.push(path)
     // alert("The image has loaded!!!!")
@@ -60,9 +49,7 @@ class AddHomePageImageForm extends React.Component {
 
   render() {
     const {description} = this.state
-    console.log('this.state=>', this.state)
-    console.log('this.state.imageUrl=>', this.state.imageUrl)
-    console.log('this.state.description=>', this.state.description)
+
     return (
       <section className="addNewHomeImageSection">
         <h2 className="addNewHomeImageTitle">New Image Detail</h2>

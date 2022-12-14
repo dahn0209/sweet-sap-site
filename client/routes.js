@@ -12,6 +12,7 @@ import ContactUs from './components/contactUs'
 import updateUser from './components/updateUser'
 import EditHome from './components/editHome'
 import AddHomePageImageForm from './components/addNewHomeImage'
+import editHomePageImage from './components/editHomePageImage'
 
 import {me} from './store'
 
@@ -41,6 +42,10 @@ class Routes extends Component {
               exact
               path="/add-homepage-image"
               component={AddHomePageImageForm}
+            />
+            <Route
+              path="/homePageImages/:homePageImageId/edit"
+              component={editHomePageImage}
             />
           </Switch>
         )}

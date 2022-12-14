@@ -9,11 +9,13 @@ import menusReducer from './menus'
 import privateEventsReducer from './privateEvents'
 import happeningsReducer from './happenings'
 import usersReducer from './users'
+import singleHomePageImageReducer from './singleHomePageImage'
 
 const reducer = combineReducers({
   user,
   users: usersReducer,
   homePageImages: homePageImagesReducer,
+  homePageImage: singleHomePageImageReducer,
   locations: locationsReducer,
   menus: menusReducer,
   privateEvents: privateEventsReducer,

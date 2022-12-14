@@ -10,18 +10,19 @@ class Menus extends React.Component {
 
   render() {
     const menus = this.props.menus
-    console.log('menus==>', menus)
     return (
       <section className="menuContainer">
-        {menus.map(eachMenu => {
-          return (
-            <figure key={eachMenu.id} className="eachMenu">
-              <span className="description">{eachMenu.description}</span>
-              <br />
-              <img className="menuGridItem" src={eachMenu.imageUrl} />
-            </figure>
-          )
-        })}
+        {menus
+          .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+          .map(eachMenu => {
+            return (
+              <figure key={eachMenu.id} className="eachMenu">
+                <span className="description">{eachMenu.description}</span>
+                <br />
+                <img className="menuGridItem" src={eachMenu.imageUrl} />
+              </figure>
+            )
+          })}
       </section>
     )
   }

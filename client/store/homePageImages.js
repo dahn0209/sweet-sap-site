@@ -54,7 +54,6 @@ export const fetchHomepageImages = () => {
 export const createNewHomePageImage = homePageImage => {
   return async dispatch => {
     try {
-      // const formData = new FormData()
       const response = await axios.post('/api/homePageImages', homePageImage)
       const newhomePageImage = response.data
       console.log('newHomePageImage store thunk==>', newhomePageImage)
@@ -66,6 +65,7 @@ export const createNewHomePageImage = homePageImage => {
 }
 
 export const deleteHomePageImageThunk = homePageImage => {
+  console.log('homePageDelete=>', homePageImage)
   return async dispatch => {
     try {
       await axios.delete(`/api/homePageImages/${homePageImage.id}`)
@@ -84,6 +84,11 @@ export const updateHomePageImageThunk = homePageImage => {
         homePageImage
       )
       const updatedHomePageImage = response.data
+      console.log('response in update Redux=>', response)
+      console.log(
+        'updatedHomePageImage in Redux update=>',
+        updatedHomePageImage
+      )
       dispatch(updateHomePageImage(updatedHomePageImage))
     } catch (error) {
       console.log(error)

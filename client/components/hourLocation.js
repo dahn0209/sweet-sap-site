@@ -21,19 +21,21 @@ class HourLocation extends React.Component {
         </header>
         <div className="eachColumns" id="locationGrid">
           <h2>- LOCATION -</h2>
-          {locations.map(eachLocation => {
-            return (
-              <div key={eachLocation.id}>
-                <p>
-                  {eachLocation.address}
-                  <br />
-                  {eachLocation.street}, {eachLocation.state},{' '}
-                  {eachLocation.zipCode}
-                </p>
-                <p>Tel: {eachLocation.phone}</p>
-              </div>
-            )
-          })}
+          {locations
+            .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+            .map(eachLocation => {
+              return (
+                <div key={eachLocation.id}>
+                  <p>
+                    {eachLocation.address}
+                    <br />
+                    {eachLocation.street}, {eachLocation.state},{' '}
+                    {eachLocation.zipCode}
+                  </p>
+                  <p>Tel: {eachLocation.phone}</p>
+                </div>
+              )
+            })}
 
           <p>Want to make a reservation?</p>
           <p>Give us a call!</p>
