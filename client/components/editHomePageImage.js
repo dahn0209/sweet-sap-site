@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 import axios from 'axios'
 const defaultState = {
+  id: null,
   imageUrl: '',
   description: ''
 }
@@ -26,6 +27,7 @@ class EditHomePageImageForm extends React.Component {
     console.log('description in edit=>', description)
     if (homePageImageId) {
       this.setState({
+        id: id,
         imageUrl: imageUrl,
         description: description
       })
@@ -77,6 +79,8 @@ class EditHomePageImageForm extends React.Component {
       ...this.props.homePageImage,
       ...this.state
     })
+    let path = '/edit-home'
+    this.props.history.push(path)
   }
 
   render() {

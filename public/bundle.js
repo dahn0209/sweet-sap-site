@@ -5003,6 +5003,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var defaultState = {
+  id: null,
   imageUrl: '',
   description: ''
 };
@@ -5037,6 +5038,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
       if (homePageImageId) {
         this.setState({
+          id: id,
           imageUrl: imageUrl,
           description: description
         });
@@ -5083,7 +5085,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function () {
       var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-        var imageUrl, fd;
+        var imageUrl, fd, path;
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
@@ -5104,6 +5106,10 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
                 return this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
 
               case 12:
+                path = '/edit-home';
+                this.props.history.push(path);
+
+              case 14:
               case "end":
                 return _context.stop();
             }
