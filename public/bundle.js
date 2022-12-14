@@ -4977,6 +4977,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -4999,6 +5003,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var defaultState = {
+  id: null,
   imageUrl: '',
   description: ''
 };
@@ -5033,6 +5038,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
       if (homePageImageId) {
         this.setState({
+          id: id,
           imageUrl: imageUrl,
           description: description
         });
@@ -5077,29 +5083,54 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     }
   }, {
     key: "handleSubmit",
-    value: function handleSubmit(event) {
-      event.preventDefault();
-      var _this$state = this.state,
-          imageUrl = _this$state.imageUrl,
-          description = _this$state.description,
-          id = _this$state.id;
-      console.log('submit imageUrl=>', imageUrl);
-      console.log('submit id ', description);
-      var fd = new FormData();
-      fd.append('imageUrl', imageUrl, imageUrl.name);
-      fd.append('description', description);
-      axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/homePageImages/".concat(id), fd);
-      console.log('submit state=>', this.state);
-      this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
-    }
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+        var imageUrl, fd, path;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                event.preventDefault();
+                console.log('submit id=>', this.state.id);
+                console.log('submit id props=>', this.props.homePageImage.id);
+                imageUrl = this.state.imageUrl;
+                console.log('submit imageUrl=>', imageUrl);
+                fd = new FormData();
+                fd.append('imageUrl', imageUrl, imageUrl.name);
+                fd.append('description', this.state.description);
+                _context.next = 10;
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/homePageImages/".concat(this.props.homePageImage.id), fd);
+
+              case 10:
+                _context.next = 12;
+                return this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
+
+              case 12:
+                path = '/edit-home';
+                this.props.history.push(path);
+
+              case 14:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
   }, {
     key: "render",
     value: function render() {
       console.log('let look at state=>', this.state);
       console.log('updatedHomePageImage at prop', this.props.homePageImage);
-      var _this$state2 = this.state,
-          imageUrl = _this$state2.imageUrl,
-          description = _this$state2.description;
+      var _this$state = this.state,
+          imageUrl = _this$state.imageUrl,
+          description = _this$state.description;
       console.log('imageUrl render=>', imageUrl);
       console.log('description render=>', description);
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
