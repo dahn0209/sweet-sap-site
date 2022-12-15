@@ -3,15 +3,15 @@ import {updateHomePageImageThunk} from '../store/homePageImages'
 import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 import axios from 'axios'
+import './editHomePageImage.css'
 const defaultState = {
-  id: null,
   imageUrl: '',
   description: ''
 }
 
 class EditHomePageImageForm extends React.Component {
-  constructor(props) {
-    super(props)
+  constructor() {
+    super()
     this.state = defaultState
 
     this.handleChange = this.handleChange.bind(this)
@@ -90,29 +90,26 @@ class EditHomePageImageForm extends React.Component {
     console.log('imageUrl render=>', imageUrl)
     console.log('description render=>', description)
     return (
-      <section className="addNewHomeImageSection">
-        <h2 className="addNewHomeImageTitle">Edit Image Detail</h2>
+      <section className="editHomeImageSection">
+        <h2 className="editHomeImageTitle">Edit Image Detail</h2>
         <form
           onSubmit={this.handleSubmit}
-          method="put"
+          method="post"
           encType="multipart/form-data"
         >
-          <div className="addNewHomeImageContainer">
+          <div className="editHomeImageContainer">
             <label htmlFor="imageUrl">
               <b>Image</b>
             </label>
-            <br />
             <input
               type="file"
               name="imageUrl"
-              // value={imageUrl}
               placeholder="imageUrl"
               accept="image/*"
               onChange={this.handleChange}
             />
           </div>
-
-          <div className="addNewHomeImageContainer">
+          <div className="editHomeImageContainer">
             <label htmlFor="description">
               <b>Description</b>
             </label>
@@ -120,14 +117,13 @@ class EditHomePageImageForm extends React.Component {
               type="text"
               name="description"
               value={description}
-              placeholder="Description"
+              placeholder="description"
               onChange={this.handleChangeDescription}
             />
           </div>
-
-          <div className="addNewHomeImageContainer">
-            <button className="addNewHomeImageSubmit" type="submit">
-              Submit
+          <div className="editHomeImageContainer">
+            <button className="editHomeImageSubmit" type="submit">
+              Update Image
             </button>
           </div>
         </form>

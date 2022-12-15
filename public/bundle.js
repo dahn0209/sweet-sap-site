@@ -4395,7 +4395,7 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         className: "addNewHomeImageContainer"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "imageUrl"
-      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
         name: "imageUrl",
         placeholder: "imageUrl",
@@ -4969,6 +4969,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _store_singleHomePageImage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/singleHomePageImage */ "./client/store/singleHomePageImage.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _editHomePageImage_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./editHomePageImage.css */ "./client/components/editHomePageImage.css");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
@@ -5002,8 +5003,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var defaultState = {
-  id: null,
   imageUrl: '',
   description: ''
 };
@@ -5011,12 +5012,12 @@ var defaultState = {
 var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   _inherits(EditHomePageImageForm, _React$Component);
 
-  function EditHomePageImageForm(props) {
+  function EditHomePageImageForm() {
     var _this;
 
     _classCallCheck(this, EditHomePageImageForm);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this));
     _this.state = defaultState;
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleChangeDescription = _this.handleChangeDescription.bind(_assertThisInitialized(_this));
@@ -5134,40 +5135,39 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       console.log('imageUrl render=>', imageUrl);
       console.log('description render=>', description);
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
-        className: "addNewHomeImageSection"
+        className: "editHomeImageSection"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
-        className: "addNewHomeImageTitle"
+        className: "editHomeImageTitle"
       }, "Edit Image Detail"), react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit,
-        method: "put",
+        method: "post",
         encType: "multipart/form-data"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "addNewHomeImageContainer"
+        className: "editHomeImageContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "imageUrl"
-      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "file",
-        name: "imageUrl" // value={imageUrl}
-        ,
+        name: "imageUrl",
         placeholder: "imageUrl",
         accept: "image/*",
         onChange: this.handleChange
       })), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "addNewHomeImageContainer"
+        className: "editHomeImageContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
         htmlFor: "description"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Description")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
         type: "text",
         name: "description",
         value: description,
-        placeholder: "Description",
+        placeholder: "description",
         onChange: this.handleChangeDescription
       })), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "addNewHomeImageContainer"
+        className: "editHomeImageContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-        className: "addNewHomeImageSubmit",
+        className: "editHomeImageSubmit",
         type: "submit"
-      }, "Submit"))));
+      }, "Update Image"))));
     }
   }]);
 
@@ -17202,7 +17202,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".addNewHomeImageSection {\n  justify-content: center;\n  margin: 50px auto;\n  width: 30%;\n}\n\n.addNewHomeImageTitle {\n  text-align: center;\n}\n\n.updateUserForm {\n  border: 3px solid #f1f1f1;\n}\n\ninput[type='text'],\ninput[type='password'] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n}\n\n.addNewHomeImageContainer {\n  padding: 16px;\n}\n\n.addNewHomeImageSubmit {\n  background-color: #04aa6d;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n}\n\n.addNewHomeImageSubmit:hover {\n  opacity: 0.8;\n}\n\nspan.psw {\n  float: right;\n  padding-top: 16px;\n}\n\n@media screen and (max-width: 600px) {\n  .addNewHomeImageSection {\n    justify-content: center;\n    margin: auto;\n    width: 100%;\n  }\n  span.psw {\n    display: block;\n    float: none;\n  }\n  .cancelbtn {\n    width: 100%;\n  }\n}\n", "",{"version":3,"sources":["webpack://./client/components/addNewHomeImage.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,iBAAiB;EACjB,UAAU;AACZ;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;;EAEE,WAAW;EACX,kBAAkB;EAClB,aAAa;EACb,qBAAqB;EACrB,sBAAsB;EACtB,sBAAsB;AACxB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,yBAAyB;EACzB,YAAY;EACZ,kBAAkB;EAClB,aAAa;EACb,YAAY;EACZ,eAAe;EACf,WAAW;AACb;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE;IACE,uBAAuB;IACvB,YAAY;IACZ,WAAW;EACb;EACA;IACE,cAAc;IACd,WAAW;EACb;EACA;IACE,WAAW;EACb;AACF","sourcesContent":[".addNewHomeImageSection {\n  justify-content: center;\n  margin: 50px auto;\n  width: 30%;\n}\n\n.addNewHomeImageTitle {\n  text-align: center;\n}\n\n.updateUserForm {\n  border: 3px solid #f1f1f1;\n}\n\ninput[type='text'],\ninput[type='password'] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n}\n\n.addNewHomeImageContainer {\n  padding: 16px;\n}\n\n.addNewHomeImageSubmit {\n  background-color: #04aa6d;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n}\n\n.addNewHomeImageSubmit:hover {\n  opacity: 0.8;\n}\n\nspan.psw {\n  float: right;\n  padding-top: 16px;\n}\n\n@media screen and (max-width: 600px) {\n  .addNewHomeImageSection {\n    justify-content: center;\n    margin: auto;\n    width: 100%;\n  }\n  span.psw {\n    display: block;\n    float: none;\n  }\n  .cancelbtn {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
+___CSS_LOADER_EXPORT___.push([module.id, ".addNewHomeImageSection {\n  justify-content: center;\n  margin: 50px auto;\n  width: 30%;\n}\n\n.addNewHomeImageTitle {\n  text-align: center;\n}\n\n.updateUserForm {\n  border: 3px solid #f1f1f1;\n}\n\ninput[type='text'],\ninput[type='file'] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n}\n\n.addNewHomeImageContainer {\n  padding: 16px;\n}\n\n.addNewHomeImageSubmit {\n  background-color: #04aa6d;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n}\n\n.addNewHomeImageSubmit:hover {\n  opacity: 0.8;\n}\n\nspan.psw {\n  float: right;\n  padding-top: 16px;\n}\n\n@media screen and (max-width: 600px) {\n  .addNewHomeImageSection {\n    justify-content: center;\n    margin: auto;\n    width: 100%;\n  }\n  span.psw {\n    display: block;\n    float: none;\n  }\n  .cancelbtn {\n    width: 100%;\n  }\n}\n", "",{"version":3,"sources":["webpack://./client/components/addNewHomeImage.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,iBAAiB;EACjB,UAAU;AACZ;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;;EAEE,WAAW;EACX,kBAAkB;EAClB,aAAa;EACb,qBAAqB;EACrB,sBAAsB;EACtB,sBAAsB;AACxB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,yBAAyB;EACzB,YAAY;EACZ,kBAAkB;EAClB,aAAa;EACb,YAAY;EACZ,eAAe;EACf,WAAW;AACb;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE;IACE,uBAAuB;IACvB,YAAY;IACZ,WAAW;EACb;EACA;IACE,cAAc;IACd,WAAW;EACb;EACA;IACE,WAAW;EACb;AACF","sourcesContent":[".addNewHomeImageSection {\n  justify-content: center;\n  margin: 50px auto;\n  width: 30%;\n}\n\n.addNewHomeImageTitle {\n  text-align: center;\n}\n\n.updateUserForm {\n  border: 3px solid #f1f1f1;\n}\n\ninput[type='text'],\ninput[type='file'] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n}\n\n.addNewHomeImageContainer {\n  padding: 16px;\n}\n\n.addNewHomeImageSubmit {\n  background-color: #04aa6d;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n}\n\n.addNewHomeImageSubmit:hover {\n  opacity: 0.8;\n}\n\nspan.psw {\n  float: right;\n  padding-top: 16px;\n}\n\n@media screen and (max-width: 600px) {\n  .addNewHomeImageSection {\n    justify-content: center;\n    margin: auto;\n    width: 100%;\n  }\n  span.psw {\n    display: block;\n    float: none;\n  }\n  .cancelbtn {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -17311,6 +17311,33 @@ __webpack_require__.r(__webpack_exports__);
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
 // Module
 ___CSS_LOADER_EXPORT___.push([module.id, ".addNewButton {\n  text-align: center;\n}\n\n.addNewButton button {\n  background-color: greenyellow;\n  padding: 20px;\n  border-radius: 5px;\n  margin-top: 30px;\n  font-weight: bold;\n  font-size: 20px;\n  border: none;\n  cursor: pointer;\n  color: #cf7979;\n}\n\n#noImagePresentEditHomeImages {\n  margin: 80px 0px;\n  text-align: center;\n  height: 100%;\n  color: #cf7979;\n}\n\n.editHomePageImagesContainer {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 10px;\n  margin: 100px 300px;\n  justify-content: center;\n}\n\n.editHomePageImagesGridItem img {\n  width: 100%;\n}\n\n.editHomePageImagesGridItem {\n  position: relative;\n}\n\n.editHomePageImagesDescription {\n  width: 100%;\n  position: absolute;\n  background-color: rgb(235, 206, 121);\n  bottom: 20%;\n  opacity: 0.85;\n  font-weight: bold;\n  font-size: 20px;\n  text-align: center;\n  padding: 30px;\n  opacity: 0.85;\n}\n\n.editHomePageImagesEditDelete {\n  width: 100%;\n  text-align: center;\n}\n\n.editHomePageImagesEditDelete button {\n  width: 45%;\n  background-color: rgb(28, 186, 78);\n  font-weight: bold;\n  font-size: 15px;\n  padding: 10px;\n  border: none;\n  cursor: pointer;\n  border-radius: 5px;\n  margin: 5px;\n  color: white;\n}\n\n.editHomePageImagesEditDelete #deleteBtn {\n  background-color: rgba(186, 7, 7, 0.708);\n}\n\n@media screen and (max-width: 600px) {\n  .editHomePageImagesContainer {\n    grid-template-columns: 1fr;\n    justify-content: center;\n    margin: 20px;\n  }\n\n  .editHomePageImagesGridItem {\n    text-align: center;\n    width: 100%;\n    position: relative;\n  }\n\n  .editHomePageImagesGridItem img {\n    width: 100%;\n  }\n\n  .editHomePageImagesDescription {\n    position: absolute;\n    background-color: rgb(235, 206, 121);\n    opacity: 0.85;\n    font-weight: bold;\n    font-size: 20px;\n    text-align: center;\n    padding: 30px;\n    opacity: 0.85;\n    object-fit: contain;\n  }\n}\n\n@media screen and (min-width: 600px) and (max-width: 1300px) {\n  .editHomePageImagesContainer {\n    grid-template-columns: 1fr 1fr;\n    justify-content: center;\n    margin: 60px;\n  }\n\n  .editHomePageImagesGridItem {\n    text-align: center;\n    width: 100%;\n    position: relative;\n  }\n\n  .editHomePageImagesGridItem img {\n    width: 100%;\n  }\n\n  .editHomePageImagesDescription {\n    position: absolute;\n    background-color: rgb(235, 206, 121);\n    opacity: 0.85;\n    font-weight: bold;\n    font-size: 20px;\n    text-align: center;\n    padding: 30px;\n    opacity: 0.85;\n    object-fit: contain;\n  }\n}\n", "",{"version":3,"sources":["webpack://./client/components/editHome.css"],"names":[],"mappings":"AAAA;EACE,kBAAkB;AACpB;;AAEA;EACE,6BAA6B;EAC7B,aAAa;EACb,kBAAkB;EAClB,gBAAgB;EAChB,iBAAiB;EACjB,eAAe;EACf,YAAY;EACZ,eAAe;EACf,cAAc;AAChB;;AAEA;EACE,gBAAgB;EAChB,kBAAkB;EAClB,YAAY;EACZ,cAAc;AAChB;;AAEA;EACE,aAAa;EACb,8BAA8B;EAC9B,SAAS;EACT,mBAAmB;EACnB,uBAAuB;AACzB;;AAEA;EACE,WAAW;AACb;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,WAAW;EACX,kBAAkB;EAClB,oCAAoC;EACpC,WAAW;EACX,aAAa;EACb,iBAAiB;EACjB,eAAe;EACf,kBAAkB;EAClB,aAAa;EACb,aAAa;AACf;;AAEA;EACE,WAAW;EACX,kBAAkB;AACpB;;AAEA;EACE,UAAU;EACV,kCAAkC;EAClC,iBAAiB;EACjB,eAAe;EACf,aAAa;EACb,YAAY;EACZ,eAAe;EACf,kBAAkB;EAClB,WAAW;EACX,YAAY;AACd;;AAEA;EACE,wCAAwC;AAC1C;;AAEA;EACE;IACE,0BAA0B;IAC1B,uBAAuB;IACvB,YAAY;EACd;;EAEA;IACE,kBAAkB;IAClB,WAAW;IACX,kBAAkB;EACpB;;EAEA;IACE,WAAW;EACb;;EAEA;IACE,kBAAkB;IAClB,oCAAoC;IACpC,aAAa;IACb,iBAAiB;IACjB,eAAe;IACf,kBAAkB;IAClB,aAAa;IACb,aAAa;IACb,mBAAmB;EACrB;AACF;;AAEA;EACE;IACE,8BAA8B;IAC9B,uBAAuB;IACvB,YAAY;EACd;;EAEA;IACE,kBAAkB;IAClB,WAAW;IACX,kBAAkB;EACpB;;EAEA;IACE,WAAW;EACb;;EAEA;IACE,kBAAkB;IAClB,oCAAoC;IACpC,aAAa;IACb,iBAAiB;IACjB,eAAe;IACf,kBAAkB;IAClB,aAAa;IACb,aAAa;IACb,mBAAmB;EACrB;AACF","sourcesContent":[".addNewButton {\n  text-align: center;\n}\n\n.addNewButton button {\n  background-color: greenyellow;\n  padding: 20px;\n  border-radius: 5px;\n  margin-top: 30px;\n  font-weight: bold;\n  font-size: 20px;\n  border: none;\n  cursor: pointer;\n  color: #cf7979;\n}\n\n#noImagePresentEditHomeImages {\n  margin: 80px 0px;\n  text-align: center;\n  height: 100%;\n  color: #cf7979;\n}\n\n.editHomePageImagesContainer {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 10px;\n  margin: 100px 300px;\n  justify-content: center;\n}\n\n.editHomePageImagesGridItem img {\n  width: 100%;\n}\n\n.editHomePageImagesGridItem {\n  position: relative;\n}\n\n.editHomePageImagesDescription {\n  width: 100%;\n  position: absolute;\n  background-color: rgb(235, 206, 121);\n  bottom: 20%;\n  opacity: 0.85;\n  font-weight: bold;\n  font-size: 20px;\n  text-align: center;\n  padding: 30px;\n  opacity: 0.85;\n}\n\n.editHomePageImagesEditDelete {\n  width: 100%;\n  text-align: center;\n}\n\n.editHomePageImagesEditDelete button {\n  width: 45%;\n  background-color: rgb(28, 186, 78);\n  font-weight: bold;\n  font-size: 15px;\n  padding: 10px;\n  border: none;\n  cursor: pointer;\n  border-radius: 5px;\n  margin: 5px;\n  color: white;\n}\n\n.editHomePageImagesEditDelete #deleteBtn {\n  background-color: rgba(186, 7, 7, 0.708);\n}\n\n@media screen and (max-width: 600px) {\n  .editHomePageImagesContainer {\n    grid-template-columns: 1fr;\n    justify-content: center;\n    margin: 20px;\n  }\n\n  .editHomePageImagesGridItem {\n    text-align: center;\n    width: 100%;\n    position: relative;\n  }\n\n  .editHomePageImagesGridItem img {\n    width: 100%;\n  }\n\n  .editHomePageImagesDescription {\n    position: absolute;\n    background-color: rgb(235, 206, 121);\n    opacity: 0.85;\n    font-weight: bold;\n    font-size: 20px;\n    text-align: center;\n    padding: 30px;\n    opacity: 0.85;\n    object-fit: contain;\n  }\n}\n\n@media screen and (min-width: 600px) and (max-width: 1300px) {\n  .editHomePageImagesContainer {\n    grid-template-columns: 1fr 1fr;\n    justify-content: center;\n    margin: 60px;\n  }\n\n  .editHomePageImagesGridItem {\n    text-align: center;\n    width: 100%;\n    position: relative;\n  }\n\n  .editHomePageImagesGridItem img {\n    width: 100%;\n  }\n\n  .editHomePageImagesDescription {\n    position: absolute;\n    background-color: rgb(235, 206, 121);\n    opacity: 0.85;\n    font-weight: bold;\n    font-size: 20px;\n    text-align: center;\n    padding: 30px;\n    opacity: 0.85;\n    object-fit: contain;\n  }\n}\n"],"sourceRoot":""}]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./client/components/editHomePageImage.css":
+/*!***************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./client/components/editHomePageImage.css ***!
+  \***************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/sourceMaps.js */ "./node_modules/css-loader/dist/runtime/sourceMaps.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1__);
+// Imports
+
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_1___default()((_node_modules_css_loader_dist_runtime_sourceMaps_js__WEBPACK_IMPORTED_MODULE_0___default()));
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".editHomeImageSection {\n  justify-content: center;\n  margin: 50px auto;\n  width: 30%;\n}\n\n.editHomeImageTitle {\n  text-align: center;\n}\n\n.updateUserForm {\n  border: 3px solid #f1f1f1;\n}\n\ninput[type='text'],\ninput[type='file'] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n}\n\n.editHomeImageContainer {\n  padding: 16px;\n}\n\n.editHomeImageSubmit {\n  background-color: #04aa6d;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n}\n\n.editHomeImageSubmit:hover {\n  opacity: 0.8;\n}\n\nspan.psw {\n  float: right;\n  padding-top: 16px;\n}\n\n@media screen and (max-width: 600px) {\n  .editHomeImageSection {\n    justify-content: center;\n    margin: auto;\n    width: 100%;\n  }\n  span.psw {\n    display: block;\n    float: none;\n  }\n  .cancelbtn {\n    width: 100%;\n  }\n}\n", "",{"version":3,"sources":["webpack://./client/components/editHomePageImage.css"],"names":[],"mappings":"AAAA;EACE,uBAAuB;EACvB,iBAAiB;EACjB,UAAU;AACZ;;AAEA;EACE,kBAAkB;AACpB;;AAEA;EACE,yBAAyB;AAC3B;;AAEA;;EAEE,WAAW;EACX,kBAAkB;EAClB,aAAa;EACb,qBAAqB;EACrB,sBAAsB;EACtB,sBAAsB;AACxB;;AAEA;EACE,aAAa;AACf;;AAEA;EACE,yBAAyB;EACzB,YAAY;EACZ,kBAAkB;EAClB,aAAa;EACb,YAAY;EACZ,eAAe;EACf,WAAW;AACb;;AAEA;EACE,YAAY;AACd;;AAEA;EACE,YAAY;EACZ,iBAAiB;AACnB;;AAEA;EACE;IACE,uBAAuB;IACvB,YAAY;IACZ,WAAW;EACb;EACA;IACE,cAAc;IACd,WAAW;EACb;EACA;IACE,WAAW;EACb;AACF","sourcesContent":[".editHomeImageSection {\n  justify-content: center;\n  margin: 50px auto;\n  width: 30%;\n}\n\n.editHomeImageTitle {\n  text-align: center;\n}\n\n.updateUserForm {\n  border: 3px solid #f1f1f1;\n}\n\ninput[type='text'],\ninput[type='file'] {\n  width: 100%;\n  padding: 12px 20px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  box-sizing: border-box;\n}\n\n.editHomeImageContainer {\n  padding: 16px;\n}\n\n.editHomeImageSubmit {\n  background-color: #04aa6d;\n  color: white;\n  padding: 14px 20px;\n  margin: 8px 0;\n  border: none;\n  cursor: pointer;\n  width: 100%;\n}\n\n.editHomeImageSubmit:hover {\n  opacity: 0.8;\n}\n\nspan.psw {\n  float: right;\n  padding-top: 16px;\n}\n\n@media screen and (max-width: 600px) {\n  .editHomeImageSection {\n    justify-content: center;\n    margin: auto;\n    width: 100%;\n  }\n  span.psw {\n    display: block;\n    float: none;\n  }\n  .cancelbtn {\n    width: 100%;\n  }\n}\n"],"sourceRoot":""}]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -60161,6 +60188,61 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
        /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_editHome_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_editHome_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_editHome_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
+
+
+/***/ }),
+
+/***/ "./client/components/editHomePageImage.css":
+/*!*************************************************!*\
+  !*** ./client/components/editHomePageImage.css ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleDomAPI.js */ "./node_modules/style-loader/dist/runtime/styleDomAPI.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertBySelector.js */ "./node_modules/style-loader/dist/runtime/insertBySelector.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js */ "./node_modules/style-loader/dist/runtime/setAttributesWithoutAttributes.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/insertStyleElement.js */ "./node_modules/style-loader/dist/runtime/insertStyleElement.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! !../../node_modules/style-loader/dist/runtime/styleTagTransform.js */ "./node_modules/style-loader/dist/runtime/styleTagTransform.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_editHomePageImage_css__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! !!../../node_modules/css-loader/dist/cjs.js!./editHomePageImage.css */ "./node_modules/css-loader/dist/cjs.js!./client/components/editHomePageImage.css");
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+var options = {};
+
+options.styleTagTransform = (_node_modules_style_loader_dist_runtime_styleTagTransform_js__WEBPACK_IMPORTED_MODULE_5___default());
+options.setAttributes = (_node_modules_style_loader_dist_runtime_setAttributesWithoutAttributes_js__WEBPACK_IMPORTED_MODULE_3___default());
+
+      options.insert = _node_modules_style_loader_dist_runtime_insertBySelector_js__WEBPACK_IMPORTED_MODULE_2___default().bind(null, "head");
+    
+options.domAPI = (_node_modules_style_loader_dist_runtime_styleDomAPI_js__WEBPACK_IMPORTED_MODULE_1___default());
+options.insertStyleElement = (_node_modules_style_loader_dist_runtime_insertStyleElement_js__WEBPACK_IMPORTED_MODULE_4___default());
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_editHomePageImage_css__WEBPACK_IMPORTED_MODULE_6__["default"], options);
+
+
+
+
+       /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_editHomePageImage_css__WEBPACK_IMPORTED_MODULE_6__["default"] && _node_modules_css_loader_dist_cjs_js_editHomePageImage_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals ? _node_modules_css_loader_dist_cjs_js_editHomePageImage_css__WEBPACK_IMPORTED_MODULE_6__["default"].locals : undefined);
 
 
 /***/ }),

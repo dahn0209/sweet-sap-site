@@ -1,0 +1,61 @@
+.editHomeImageSection {
+  justify-content: center;
+  margin: 50px auto;
+  width: 30%;
+}
+
+.editHomeImageTitle {
+  text-align: center;
+}
+
+.updateUserForm {
+  border: 3px solid #f1f1f1;
+}
+
+input[type='text'],
+input[type='file'] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.editHomeImageContainer {
+  padding: 16px;
+}
+
+.editHomeImageSubmit {
+  background-color: #04aa6d;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+}
+
+.editHomeImageSubmit:hover {
+  opacity: 0.8;
+}
+
+span.psw {
+  float: right;
+  padding-top: 16px;
+}
+
+@media screen and (max-width: 600px) {
+  .editHomeImageSection {
+    justify-content: center;
+    margin: auto;
+    width: 100%;
+  }
+  span.psw {
+    display: block;
+    float: none;
+  }
+  .cancelbtn {
+    width: 100%;
+  }
+}

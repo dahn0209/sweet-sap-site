@@ -62,7 +62,6 @@ class AddHomePageImageForm extends React.Component {
             <label htmlFor="imageUrl">
               <b>Image</b>
             </label>
-            <br />
             <input
               type="file"
               name="imageUrl"
