@@ -50,6 +50,7 @@ class EditHomePageImageForm extends React.Component {
         description: description
       })
     }
+    console.log('update after updae->', this.state)
   }
 
   handleChange(event) {
@@ -68,17 +69,37 @@ class EditHomePageImageForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     console.log('submit id=>', this.state.id)
-    console.log('submit id props=>', this.props.homePageImage.id)
-    let {imageUrl} = this.state
+    console.log('submit  props=>', this.props.homePageImage)
+    let {imageUrl, description} = this.state
     console.log('submit imageUrl=>', imageUrl)
+    console.log('sumb description=>', description)
     const fd = new FormData()
-    fd.append('imageUrl', imageUrl, imageUrl.name)
-    fd.append('description', this.state.description)
-    await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
-    await this.props.updateHomePageImageThunk({
-      ...this.props.homePageImage,
-      ...this.state
-    })
+    if (imageUrl === this.props.homePageImage.imageUrl) {
+      fd.append('imageUrl', this.props.homePageImage)
+      fd.append('description', description)
+      this.setState({
+        // imageUrl:this.props.homePageImage.imageUrl,
+        description: description
+      })
+      console.log('i changed description')
+      await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
+      await this.props.updateHomePageImageThunk({
+        ...this.props.homePageImage,
+        ...this.state
+      })
+    } else {
+      fd.append('imageUrl', imageUrl, imageUrl.name)
+      fd.append('description', description)
+      // this.setState({
+      //   description:description
+      // })
+      console.log('both imageUrl and description')
+      await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
+      await this.props.updateHomePageImageThunk({
+        ...this.props.homePageImage,
+        ...this.state
+      })
+    }
     let path = '/edit-home'
     this.props.history.push(path)
   }

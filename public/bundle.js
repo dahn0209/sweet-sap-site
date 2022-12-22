@@ -5066,6 +5066,8 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
           description: description
         });
       }
+
+      console.log('update after updae->', this.state);
     }
   }, {
     key: "handleChange",
@@ -5086,31 +5088,62 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function () {
       var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-        var imageUrl, fd, path;
+        var _this$state, imageUrl, description, fd, path;
+
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 event.preventDefault();
                 console.log('submit id=>', this.state.id);
-                console.log('submit id props=>', this.props.homePageImage.id);
-                imageUrl = this.state.imageUrl;
+                console.log('submit  props=>', this.props.homePageImage);
+                _this$state = this.state, imageUrl = _this$state.imageUrl, description = _this$state.description;
                 console.log('submit imageUrl=>', imageUrl);
+                console.log('sumb description=>', description);
                 fd = new FormData();
-                fd.append('imageUrl', imageUrl, imageUrl.name);
-                fd.append('description', this.state.description);
-                _context.next = 10;
+
+                if (!(imageUrl === this.props.homePageImage.imageUrl)) {
+                  _context.next = 18;
+                  break;
+                }
+
+                fd.append('imageUrl', this.props.homePageImage);
+                fd.append('description', description);
+                this.setState({
+                  // imageUrl:this.props.homePageImage.imageUrl,
+                  description: description
+                });
+                console.log('i changed description');
+                _context.next = 14;
                 return axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/homePageImages/".concat(this.props.homePageImage.id), fd);
 
-              case 10:
-                _context.next = 12;
+              case 14:
+                _context.next = 16;
                 return this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
 
-              case 12:
+              case 16:
+                _context.next = 25;
+                break;
+
+              case 18:
+                fd.append('imageUrl', imageUrl, imageUrl.name);
+                fd.append('description', description); // this.setState({
+                //   description:description
+                // })
+
+                console.log('both imageUrl and description');
+                _context.next = 23;
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/homePageImages/".concat(this.props.homePageImage.id), fd);
+
+              case 23:
+                _context.next = 25;
+                return this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
+
+              case 25:
                 path = '/edit-home';
                 this.props.history.push(path);
 
-              case 14:
+              case 27:
               case "end":
                 return _context.stop();
             }
@@ -5129,9 +5162,9 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log('let look at state=>', this.state);
       console.log('updatedHomePageImage at prop', this.props.homePageImage);
-      var _this$state = this.state,
-          imageUrl = _this$state.imageUrl,
-          description = _this$state.description;
+      var _this$state2 = this.state,
+          imageUrl = _this$state2.imageUrl,
+          description = _this$state2.description;
       console.log('imageUrl render=>', imageUrl);
       console.log('description render=>', description);
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
