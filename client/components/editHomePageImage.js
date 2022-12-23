@@ -6,6 +6,7 @@ import axios from 'axios'
 import './editHomePageImage.css'
 const defaultState = {
   imageUrl: '',
+  imageUrlPath: '',
   description: ''
 }
 
@@ -22,12 +23,10 @@ class EditHomePageImageForm extends React.Component {
   componentDidMount() {
     const homePageImageId = this.props.match.params.homePageImageId
     this.props.getSingleHomePageImage(homePageImageId)
-    const {imageUrl, description, id} = this.props.homePageImage
-    console.log('this is id in edit=>', id)
+    const {imageUrl, description} = this.props.homePageImage
     console.log('description in edit=>', description)
     if (homePageImageId) {
       this.setState({
-        id: id,
         imageUrl: imageUrl,
         description: description
       })
@@ -56,7 +55,8 @@ class EditHomePageImageForm extends React.Component {
   handleChange(event) {
     let eachFile = event.target.files[0]
     this.setState({
-      imageUrl: eachFile
+      imageUrl: eachFile,
+      imageUrlPath: event.target.value
     })
   }
 
@@ -109,7 +109,7 @@ class EditHomePageImageForm extends React.Component {
   render() {
     console.log('let look at state=>', this.state)
     console.log('updatedHomePageImage at prop', this.props.homePageImage)
-    const {imageUrl, description} = this.state
+    const {imageUrl, description, imageUrlPath} = this.state
     console.log('imageUrl render=>', imageUrl)
     console.log('description render=>', description)
     return (
@@ -117,7 +117,7 @@ class EditHomePageImageForm extends React.Component {
         <h2 className="editHomeImageTitle">Edit Image Detail</h2>
         <form
           onSubmit={this.handleSubmit}
-          method="post"
+          method="put"
           encType="multipart/form-data"
         >
           <div className="editHomeImageContainer">
@@ -129,6 +129,18 @@ class EditHomePageImageForm extends React.Component {
               name="imageUrl"
               placeholder="imageUrl"
               accept="image/*"
+              onChange={this.handleChange}
+            />
+          </div>
+
+          <div className="addNewHomeImageContainer">
+            <label htmlFor="description">
+              <b>Image Path</b>
+            </label>
+            <input
+              type="text"
+              name="imageUrlPath"
+              value={imageUrlPath}
               onChange={this.handleChange}
             />
           </div>
