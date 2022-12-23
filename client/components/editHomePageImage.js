@@ -10,8 +10,8 @@ const defaultState = {
 }
 
 class EditHomePageImageForm extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = defaultState
 
     this.handleChange = this.handleChange.bind(this)
@@ -68,21 +68,22 @@ class EditHomePageImageForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    console.log('submit id=>', this.state.id)
+    console.log('submit state all=>', this.state)
     console.log('submit  props=>', this.props.homePageImage)
     let {imageUrl, description} = this.state
     console.log('submit imageUrl=>', imageUrl)
     console.log('sumb description=>', description)
     const fd = new FormData()
-    if (imageUrl === this.props.homePageImage.imageUrl) {
-      fd.append('imageUrl', this.props.homePageImage)
-      fd.append('description', description)
-      this.setState({
-        // imageUrl:this.props.homePageImage.imageUrl,
-        description: description
-      })
+    console.log('fd in submit=>', fd)
+    if (
+      imageUrl === this.props.homePageImage.imageUrl &&
+      description !== this.props.homePageImage.description
+    ) {
+      console.log('if imageUrl=>', imageUrl, 'if description=>', description)
+      // fd.append('imageUrl',imageUrl)
+      // fd.append('description',description);
       console.log('i changed description')
-      await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
+      // await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
       await this.props.updateHomePageImageThunk({
         ...this.props.homePageImage,
         ...this.state
@@ -100,6 +101,7 @@ class EditHomePageImageForm extends React.Component {
         ...this.state
       })
     }
+
     let path = '/edit-home'
     this.props.history.push(path)
   }

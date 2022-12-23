@@ -5012,12 +5012,12 @@ var defaultState = {
 var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   _inherits(EditHomePageImageForm, _React$Component);
 
-  function EditHomePageImageForm() {
+  function EditHomePageImageForm(props) {
     var _this;
 
     _classCallCheck(this, EditHomePageImageForm);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this, props));
     _this.state = defaultState;
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleChangeDescription = _this.handleChangeDescription.bind(_assertThisInitialized(_this));
@@ -5095,55 +5095,50 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
             switch (_context.prev = _context.next) {
               case 0:
                 event.preventDefault();
-                console.log('submit id=>', this.state.id);
+                console.log('submit state all=>', this.state);
                 console.log('submit  props=>', this.props.homePageImage);
                 _this$state = this.state, imageUrl = _this$state.imageUrl, description = _this$state.description;
                 console.log('submit imageUrl=>', imageUrl);
                 console.log('sumb description=>', description);
                 fd = new FormData();
+                console.log('fd in submit=>', fd);
 
-                if (!(imageUrl === this.props.homePageImage.imageUrl)) {
-                  _context.next = 18;
+                if (!(imageUrl === this.props.homePageImage.imageUrl && description !== this.props.homePageImage.description)) {
+                  _context.next = 15;
                   break;
                 }
 
-                fd.append('imageUrl', this.props.homePageImage);
-                fd.append('description', description);
-                this.setState({
-                  // imageUrl:this.props.homePageImage.imageUrl,
-                  description: description
-                });
-                console.log('i changed description');
-                _context.next = 14;
-                return axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/homePageImages/".concat(this.props.homePageImage.id), fd);
+                console.log('if imageUrl=>', imageUrl, 'if description=>', description); // fd.append('imageUrl',imageUrl)
+                // fd.append('description',description);
 
-              case 14:
-                _context.next = 16;
+                console.log('i changed description'); // await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
+
+                _context.next = 13;
                 return this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
 
-              case 16:
-                _context.next = 25;
+              case 13:
+                _context.next = 22;
                 break;
 
-              case 18:
+              case 15:
                 fd.append('imageUrl', imageUrl, imageUrl.name);
                 fd.append('description', description); // this.setState({
                 //   description:description
                 // })
 
                 console.log('both imageUrl and description');
-                _context.next = 23;
+                _context.next = 20;
                 return axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/homePageImages/".concat(this.props.homePageImage.id), fd);
 
-              case 23:
-                _context.next = 25;
+              case 20:
+                _context.next = 22;
                 return this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
 
-              case 25:
+              case 22:
                 path = '/edit-home';
                 this.props.history.push(path);
 
-              case 27:
+              case 24:
               case "end":
                 return _context.stop();
             }

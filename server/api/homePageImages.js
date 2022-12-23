@@ -3,8 +3,6 @@ const {HomePageImage} = require('../db/models')
 const multer = require('multer')
 // const cors = require('cors')
 
-// const path = require("path");
-
 ////multer middleware section for storage///
 ///file storage
 
@@ -68,9 +66,8 @@ router.put(
   async (req, res, next) => {
     try {
       let imageUrl = req.file.filename
-
+      console.log('api imageURL put=>', imageUrl)
       let newImg = `./homePage/${imageUrl}`
-
       const homePageImageId = req.params.homePageImageId
       const updateHomePageImage = await HomePageImage.findByPk(homePageImageId)
       console.log('updateHomePageImage  API=>', updateHomePageImage)
