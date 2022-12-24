@@ -4,16 +4,15 @@ import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 import axios from 'axios'
 import './editHomePageImage.css'
-const defaultState = {
-  imageUrl: '',
-  imageUrlPath: '',
-  description: ''
-}
 
 class EditHomePageImageForm extends React.Component {
   constructor(props) {
     super(props)
-    this.state = defaultState
+    console.log('props in super=>', this.props.homePageImage)
+    this.state = {
+      imageUrl: '',
+      description: ''
+    }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleChangeDescription = this.handleChangeDescription.bind(this)
@@ -25,6 +24,7 @@ class EditHomePageImageForm extends React.Component {
     this.props.getSingleHomePageImage(homePageImageId)
     const {imageUrl, description} = this.props.homePageImage
     console.log('description in edit=>', description)
+    console.log('imageUrl in edit=>', imageUrl)
     if (homePageImageId) {
       this.setState({
         imageUrl: imageUrl,
@@ -55,8 +55,7 @@ class EditHomePageImageForm extends React.Component {
   handleChange(event) {
     let eachFile = event.target.files[0]
     this.setState({
-      imageUrl: eachFile,
-      imageUrlPath: event.target.value
+      imageUrl: eachFile
     })
   }
 
@@ -75,33 +74,15 @@ class EditHomePageImageForm extends React.Component {
     console.log('sumb description=>', description)
     const fd = new FormData()
     console.log('fd in submit=>', fd)
-    if (
-      imageUrl === this.props.homePageImage.imageUrl &&
-      description !== this.props.homePageImage.description
-    ) {
-      console.log('if imageUrl=>', imageUrl, 'if description=>', description)
-      // fd.append('imageUrl',imageUrl)
-      // fd.append('description',description);
-      console.log('i changed description')
-      // await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
-      await this.props.updateHomePageImageThunk({
-        ...this.props.homePageImage,
-        ...this.state
-      })
-    } else {
-      fd.append('imageUrl', imageUrl, imageUrl.name)
-      fd.append('description', description)
-      // this.setState({
-      //   description:description
-      // })
-      console.log('both imageUrl and description')
-      await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
-      await this.props.updateHomePageImageThunk({
-        ...this.props.homePageImage,
-        ...this.state
-      })
-    }
+    fd.append('description', description)
+    fd.append('imageUrl', imageUrl)
 
+    console.log('both imageUrl and description')
+    await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
+    await this.props.updateHomePageImageThunk({
+      ...this.props.homePageImage,
+      ...this.state
+    })
     let path = '/edit-home'
     this.props.history.push(path)
   }
@@ -109,7 +90,7 @@ class EditHomePageImageForm extends React.Component {
   render() {
     console.log('let look at state=>', this.state)
     console.log('updatedHomePageImage at prop', this.props.homePageImage)
-    const {imageUrl, description, imageUrlPath} = this.state
+    const {imageUrl, description} = this.state
     console.log('imageUrl render=>', imageUrl)
     console.log('description render=>', description)
     return (
@@ -133,17 +114,6 @@ class EditHomePageImageForm extends React.Component {
             />
           </div>
 
-          <div className="addNewHomeImageContainer">
-            <label htmlFor="description">
-              <b>Image Path</b>
-            </label>
-            <input
-              type="text"
-              name="imageUrlPath"
-              value={imageUrlPath}
-              onChange={this.handleChange}
-            />
-          </div>
           <div className="editHomeImageContainer">
             <label htmlFor="description">
               <b>Description</b>

@@ -6,7 +6,6 @@ import axios from 'axios'
 
 const defaultState = {
   imageUrl: '',
-  imageUrlPath: '',
   description: ''
 }
 
@@ -22,9 +21,10 @@ class AddHomePageImageForm extends React.Component {
 
   handleChange(event) {
     let eachFile = event.target.files[0]
+    console.log('event.target.file->', event.target.files)
+    console.log('eachFile=>', eachFile)
     this.setState({
-      imageUrl: eachFile,
-      imageUrlPath: event.target.value
+      imageUrl: eachFile
     })
   }
 
@@ -37,12 +37,12 @@ class AddHomePageImageForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    let {imageUrl, description, imageUrlPath} = this.state
+    let {imageUrl, description} = this.state
     console.log('imageUrl in add=>', imageUrl)
     console.log('description in add=>', description)
     const fd = new FormData()
-    fd.append('imageUrl', imageUrl, imageUrl.name)
-    fd.append('imageUrlPath', imageUrlPath)
+    // fd.append('imageUrl', imageUrl, imageUrl.name)
+    fd.append('imageUrl', imageUrl)
     fd.append('description', this.state.description)
 
     console.log('after add description=>', description)
@@ -55,7 +55,7 @@ class AddHomePageImageForm extends React.Component {
   }
 
   render() {
-    const {description, imageUrlPath} = this.state
+    const {description} = this.state
 
     return (
       <section className="addNewHomeImageSection">
@@ -74,18 +74,6 @@ class AddHomePageImageForm extends React.Component {
               name="imageUrl"
               placeholder="imageUrl"
               accept="image/*"
-              onChange={this.handleChange}
-            />
-          </div>
-
-          <div className="addNewHomeImageContainer">
-            <label htmlFor="description">
-              <b>Image Path</b>
-            </label>
-            <input
-              type="text"
-              name="imageUrlPath"
-              value={imageUrlPath}
               onChange={this.handleChange}
             />
           </div>

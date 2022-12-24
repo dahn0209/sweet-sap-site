@@ -1,7 +1,6 @@
 const router = require('express').Router()
 const {HomePageImage} = require('../db/models')
 const multer = require('multer')
-// const cors = require('cors')
 
 ////multer middleware section for storage///
 ///file storage
@@ -13,6 +12,7 @@ const storage = multer.diskStorage({
   },
   filename: function(req, file, cb) {
     ///defines how file is named
+    console.log('file->', file)
     cb(null, file.originalname)
   }
 })
@@ -39,6 +39,7 @@ router.get('/:homePageImageId', async (req, res, next) => {
     const homePageImage = await HomePageImage.findByPk(
       req.params.homePageImageId
     )
+    console.log('get sing homePageImage Id backend=>', homePageImage)
     res.json(homePageImage)
   } catch (err) {
     next(err)
@@ -47,7 +48,7 @@ router.get('/:homePageImageId', async (req, res, next) => {
 
 router.post('/', upload.single('imageUrl'), async (req, res, next) => {
   try {
-    let imageUrl = req.file.filename
+    let imageUrl = req.file.originalname
 
     let newImg = `./homePage/${imageUrl}`
     const newHomepageImage = await HomePageImage.create({
