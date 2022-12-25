@@ -4303,6 +4303,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var defaultState = {
+  // id:0,
   imageUrl: '',
   description: ''
 };
@@ -4324,6 +4325,11 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(AddHomePageImageForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchHomePageImages();
+    }
+  }, {
     key: "handleChange",
     value: function handleChange(event) {
       var eachFile = event.target.files[0];
@@ -4354,25 +4360,30 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
                 event.preventDefault();
                 _this$state = this.state, imageUrl = _this$state.imageUrl, description = _this$state.description;
                 console.log('imageUrl in add=>', imageUrl);
-                console.log('description in add=>', description);
+                console.log('description in add=>', description); // this.setState({
+                //   id:this.props.homePageImages.length+1
+                // })
+
                 fd = new FormData(); // fd.append('imageUrl', imageUrl, imageUrl.name)
+                // fd.append('id',id)
 
                 fd.append('imageUrl', imageUrl);
                 fd.append('description', this.state.description);
+                console.log('this.state after submit->', this.state);
                 console.log('after add description=>', description);
-                _context.next = 10;
+                _context.next = 11;
                 return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
 
-              case 10:
-                _context.next = 12;
+              case 11:
+                _context.next = 13;
                 return this.props.createHomePageImage(_objectSpread({}, this.state));
 
-              case 12:
+              case 13:
                 this.setState(defaultState);
                 path = '/edit-home';
                 this.props.history.push(path); // alert("The image has loaded!!!!")
 
-              case 15:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -4390,6 +4401,9 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var description = this.state.description;
+      console.log('this.props=>', this.props); // console.log('prop homepageImages->',this.props.homePageImages.length)
+
+      console.log('this.state in add render=>', this.state);
       return React__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "addNewHomeImageSection"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
@@ -4431,12 +4445,16 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
 var mapState = function mapState(state) {
   return {
-    newProduct: state.products
+    // homePageImages: state.homePageImages,
+    newHomePageImage: state.homePageImages
   };
 };
 
 var mapDispatch = function mapDispatch(dispatch) {
   return {
+    fetchHomePageImages: function fetchHomePageImages() {
+      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.fetchHomepageImages)());
+    },
     createHomePageImage: function createHomePageImage(homePageImage) {
       return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.createHomePageImage)(homePageImage));
     }
@@ -4887,15 +4905,13 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
         type: "button"
       }, "Add New Image "))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "editHomePageImagesContainer"
-      }, homePageImages.sort(function (_ref, _ref2) {
-        var previousID = _ref.id;
-        var currentID = _ref2.id;
-        return previousID - currentID;
-      }).map(function (homePageImage) {
+      }, homePageImages // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+      .map(function (homePageImage) {
         if (!homePageImage.description) {
           return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "editHomePageImagesGridItem",
-            key: homePageImage.id
+            key: homePageImage.id,
+            id: homePageImage.id
           }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
             src: homePageImage.imageUrl
           }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5508,11 +5524,8 @@ var HomePageImages = /*#__PURE__*/function (_React$Component) {
       var homePageImages = this.props.homePageImages;
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "homePageImagesContainer"
-      }, homePageImages.sort(function (_ref, _ref2) {
-        var previousID = _ref.id;
-        var currentID = _ref2.id;
-        return previousID - currentID;
-      }).map(function (homePageImage) {
+      }, homePageImages // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+      .map(function (homePageImage) {
         if (!homePageImage.description) {
           return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "homePageImagesGridItem",

@@ -1,10 +1,11 @@
 import React from 'React'
-import {createHomePageImage} from '../store/homePageImages'
+import {createHomePageImage, fetchHomepageImages} from '../store/homePageImages'
 import {connect} from 'react-redux'
 import './addNewHomeImage.css'
 import axios from 'axios'
 
 const defaultState = {
+  // id:0,
   imageUrl: '',
   description: ''
 }
@@ -17,6 +18,10 @@ class AddHomePageImageForm extends React.Component {
     this.handleChange = this.handleChange.bind(this)
     this.handleChangeDescription = this.handleChangeDescription.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  }
+
+  componentDidMount() {
+    this.props.fetchHomePageImages()
   }
 
   handleChange(event) {
@@ -40,11 +45,15 @@ class AddHomePageImageForm extends React.Component {
     let {imageUrl, description} = this.state
     console.log('imageUrl in add=>', imageUrl)
     console.log('description in add=>', description)
+    // this.setState({
+    //   id:this.props.homePageImages.length+1
+    // })
     const fd = new FormData()
     // fd.append('imageUrl', imageUrl, imageUrl.name)
+    // fd.append('id',id)
     fd.append('imageUrl', imageUrl)
     fd.append('description', this.state.description)
-
+    console.log('this.state after submit->', this.state)
     console.log('after add description=>', description)
     await axios.post('/api/homePageImages', fd)
     await this.props.createHomePageImage({...this.state})
@@ -56,6 +65,9 @@ class AddHomePageImageForm extends React.Component {
 
   render() {
     const {description} = this.state
+    console.log('this.props=>', this.props)
+    // console.log('prop homepageImages->',this.props.homePageImages.length)
+    console.log('this.state in add render=>', this.state)
 
     return (
       <section className="addNewHomeImageSection">
@@ -103,12 +115,14 @@ class AddHomePageImageForm extends React.Component {
 
 const mapState = state => {
   return {
-    newProduct: state.products
+    // homePageImages: state.homePageImages,
+    newHomePageImage: state.homePageImages
   }
 }
 
 const mapDispatch = dispatch => {
   return {
+    fetchHomePageImages: () => dispatch(fetchHomepageImages()),
     createHomePageImage: homePageImage =>
       dispatch(createHomePageImage(homePageImage))
   }

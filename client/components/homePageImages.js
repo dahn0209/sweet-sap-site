@@ -13,7 +13,7 @@ class HomePageImages extends React.Component {
     return (
       <section className="homePageImagesContainer">
         {homePageImages
-          .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+          // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
           .map(homePageImage => {
             if (!homePageImage.description) {
               return (

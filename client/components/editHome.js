@@ -37,13 +37,14 @@ export class EditHome extends React.Component {
         </div>
         <div className="editHomePageImagesContainer">
           {homePageImages
-            .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+            // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
             .map(homePageImage => {
               if (!homePageImage.description) {
                 return (
                   <div
                     className="editHomePageImagesGridItem"
                     key={homePageImage.id}
+                    id={homePageImage.id}
                   >
                     <img src={homePageImage.imageUrl} />
                     <div className="editHomePageImagesEditDelete">

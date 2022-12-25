@@ -48,6 +48,7 @@ router.get('/:homePageImageId', async (req, res, next) => {
 
 router.post('/', upload.single('imageUrl'), async (req, res, next) => {
   try {
+    console.log('req.file->', req.file)
     let imageUrl = req.file.originalname
 
     let newImg = `./homePage/${imageUrl}`
@@ -66,7 +67,7 @@ router.put(
   upload.single('imageUrl'),
   async (req, res, next) => {
     try {
-      let imageUrl = req.file.filename
+      let imageUrl = req.file.originalname
       console.log('api imageURL put=>', imageUrl)
       let newImg = `./homePage/${imageUrl}`
       const homePageImageId = req.params.homePageImageId
