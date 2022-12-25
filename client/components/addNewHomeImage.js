@@ -45,12 +45,9 @@ class AddHomePageImageForm extends React.Component {
     let {imageUrl, description} = this.state
     console.log('imageUrl in add=>', imageUrl)
     console.log('description in add=>', description)
-    // this.setState({
-    //   id:this.props.homePageImages.length+1
-    // })
+
     const fd = new FormData()
     // fd.append('imageUrl', imageUrl, imageUrl.name)
-    // fd.append('id',id)
     fd.append('imageUrl', imageUrl)
     fd.append('description', this.state.description)
     console.log('this.state after submit->', this.state)
@@ -60,7 +57,7 @@ class AddHomePageImageForm extends React.Component {
     this.setState(defaultState)
     let path = '/edit-home'
     this.props.history.push(path)
-    // alert("The image has loaded!!!!")
+    alert('The image has loaded!!!!')
   }
 
   render() {
