@@ -32,6 +32,7 @@ async function seed() {
       })
     )
 
+    // homePageImages.sort((a,b)=>a-b)
     const homeImages = await Promise.all(
       homePageImages.map(homePageImage => {
         return HomePageImage.create(homePageImage)
@@ -43,6 +44,7 @@ async function seed() {
       })
     )
 
+    // menus.sort((a,b)=>a-b);
     const menuLists = await Promise.all(
       menus.map(menu => {
         return Menu.create(menu)

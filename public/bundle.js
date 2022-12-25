@@ -4303,6 +4303,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 var defaultState = {
+  // id:0,
   imageUrl: '',
   description: ''
 };
@@ -4324,9 +4325,16 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   }
 
   _createClass(AddHomePageImageForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.fetchHomePageImages();
+    }
+  }, {
     key: "handleChange",
     value: function handleChange(event) {
       var eachFile = event.target.files[0];
+      console.log('event.target.file->', event.target.files);
+      console.log('eachFile=>', eachFile);
       this.setState({
         imageUrl: eachFile
       });
@@ -4343,29 +4351,39 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function () {
       var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-        var imageUrl, fd, path;
+        var _this$state, imageUrl, description, fd, path;
+
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 event.preventDefault();
-                imageUrl = this.state.imageUrl;
-                fd = new FormData();
-                fd.append('imageUrl', imageUrl, imageUrl.name);
+                _this$state = this.state, imageUrl = _this$state.imageUrl, description = _this$state.description;
+                console.log('imageUrl in add=>', imageUrl);
+                console.log('description in add=>', description); // this.setState({
+                //   id:this.props.homePageImages.length+1
+                // })
+
+                fd = new FormData(); // fd.append('imageUrl', imageUrl, imageUrl.name)
+                // fd.append('id',id)
+
+                fd.append('imageUrl', imageUrl);
                 fd.append('description', this.state.description);
-                _context.next = 7;
+                console.log('this.state after submit->', this.state);
+                console.log('after add description=>', description);
+                _context.next = 11;
                 return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/homePageImages', fd);
 
-              case 7:
-                _context.next = 9;
+              case 11:
+                _context.next = 13;
                 return this.props.createHomePageImage(_objectSpread({}, this.state));
 
-              case 9:
+              case 13:
                 this.setState(defaultState);
                 path = '/edit-home';
                 this.props.history.push(path); // alert("The image has loaded!!!!")
 
-              case 12:
+              case 16:
               case "end":
                 return _context.stop();
             }
@@ -4383,6 +4401,9 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var description = this.state.description;
+      console.log('this.props=>', this.props); // console.log('prop homepageImages->',this.props.homePageImages.length)
+
+      console.log('this.state in add render=>', this.state);
       return React__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "addNewHomeImageSection"
       }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
@@ -4409,7 +4430,6 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         type: "text",
         name: "description",
         value: description,
-        placeholder: "Product Description",
         onChange: this.handleChangeDescription
       })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewHomeImageContainer"
@@ -4425,12 +4445,16 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
 var mapState = function mapState(state) {
   return {
-    newProduct: state.products
+    // homePageImages: state.homePageImages,
+    newHomePageImage: state.homePageImages
   };
 };
 
 var mapDispatch = function mapDispatch(dispatch) {
   return {
+    fetchHomePageImages: function fetchHomePageImages() {
+      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.fetchHomepageImages)());
+    },
     createHomePageImage: function createHomePageImage(homePageImage) {
       return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.createHomePageImage)(homePageImage));
     }
@@ -4886,7 +4910,8 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
         if (!homePageImage.description) {
           return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "editHomePageImagesGridItem",
-            key: homePageImage.id
+            key: homePageImage.id,
+            id: homePageImage.id
           }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
             src: homePageImage.imageUrl
           }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
@@ -5004,21 +5029,21 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
-var defaultState = {
-  imageUrl: '',
-  description: ''
-};
 
 var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
   _inherits(EditHomePageImageForm, _React$Component);
 
-  function EditHomePageImageForm() {
+  function EditHomePageImageForm(props) {
     var _this;
 
     _classCallCheck(this, EditHomePageImageForm);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this));
-    _this.state = defaultState;
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(EditHomePageImageForm).call(this, props));
+    console.log('props in super=>', _this.props.homePageImage);
+    _this.state = {
+      imageUrl: '',
+      description: ''
+    };
     _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
     _this.handleChangeDescription = _this.handleChangeDescription.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -5032,14 +5057,12 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
       this.props.getSingleHomePageImage(homePageImageId);
       var _this$props$homePageI = this.props.homePageImage,
           imageUrl = _this$props$homePageI.imageUrl,
-          description = _this$props$homePageI.description,
-          id = _this$props$homePageI.id;
-      console.log('this is id in edit=>', id);
+          description = _this$props$homePageI.description;
       console.log('description in edit=>', description);
+      console.log('imageUrl in edit=>', imageUrl);
 
       if (homePageImageId) {
         this.setState({
-          id: id,
           imageUrl: imageUrl,
           description: description
         });
@@ -5066,6 +5089,8 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
           description: description
         });
       }
+
+      console.log('update after updae->', this.state);
     }
   }, {
     key: "handleChange",
@@ -5086,31 +5111,35 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     key: "handleSubmit",
     value: function () {
       var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
-        var imageUrl, fd, path;
+        var _this$state, imageUrl, description, fd, path;
+
         return regeneratorRuntime.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
                 event.preventDefault();
-                console.log('submit id=>', this.state.id);
-                console.log('submit id props=>', this.props.homePageImage.id);
-                imageUrl = this.state.imageUrl;
+                console.log('submit state all=>', this.state);
+                console.log('submit  props=>', this.props.homePageImage);
+                _this$state = this.state, imageUrl = _this$state.imageUrl, description = _this$state.description;
                 console.log('submit imageUrl=>', imageUrl);
+                console.log('sumb description=>', description);
                 fd = new FormData();
-                fd.append('imageUrl', imageUrl, imageUrl.name);
-                fd.append('description', this.state.description);
-                _context.next = 10;
+                console.log('fd in submit=>', fd);
+                fd.append('description', description);
+                fd.append('imageUrl', imageUrl);
+                console.log('both imageUrl and description');
+                _context.next = 13;
                 return axios__WEBPACK_IMPORTED_MODULE_4___default().put("/api/homePageImages/".concat(this.props.homePageImage.id), fd);
 
-              case 10:
-                _context.next = 12;
+              case 13:
+                _context.next = 15;
                 return this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
 
-              case 12:
+              case 15:
                 path = '/edit-home';
                 this.props.history.push(path);
 
-              case 14:
+              case 17:
               case "end":
                 return _context.stop();
             }
@@ -5129,9 +5158,9 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
     value: function render() {
       console.log('let look at state=>', this.state);
       console.log('updatedHomePageImage at prop', this.props.homePageImage);
-      var _this$state = this.state,
-          imageUrl = _this$state.imageUrl,
-          description = _this$state.description;
+      var _this$state2 = this.state,
+          imageUrl = _this$state2.imageUrl,
+          description = _this$state2.description;
       console.log('imageUrl render=>', imageUrl);
       console.log('description render=>', description);
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
@@ -5140,7 +5169,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
         className: "editHomeImageTitle"
       }, "Edit Image Detail"), react__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
         onSubmit: this.handleSubmit,
-        method: "post",
+        method: "put",
         encType: "multipart/form-data"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "editHomeImageContainer"
@@ -5495,11 +5524,8 @@ var HomePageImages = /*#__PURE__*/function (_React$Component) {
       var homePageImages = this.props.homePageImages;
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "homePageImagesContainer"
-      }, homePageImages.sort(function (_ref, _ref2) {
-        var previousID = _ref.id;
-        var currentID = _ref2.id;
-        return previousID - currentID;
-      }).map(function (homePageImage) {
+      }, homePageImages // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
+      .map(function (homePageImage) {
         if (!homePageImage.description) {
           return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "homePageImagesGridItem",

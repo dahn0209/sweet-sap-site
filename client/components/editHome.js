@@ -44,6 +44,7 @@ export class EditHome extends React.Component {
                   <div
                     className="editHomePageImagesGridItem"
                     key={homePageImage.id}
+                    id={homePageImage.id}
                   >
                     <img src={homePageImage.imageUrl} />
                     <div className="editHomePageImagesEditDelete">

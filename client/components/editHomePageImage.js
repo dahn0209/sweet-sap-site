@@ -4,15 +4,15 @@ import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 import axios from 'axios'
 import './editHomePageImage.css'
-const defaultState = {
-  imageUrl: '',
-  description: ''
-}
 
 class EditHomePageImageForm extends React.Component {
-  constructor() {
-    super()
-    this.state = defaultState
+  constructor(props) {
+    super(props)
+    console.log('props in super=>', this.props.homePageImage)
+    this.state = {
+      imageUrl: '',
+      description: ''
+    }
 
     this.handleChange = this.handleChange.bind(this)
     this.handleChangeDescription = this.handleChangeDescription.bind(this)
@@ -22,12 +22,11 @@ class EditHomePageImageForm extends React.Component {
   componentDidMount() {
     const homePageImageId = this.props.match.params.homePageImageId
     this.props.getSingleHomePageImage(homePageImageId)
-    const {imageUrl, description, id} = this.props.homePageImage
-    console.log('this is id in edit=>', id)
+    const {imageUrl, description} = this.props.homePageImage
     console.log('description in edit=>', description)
+    console.log('imageUrl in edit=>', imageUrl)
     if (homePageImageId) {
       this.setState({
-        id: id,
         imageUrl: imageUrl,
         description: description
       })
@@ -50,6 +49,7 @@ class EditHomePageImageForm extends React.Component {
         description: description
       })
     }
+    console.log('update after updae->', this.state)
   }
 
   handleChange(event) {
@@ -67,13 +67,17 @@ class EditHomePageImageForm extends React.Component {
 
   async handleSubmit(event) {
     event.preventDefault()
-    console.log('submit id=>', this.state.id)
-    console.log('submit id props=>', this.props.homePageImage.id)
-    let {imageUrl} = this.state
+    console.log('submit state all=>', this.state)
+    console.log('submit  props=>', this.props.homePageImage)
+    let {imageUrl, description} = this.state
     console.log('submit imageUrl=>', imageUrl)
+    console.log('sumb description=>', description)
     const fd = new FormData()
-    fd.append('imageUrl', imageUrl, imageUrl.name)
-    fd.append('description', this.state.description)
+    console.log('fd in submit=>', fd)
+    fd.append('description', description)
+    fd.append('imageUrl', imageUrl)
+
+    console.log('both imageUrl and description')
     await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
     await this.props.updateHomePageImageThunk({
       ...this.props.homePageImage,
@@ -94,7 +98,7 @@ class EditHomePageImageForm extends React.Component {
         <h2 className="editHomeImageTitle">Edit Image Detail</h2>
         <form
           onSubmit={this.handleSubmit}
-          method="post"
+          method="put"
           encType="multipart/form-data"
         >
           <div className="editHomeImageContainer">
@@ -109,6 +113,7 @@ class EditHomePageImageForm extends React.Component {
               onChange={this.handleChange}
             />
           </div>
+
           <div className="editHomeImageContainer">
             <label htmlFor="description">
               <b>Description</b>
