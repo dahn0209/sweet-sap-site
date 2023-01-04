@@ -35,6 +35,7 @@ export class EditHome extends React.Component {
             <button type="button">Add New Image </button>
           </Link>
         </div>
+
         <div className="editHomePageImagesContainer">
           {homePageImages
             // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
