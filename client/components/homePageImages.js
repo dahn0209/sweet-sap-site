@@ -12,25 +12,23 @@ class HomePageImages extends React.Component {
     const homePageImages = this.props.homePageImages
     return (
       <section className="homePageImagesContainer">
-        {homePageImages
-          // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
-          .map(homePageImage => {
-            if (!homePageImage.description) {
-              return (
-                <div className="homePageImagesGridItem" key={homePageImage.id}>
-                  <img src={homePageImage.imageUrl} />
-                </div>
-              )
-            }
+        {homePageImages.map(homePageImage => {
+          if (!homePageImage.description) {
             return (
               <div className="homePageImagesGridItem" key={homePageImage.id}>
                 <img src={homePageImage.imageUrl} />
-                <div className="homePageDescription">
-                  <span>{homePageImage.description}</span>
-                </div>
               </div>
             )
-          })}
+          }
+          return (
+            <div className="homePageImagesGridItem" key={homePageImage.id}>
+              <img src={homePageImage.imageUrl} />
+              <div className="homePageDescription">
+                <span>{homePageImage.description}</span>
+              </div>
+            </div>
+          )
+        })}
       </section>
     )
   }

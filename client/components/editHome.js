@@ -3,6 +3,7 @@ import {
   fetchHomepageImages,
   deleteHomePageImageThunk
 } from '../store/homePageImages'
+import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './editHome.css'
@@ -10,6 +11,10 @@ import './editHome.css'
 export class EditHome extends React.Component {
   componentDidMount() {
     this.props.fetchHomePageImages()
+  }
+
+  onDragEnd = () => {
+    /////reordering Logic
   }
 
   render() {
@@ -36,10 +41,9 @@ export class EditHome extends React.Component {
           </Link>
         </div>
 
-        <div className="editHomePageImagesContainer">
-          {homePageImages
-            // .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
-            .map(homePageImage => {
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <div className="editHomePageImagesContainer">
+            {homePageImages.map(homePageImage => {
               if (!homePageImage.description) {
                 return (
                   <div
@@ -91,7 +95,8 @@ export class EditHome extends React.Component {
                 </div>
               )
             })}
-        </div>
+          </div>
+        </DragDropContext>
       </section>
     )
   }
