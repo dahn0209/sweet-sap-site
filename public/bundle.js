@@ -4841,6 +4841,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _editHome_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editHome.css */ "./client/components/editHome.css");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -4919,10 +4921,33 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
         type: "button"
       }, "Add New Image "))), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.DragDropContext, {
         onDragEnd: this.onDragEnd
-      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-        className: "editHomePageImagesContainer"
-      }, homePageImages.map(function (homePageImage) {
-        if (!homePageImage.description) {
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.Droppable, null, function (provided) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", _extends({}, provided.droppableProps, {
+          ref: provided.innerRef,
+          className: "editHomePageImagesContainer"
+        }), homePageImages.map(function (homePageImage) {
+          if (!homePageImage.description) {
+            return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+              className: "editHomePageImagesGridItem",
+              key: homePageImage.id,
+              id: homePageImage.id
+            }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+              src: homePageImage.imageUrl
+            }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+              className: "editHomePageImagesEditDelete"
+            }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+              to: "/homePageImages/".concat(homePageImage.id, "/edit")
+            }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+              type: "button"
+            }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+              id: "deleteBtn",
+              type: "button",
+              onClick: function onClick() {
+                return _this2.props.deleteHomePageImageThunk(homePageImage);
+              }
+            }, "Delete")), provided.placeholder);
+          }
+
           return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "editHomePageImagesGridItem",
             key: homePageImage.id,
@@ -4930,41 +4955,22 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
           }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
             src: homePageImage.imageUrl
           }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+            className: "editHomePageImagesDescription"
+          }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, homePageImage.description)), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
             className: "editHomePageImagesEditDelete"
           }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
             to: "/homePageImages/".concat(homePageImage.id, "/edit")
           }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
             type: "button"
           }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-            id: "deleteBtn",
             type: "button",
+            id: "deleteBtn",
             onClick: function onClick() {
               return _this2.props.deleteHomePageImageThunk(homePageImage);
             }
           }, "Delete")));
-        }
-
-        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "editHomePageImagesGridItem",
-          key: homePageImage.id
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-          src: homePageImage.imageUrl
-        }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "editHomePageImagesDescription"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, homePageImage.description)), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "editHomePageImagesEditDelete"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-          to: "/homePageImages/".concat(homePageImage.id, "/edit")
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          type: "button"
-        }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          type: "button",
-          id: "deleteBtn",
-          onClick: function onClick() {
-            return _this2.props.deleteHomePageImageThunk(homePageImage);
-          }
-        }, "Delete")));
-      }))));
+        }), provided.placeholder);
+      })));
     }
   }]);
 
