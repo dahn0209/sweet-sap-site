@@ -68,7 +68,7 @@ export class EditHome extends React.Component {
                               key={homePageImage.id}
                               id={homePageImage.id}
                             >
-                              {index};{homePageImage.id}
+                              index:{index}; homePageImage.id:{homePageImage.id}
                               <img src={homePageImage.imageUrl} />
                               <div className="editHomePageImagesEditDelete">
                                 <Link

@@ -4940,7 +4940,7 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
                 className: "editHomePageImagesGridItem",
                 key: homePageImage.id,
                 id: homePageImage.id
-              }, index, ";", homePageImage.id, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+              }, "index:", index, "; homePageImage.id:", homePageImage.id, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
                 src: homePageImage.imageUrl
               }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
                 className: "editHomePageImagesEditDelete"
