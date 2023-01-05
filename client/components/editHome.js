@@ -3,7 +3,7 @@ import {
   fetchHomepageImages,
   deleteHomePageImageThunk
 } from '../store/homePageImages'
-import {DragDropContext, Droppable} from 'react-beautiful-dnd'
+import {DragDropContext, Droppable, Draggable} from 'react-beautiful-dnd'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 import './editHome.css'
@@ -42,65 +42,104 @@ export class EditHome extends React.Component {
         </div>
 
         <DragDropContext onDragEnd={this.onDragEnd}>
-          <Droppable>
+          <Droppable droppableId="1">
             {provided => (
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
                 className="editHomePageImagesContainer"
               >
-                {homePageImages.map(homePageImage => {
+                {homePageImages.map((homePageImage, index) => {
                   if (!homePageImage.description) {
                     return (
-                      <div
-                        className="editHomePageImagesGridItem"
+                      <Draggable
                         key={homePageImage.id}
-                        id={homePageImage.id}
+                        draggableId={String(homePageImage.id)}
+                        index={index}
                       >
-                        <img src={homePageImage.imageUrl} />
-                        <div className="editHomePageImagesEditDelete">
-                          <Link to={`/homePageImages/${homePageImage.id}/edit`}>
-                            <button type="button">Edit</button>
-                          </Link>
-                          <button
-                            id="deleteBtn"
-                            type="button"
-                            onClick={() =>
-                              this.props.deleteHomePageImageThunk(homePageImage)
-                            }
+                        {provided => (
+                          <div
+                            ref={provided.innerRef}
+                            {...provided.draggableProps}
+                            {...provided.dragHandleProps}
                           >
-                            Delete
-                          </button>
-                        </div>
-                        {provided.placeholder}
-                      </div>
+                            <div
+                              className="editHomePageImagesGridItem"
+                              key={homePageImage.id}
+                              id={homePageImage.id}
+                            >
+                              {index};{homePageImage.id}
+                              <img src={homePageImage.imageUrl} />
+                              <div className="editHomePageImagesEditDelete">
+                                <Link
+                                  to={`/homePageImages/${
+                                    homePageImage.id
+                                  }/edit`}
+                                >
+                                  <button type="button">Edit</button>
+                                </Link>
+                                <button
+                                  id="deleteBtn"
+                                  type="button"
+                                  onClick={() =>
+                                    this.props.deleteHomePageImageThunk(
+                                      homePageImage
+                                    )
+                                  }
+                                >
+                                  Delete
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </Draggable>
                     )
                   }
                   return (
-                    <div
-                      className="editHomePageImagesGridItem"
+                    <Draggable
                       key={homePageImage.id}
-                      id={homePageImage.id}
+                      draggableId={String(homePageImage.id)}
+                      index={index}
                     >
-                      <img src={homePageImage.imageUrl} />
-                      <div className="editHomePageImagesDescription">
-                        <span>{homePageImage.description}</span>
-                      </div>
-                      <div className="editHomePageImagesEditDelete">
-                        <Link to={`/homePageImages/${homePageImage.id}/edit`}>
-                          <button type="button">Edit</button>
-                        </Link>
-                        <button
-                          type="button"
-                          id="deleteBtn"
-                          onClick={() =>
-                            this.props.deleteHomePageImageThunk(homePageImage)
-                          }
+                      {provided => (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
                         >
-                          Delete
-                        </button>
-                      </div>
-                    </div>
+                          <div
+                            className="editHomePageImagesGridItem"
+                            key={homePageImage.id}
+                            id={homePageImage.id}
+                          >
+                            index:{index}; homepageImage.id:{homePageImage.id}
+                            <img src={homePageImage.imageUrl} />
+                            <div className="editHomePageImagesDescription">
+                              <span>{homePageImage.description}</span>
+                            </div>
+                            <div className="editHomePageImagesEditDelete">
+                              <Link
+                                to={`/homePageImages/${homePageImage.id}/edit`}
+                              >
+                                <button type="button">Edit</button>
+                              </Link>
+                              <button
+                                type="button"
+                                id="deleteBtn"
+                                onClick={() =>
+                                  this.props.deleteHomePageImageThunk(
+                                    homePageImage
+                                  )
+                                }
+                              >
+                                Delete
+                              </button>
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </Draggable>
                   )
                 })}
                 {provided.placeholder}
