@@ -13,8 +13,17 @@ export class EditHome extends React.Component {
     this.props.fetchHomePageImages()
   }
 
-  onDragEnd = () => {
+  onDragEnd = result => {
     /////reordering Logic
+    const {destination, source, draggableId} = result
+    ///destination houses droppableID;
+    ///source is where dragging happens; this has index
+
+    console.log('this is result=>', result)
+    if (!destination) {
+      console.log('deee no destionation here')
+      
+    }
   }
 
   render() {

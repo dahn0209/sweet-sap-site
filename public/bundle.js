@@ -4883,7 +4883,19 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
 
     _this = _possibleConstructorReturn(this, (_getPrototypeOf2 = _getPrototypeOf(EditHome)).call.apply(_getPrototypeOf2, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_this), "onDragEnd", function () {/////reordering Logic
+    _defineProperty(_assertThisInitialized(_this), "onDragEnd", function (result) {
+      /////reordering Logic
+      var destination = result.destination,
+          source = result.source,
+          draggableId = result.draggableId; ///destination houses droppableID;
+      ///source is where dragging happens; this has index
+
+      console.log('this is result=>', result);
+
+      if (!destination) {
+        console.log('deee no destionation here');
+        return;
+      }
     });
 
     return _this;
