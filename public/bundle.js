@@ -4894,7 +4894,6 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
 
       if (!destination) {
         console.log('deee no destionation here');
-        return;
       }
     });
 
