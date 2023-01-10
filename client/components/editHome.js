@@ -17,7 +17,7 @@ export class EditHome extends React.Component {
     /////reordering Logic
     const {destination, source, draggableId} = result
     ///destination houses droppableID;
-    ///source is where dragging happens; this has index
+    ///source is where dragging happens; this has index;
 
     console.log('this is result=>', result)
     if (!destination) {
@@ -43,14 +43,14 @@ export class EditHome extends React.Component {
       )
     }
     return (
-      <section>
-        <div className="addNewButton">
-          <Link to="/add-homepage-image">
-            <button type="button">Add New Image </button>
-          </Link>
-        </div>
+      <DragDropContext onDragEnd={this.onDragEnd}>
+        <section>
+          <div className="addNewButton">
+            <Link to="/add-homepage-image">
+              <button type="button">Add New Image </button>
+            </Link>
+          </div>
 
-        <DragDropContext onDragEnd={this.onDragEnd}>
           <Droppable droppableId="1">
             {provided => (
               <div
@@ -155,8 +155,8 @@ export class EditHome extends React.Component {
               </div>
             )}
           </Droppable>
-        </DragDropContext>
-      </section>
+        </section>
+      </DragDropContext>
     )
   }
 }

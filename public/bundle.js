@@ -4888,7 +4888,7 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
       var destination = result.destination,
           source = result.source,
           draggableId = result.draggableId; ///destination houses droppableID;
-      ///source is where dragging happens; this has index
+      ///source is where dragging happens; this has index;
 
       console.log('this is result=>', result);
 
@@ -4925,15 +4925,15 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
         }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "No Images Present! Add New Images Now!")));
       }
 
-      return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+      return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.DragDropContext, {
+        onDragEnd: this.onDragEnd
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewButton"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
         to: "/add-homepage-image"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "button"
-      }, "Add New Image "))), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.DragDropContext, {
-        onDragEnd: this.onDragEnd
-      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.Droppable, {
+      }, "Add New Image "))), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_beautiful_dnd__WEBPACK_IMPORTED_MODULE_5__.Droppable, {
         droppableId: "1"
       }, function (provided) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", _extends({}, provided.droppableProps, {
