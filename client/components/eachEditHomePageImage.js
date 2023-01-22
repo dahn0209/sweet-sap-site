@@ -148,11 +148,6 @@ export class eachEditHomePageImage extends React.Component {
     // )
     return (
       <section>
-        <div className="addNewButton">
-          <Link to="/add-homepage-image">
-            <button type="button">Add New Image </button>
-          </Link>
-        </div>
         <div className="editHomePageImagesContainer">
           {homePageImages.map(homePageImage => {
             if (!homePageImage.description) {
