@@ -4821,16 +4821,16 @@ var mapDispatch = function mapDispatch(dispatch) {
 
 /***/ }),
 
-/***/ "./client/components/editHome.js":
-/*!***************************************!*\
-  !*** ./client/components/editHome.js ***!
-  \***************************************/
+/***/ "./client/components/eachEditHomePageImage.js":
+/*!****************************************************!*\
+  !*** ./client/components/eachEditHomePageImage.js ***!
+  \****************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "EditHome": () => (/* binding */ EditHome),
+/* harmony export */   "EachEditHomePageImage": () => (/* binding */ EachEditHomePageImage),
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -4857,6 +4857,124 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 
+ // import {Draggable} from 'react-beautiful-dnd'
+
+
+
+
+var EachEditHomePageImage = /*#__PURE__*/function (_React$Component) {
+  _inherits(EachEditHomePageImage, _React$Component);
+
+  function EachEditHomePageImage() {
+    _classCallCheck(this, EachEditHomePageImage);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(EachEditHomePageImage).apply(this, arguments));
+  }
+
+  _createClass(EachEditHomePageImage, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var homePageImage = this.props.homePageImage;
+
+      if (!homePageImage.description) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "editHomePageImagesGridItem",
+          key: homePageImage.id
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          src: homePageImage.imageUrl
+        }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "editHomePageImagesEditDelete"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          to: "/homePageImages/".concat(homePageImage.id, "/edit")
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          id: "deleteBtn",
+          type: "button",
+          onClick: function onClick() {
+            return _this.props.deleteHomePageImageThunk(homePageImage);
+          }
+        }, "Delete")));
+      }
+
+      return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "editHomePageImagesGridItem",
+        key: homePageImage.id
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        src: homePageImage.imageUrl
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "editHomePageImagesDescription"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, homePageImage.description)), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "editHomePageImagesEditDelete"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        to: "/homePageImages/".concat(homePageImage.id, "/edit")
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "button"
+      }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "button",
+        id: "deleteBtn",
+        onClick: function onClick() {
+          return _this.props.deleteHomePageImageThunk(homePageImage);
+        }
+      }, "Delete")));
+    }
+  }]);
+
+  return EachEditHomePageImage;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    deleteHomePageImageThunk: function deleteHomePageImageThunk(homePageImageId) {
+      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.deleteHomePageImageThunk)(homePageImageId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(null, mapDispatchToProps)(EachEditHomePageImage));
+
+/***/ }),
+
+/***/ "./client/components/editHome.js":
+/*!***************************************!*\
+  !*** ./client/components/editHome.js ***!
+  \***************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EditHome": () => (/* binding */ EditHome),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _store_homePageImages__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/homePageImages */ "./client/store/homePageImages.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _editHome_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editHome.css */ "./client/components/editHome.css");
+/* harmony import */ var _eachEditHomePageImage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./eachEditHomePageImage */ "./client/components/eachEditHomePageImage.js");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+ // import {DragDropContext, Droppable} from 'react-beautiful-dnd'
 
 
 
@@ -4875,201 +4993,37 @@ var EditHome = /*#__PURE__*/function (_React$Component) {
     key: "componentDidMount",
     value: function componentDidMount() {
       this.props.fetchHomePageImages();
-    } // onDragEnd = result => {
-    //   /////reordering Logic
-    //   const {destination, source, draggableId} = result
-    //   ///destination houses droppableID;
-    //   ///source is where dragging happens; this has index;
-    //   console.log('this is result=>', result)
-    //   if (!destination) {
-    //     console.log('deee no destionation here')
-    //   }
-    // }
-
+    }
   }, {
     key: "render",
     value: function render() {
-      var _this = this;
-
       var homePageImages = this.props.homePageImages;
 
       if (!homePageImages.length) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "addNewButton"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
           to: "/add-homepage-image"
         }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           type: "button"
         }, "Add New Image "))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           id: "noImagePresentEditHomeImages"
         }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "No Images Present! Add New Images Now!")));
-      } // return (
-      //   <DragDropContext onDragEnd={this.onDragEnd}>
-      //     <section>
-      //       <div className="addNewButton">
-      //         <Link to="/add-homepage-image">
-      //           <button type="button">Add New Image </button>
-      //         </Link>
-      //       </div>
-      //       <Droppable droppableId="1">
-      //         {provided => (
-      //           <div
-      //             {...provided.droppableProps}
-      //             ref={provided.innerRef}
-      //             className="editHomePageImagesContainer"
-      //           >
-      //             {homePageImages.map((homePageImage, index) => {
-      //               if (!homePageImage.description) {
-      //                 return (
-      //                   <Draggable
-      //                     key={homePageImage.id}
-      //                     draggableId={String(homePageImage.id)}
-      //                     index={index}
-      //                   >
-      //                     {provided => (
-      //                       <div
-      //                         ref={provided.innerRef}
-      //                         {...provided.draggableProps}
-      //                         {...provided.dragHandleProps}
-      //                       >
-      //                         <div
-      //                           className="editHomePageImagesGridItem"
-      //                           key={homePageImage.id}
-      //                           id={homePageImage.id}
-      //                         >
-      //                           index:{index}; homePageImage.id:{homePageImage.id}
-      //                           <img src={homePageImage.imageUrl} />
-      //                           <div className="editHomePageImagesEditDelete">
-      //                             <Link
-      //                               to={`/homePageImages/${
-      //                                 homePageImage.id
-      //                               }/edit`}
-      //                             >
-      //                               <button type="button">Edit</button>
-      //                             </Link>
-      //                             <button
-      //                               id="deleteBtn"
-      //                               type="button"
-      //                               onClick={() =>
-      //                                 this.props.deleteHomePageImageThunk(
-      //                                   homePageImage
-      //                                 )
-      //                               }
-      //                             >
-      //                               Delete
-      //                             </button>
-      //                           </div>
-      //                         </div>
-      //                       </div>
-      //                     )}
-      //                   </Draggable>
-      //                 )
-      //               }
-      //               return (
-      //                 <Draggable
-      //                   key={homePageImage.id}
-      //                   draggableId={String(homePageImage.id)}
-      //                   index={index}
-      //                 >
-      //                   {provided => (
-      //                     <div
-      //                       ref={provided.innerRef}
-      //                       {...provided.draggableProps}
-      //                       {...provided.dragHandleProps}
-      //                     >
-      //                       <div
-      //                         className="editHomePageImagesGridItem"
-      //                         key={homePageImage.id}
-      //                         id={homePageImage.id}
-      //                       >
-      //                         index:{index}; homepageImage.id:{homePageImage.id}
-      //                         <img src={homePageImage.imageUrl} />
-      //                         <div className="editHomePageImagesDescription">
-      //                           <span>{homePageImage.description}</span>
-      //                         </div>
-      //                         <div className="editHomePageImagesEditDelete">
-      //                           <Link
-      //                             to={`/homePageImages/${homePageImage.id}/edit`}
-      //                           >
-      //                             <button type="button">Edit</button>
-      //                           </Link>
-      //                           <button
-      //                             type="button"
-      //                             id="deleteBtn"
-      //                             onClick={() =>
-      //                               this.props.deleteHomePageImageThunk(
-      //                                 homePageImage
-      //                               )
-      //                             }
-      //                           >
-      //                             Delete
-      //                           </button>
-      //                         </div>
-      //                       </div>
-      //                     </div>
-      //                   )}
-      //                 </Draggable>
-      //               )
-      //             })}
-      //             {provided.placeholder}
-      //           </div>
-      //         )}
-      //       </Droppable>
-      //     </section>
-      //   </DragDropContext>
-      // )
-
+      }
 
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewButton"
-      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: "/add-homepage-image"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "button"
       }, "Add New Image "))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "editHomePageImagesContainer"
       }, homePageImages.map(function (homePageImage) {
-        if (!homePageImage.description) {
-          return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-            className: "editHomePageImagesGridItem",
-            key: homePageImage.id
-          }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-            src: homePageImage.imageUrl
-          }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-            className: "editHomePageImagesEditDelete"
-          }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-            to: "/homePageImages/".concat(homePageImage.id, "/edit")
-          }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-            type: "button"
-          }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-            id: "deleteBtn",
-            type: "button",
-            onClick: function onClick() {
-              return _this.props.deleteHomePageImageThunk(homePageImage);
-            }
-          }, "Delete")));
-        }
-
-        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "editHomePageImagesGridItem",
-          key: homePageImage.id
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-          src: homePageImage.imageUrl
-        }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "editHomePageImagesDescription"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", null, homePageImage.description)), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
-          className: "editHomePageImagesEditDelete"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
-          to: "/homePageImages/".concat(homePageImage.id, "/edit")
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          type: "button"
-        }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
-          type: "button",
-          id: "deleteBtn",
-          onClick: function onClick() {
-            return _this.props.deleteHomePageImageThunk(homePageImage);
-          }
-        }, "Delete")));
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement(_eachEditHomePageImage__WEBPACK_IMPORTED_MODULE_4__["default"], {
+          key: homePageImage.id,
+          homePageImage: homePageImage
+        });
       })));
     }
   }]);
@@ -5087,9 +5041,6 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
     fetchHomePageImages: function fetchHomePageImages() {
       return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.fetchHomepageImages)());
-    },
-    deleteHomePageImageThunk: function deleteHomePageImageThunk(homePageImageId) {
-      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.deleteHomePageImageThunk)(homePageImageId));
     }
   };
 };
