@@ -5309,6 +5309,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _store_menus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/menus */ "./client/store/menus.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _menus_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./menus.css */ "./client/components/menus.css");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
@@ -5334,6 +5335,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 
 
+
 var EditMenus = /*#__PURE__*/function (_React$Component) {
   _inherits(EditMenus, _React$Component);
 
@@ -5352,9 +5354,28 @@ var EditMenus = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var menus = this.props.menus;
+
+      if (!menus.length) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          className: "addNewButton"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+          to: "/add-menu"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+          type: "button"
+        }, "Add New Menu "))), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+          id: "noImagePresentEditHomeImages"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", null, "No Menu Present! Add New Menu Now!")));
+      }
+
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "menuContainer"
-      }, menus.map(function (eachMenu) {
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewButton"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        to: "/add-menu"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "button"
+      }, "Add Menu "))), menus.map(function (eachMenu) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("figure", {
           key: eachMenu.id,
           className: "eachMenu"
