@@ -5296,6 +5296,99 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./client/components/editMenus.js":
+/*!****************************************!*\
+  !*** ./client/components/editMenus.js ***!
+  \****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _store_menus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/menus */ "./client/store/menus.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _menus_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./menus.css */ "./client/components/menus.css");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var EditMenus = /*#__PURE__*/function (_React$Component) {
+  _inherits(EditMenus, _React$Component);
+
+  function EditMenus() {
+    _classCallCheck(this, EditMenus);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(EditMenus).apply(this, arguments));
+  }
+
+  _createClass(EditMenus, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getMenus();
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var menus = this.props.menus;
+      return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+        className: "menuContainer"
+      }, menus.map(function (eachMenu) {
+        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("figure", {
+          key: eachMenu.id,
+          className: "eachMenu"
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+          className: "description"
+        }, eachMenu.description), react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+          className: "menuGridItem",
+          src: eachMenu.imageUrl
+        }));
+      }));
+    }
+  }]);
+
+  return EditMenus;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+var mapState = function mapState(state) {
+  return {
+    menus: state.menus
+  };
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    getMenus: function getMenus() {
+      return dispatch((0,_store_menus__WEBPACK_IMPORTED_MODULE_1__.fetchMenus)());
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(mapState, mapDispatch)(EditMenus));
+
+/***/ }),
+
 /***/ "./client/components/footer.js":
 /*!*************************************!*\
   !*** ./client/components/footer.js ***!
@@ -5845,11 +5938,7 @@ var Menus = /*#__PURE__*/function (_React$Component) {
       var menus = this.props.menus;
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "menuContainer"
-      }, menus.sort(function (_ref, _ref2) {
-        var previousID = _ref.id;
-        var currentID = _ref2.id;
-        return previousID - currentID;
-      }).map(function (eachMenu) {
+      }, menus.map(function (eachMenu) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("figure", {
           key: eachMenu.id,
           className: "eachMenu"
@@ -6393,9 +6482,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_15___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_15__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
 /* harmony import */ var _components_homePageImages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/homePageImages */ "./client/components/homePageImages.js");
 /* harmony import */ var _components_hourLocation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/hourLocation */ "./client/components/hourLocation.js");
@@ -6407,7 +6496,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_editHome__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/editHome */ "./client/components/editHome.js");
 /* harmony import */ var _components_addNewHomeImage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/addNewHomeImage */ "./client/components/addNewHomeImage.js");
 /* harmony import */ var _components_editHomePageImage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/editHomePageImage */ "./client/components/editHomePageImage.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+/* harmony import */ var _components_editMenus__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/editMenus */ "./client/components/editMenus.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6425,6 +6515,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -6464,50 +6555,53 @@ var Routes = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var isLoggedIn = this.props.isLoggedIn;
-      return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         path: "/login",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.Login
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         path: "/signup",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.Signup
-      }), isLoggedIn && react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), isLoggedIn && react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.UserHome
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         path: "/edit-home",
         component: _components_editHome__WEBPACK_IMPORTED_MODULE_10__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+        path: "/edit-menu",
+        component: _components_editMenus__WEBPACK_IMPORTED_MODULE_13__["default"]
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         exact: true,
         path: "/update-profile",
         component: _components_updateUser__WEBPACK_IMPORTED_MODULE_9__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         exact: true,
         path: "/add-homepage-image",
         component: _components_addNewHomeImage__WEBPACK_IMPORTED_MODULE_11__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         path: "/homePageImages/:homePageImageId/edit",
         component: _components_editHomePageImage__WEBPACK_IMPORTED_MODULE_12__["default"]
-      })), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      })), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         exact: true,
         path: "/",
         component: _components_homePageImages__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         exact: true,
         path: "/hours-location",
         component: _components_hourLocation__WEBPACK_IMPORTED_MODULE_4__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         exact: true,
         path: "/menu",
         component: _components_menus__WEBPACK_IMPORTED_MODULE_5__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         exact: true,
         path: "/private-events",
         component: _components_privateEvents__WEBPACK_IMPORTED_MODULE_6__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         exact: true,
         path: "/happening",
         component: _components_happenings__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_14__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
         exact: true,
         path: "/contact-us",
         component: _components_contactUs__WEBPACK_IMPORTED_MODULE_8__["default"]
@@ -6533,21 +6627,21 @@ var mapState = function mapState(state) {
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     loadInitialData: function loadInitialData() {
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_13__.me)());
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_14__.me)());
     }
   };
 }; // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_14__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
 /**
  * PROP TYPES
  */
 
 Routes.propTypes = {
-  loadInitialData: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().func.isRequired),
-  isLoggedIn: (prop_types__WEBPACK_IMPORTED_MODULE_15___default().bool.isRequired)
+  loadInitialData: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().func.isRequired),
+  isLoggedIn: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().bool.isRequired)
 };
 
 /***/ }),
@@ -6931,7 +7025,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "logout": () => (/* reexport safe */ _user__WEBPACK_IMPORTED_MODULE_3__.logout),
 /* harmony export */   "me": () => (/* reexport safe */ _user__WEBPACK_IMPORTED_MODULE_3__.me)
 /* harmony export */ });
-/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
+/* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux-logger */ "./node_modules/redux-logger/dist/redux-logger.js");
 /* harmony import */ var redux_logger__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(redux_logger__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var redux_thunk__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! redux-thunk */ "./node_modules/redux-thunk/es/index.js");
@@ -6944,6 +7038,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _happenings__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./happenings */ "./client/store/happenings.js");
 /* harmony import */ var _users__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./users */ "./client/store/users.js");
 /* harmony import */ var _singleHomePageImage__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./singleHomePageImage */ "./client/store/singleHomePageImage.js");
+/* harmony import */ var _singleMenu__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./singleMenu */ "./client/store/singleMenu.js");
 
 
 
@@ -6956,20 +7051,22 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_11__.combineReducers)({
+
+var reducer = (0,redux__WEBPACK_IMPORTED_MODULE_12__.combineReducers)({
   user: _user__WEBPACK_IMPORTED_MODULE_3__["default"],
   users: _users__WEBPACK_IMPORTED_MODULE_9__["default"],
   homePageImages: _homePageImages__WEBPACK_IMPORTED_MODULE_4__["default"],
   homePageImage: _singleHomePageImage__WEBPACK_IMPORTED_MODULE_10__["default"],
   locations: _locations__WEBPACK_IMPORTED_MODULE_5__["default"],
   menus: _menus__WEBPACK_IMPORTED_MODULE_6__["default"],
+  menu: _singleMenu__WEBPACK_IMPORTED_MODULE_11__["default"],
   privateEvents: _privateEvents__WEBPACK_IMPORTED_MODULE_7__["default"],
   happenings: _happenings__WEBPACK_IMPORTED_MODULE_8__["default"]
 });
-var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_11__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
+var middleware = (0,redux_devtools_extension__WEBPACK_IMPORTED_MODULE_2__.composeWithDevTools)((0,redux__WEBPACK_IMPORTED_MODULE_12__.applyMiddleware)(redux_thunk__WEBPACK_IMPORTED_MODULE_1__["default"], (0,redux_logger__WEBPACK_IMPORTED_MODULE_0__.createLogger)({
   collapsed: true
 })));
-var store = (0,redux__WEBPACK_IMPORTED_MODULE_11__.createStore)(reducer, middleware);
+var store = (0,redux__WEBPACK_IMPORTED_MODULE_12__.createStore)(reducer, middleware);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (store);
 
 
@@ -7075,12 +7172,26 @@ function locationsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createMenu": () => (/* binding */ createMenu),
+/* harmony export */   "createNewMenu": () => (/* binding */ createNewMenu),
 /* harmony export */   "default": () => (/* binding */ menusReducer),
+/* harmony export */   "deleteMenu": () => (/* binding */ deleteMenu),
+/* harmony export */   "deleteMenuThunk": () => (/* binding */ deleteMenuThunk),
 /* harmony export */   "fetchMenus": () => (/* binding */ fetchMenus),
-/* harmony export */   "setMenus": () => (/* binding */ setMenus)
+/* harmony export */   "setMenus": () => (/* binding */ setMenus),
+/* harmony export */   "updateMenu": () => (/* binding */ updateMenu),
+/* harmony export */   "updateMenuThunk": () => (/* binding */ updateMenuThunk)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
@@ -7091,6 +7202,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  */
 
 var SET_MENUS = 'SET_MENUS';
+var CREATE_MENU = 'CREATE_MENU';
+var DELETE_MENU = 'DELETE_MENU';
+var UPDATE_MENU = 'UPDATE_MENU';
 /**
  * ACTION CREATORS
  */
@@ -7099,6 +7213,24 @@ var setMenus = function setMenus(menus) {
   return {
     type: SET_MENUS,
     menus: menus
+  };
+};
+var createMenu = function createMenu(menu) {
+  return {
+    type: CREATE_MENU,
+    menu: menu
+  };
+};
+var deleteMenu = function deleteMenu(menu) {
+  return {
+    type: DELETE_MENU,
+    menu: menu
+  };
+};
+var updateMenu = function updateMenu(menu) {
+  return {
+    type: UPDATE_MENU,
+    menu: menu
   };
 };
 /**
@@ -7135,6 +7267,118 @@ var fetchMenus = function fetchMenus() {
       return _ref.apply(this, arguments);
     };
   }();
+};
+var createNewMenu = function createNewMenu(menu) {
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+      var response, newMenu;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/menus', menu);
+
+            case 3:
+              response = _context2.sent;
+              newMenu = response.data;
+              console.log('menu store thunk==>', newMenu);
+              dispatch(createMenu(newMenu));
+              _context2.next = 12;
+              break;
+
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](0);
+              console.log(_context2.t0);
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 9]]);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+};
+var deleteMenuThunk = function deleteMenuThunk(menu) {
+  console.log('menu-delete=>', menu);
+  return /*#__PURE__*/function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(dispatch) {
+      return regeneratorRuntime.wrap(function _callee3$(_context3) {
+        while (1) {
+          switch (_context3.prev = _context3.next) {
+            case 0:
+              _context3.prev = 0;
+              _context3.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/menus/".concat(menu.id));
+
+            case 3:
+              dispatch(deleteMenu(menu));
+              _context3.next = 9;
+              break;
+
+            case 6:
+              _context3.prev = 6;
+              _context3.t0 = _context3["catch"](0);
+              console.log(_context3.t0);
+
+            case 9:
+            case "end":
+              return _context3.stop();
+          }
+        }
+      }, _callee3, null, [[0, 6]]);
+    }));
+
+    return function (_x3) {
+      return _ref3.apply(this, arguments);
+    };
+  }();
+};
+var updateMenuThunk = function updateMenuThunk(menu) {
+  return /*#__PURE__*/function () {
+    var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(dispatch) {
+      var response, updatedMenu;
+      return regeneratorRuntime.wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.prev = 0;
+              _context4.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().put("/api/menus/".concat(menu.id), menu);
+
+            case 3:
+              response = _context4.sent;
+              updatedMenu = response.data;
+              console.log('response in update for menu Redux=>', response);
+              console.log('update menu thunk in Redux update=>', updatedMenu);
+              dispatch(updateMenu(updatedMenu));
+              _context4.next = 13;
+              break;
+
+            case 10:
+              _context4.prev = 10;
+              _context4.t0 = _context4["catch"](0);
+              console.log(_context4.t0);
+
+            case 13:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, null, [[0, 10]]);
+    }));
+
+    return function (_x4) {
+      return _ref4.apply(this, arguments);
+    };
+  }();
 }; // Take a look at app/redux/index.js to see where this reducer is
 // added to the Redux store with combineReducers
 
@@ -7150,6 +7394,19 @@ function menusReducer() {
   switch (action.type) {
     case SET_MENUS:
       return action.menus;
+
+    case CREATE_MENU:
+      return [].concat(_toConsumableArray(state), [action.menu]);
+
+    case DELETE_MENU:
+      return state.filter(function (menu) {
+        return menu.id !== action.menu.id;
+      });
+
+    case UPDATE_MENU:
+      return state.map(function (menu) {
+        return menu.id === action.menu.id ? action.menu : menu;
+      });
 
     default:
       return state;
@@ -7324,6 +7581,88 @@ function singleHomePageImageReducer() {
   switch (action.type) {
     case SET_SINGLE_HOMEPAGEIMAGE:
       return action.homePageImage;
+
+    default:
+      return state;
+  }
+}
+
+/***/ }),
+
+/***/ "./client/store/singleMenu.js":
+/*!************************************!*\
+  !*** ./client/store/singleMenu.js ***!
+  \************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ singleMenuReducer),
+/* harmony export */   "fetchSingleMenu": () => (/* binding */ fetchSingleMenu),
+/* harmony export */   "setSingleMenu": () => (/* binding */ setSingleMenu)
+/* harmony export */ });
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+
+var initialState = {};
+var SET_SINGLE_MENU = 'SET_SINGLE_MENU';
+var setSingleMenu = function setSingleMenu(menu) {
+  return {
+    type: SET_SINGLE_MENU,
+    menu: menu
+  };
+};
+var fetchSingleMenu = function fetchSingleMenu(id) {
+  return /*#__PURE__*/function () {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(dispatch) {
+      var _yield$axios$get, data;
+
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.prev = 0;
+              _context.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/menus/".concat(id));
+
+            case 3:
+              _yield$axios$get = _context.sent;
+              data = _yield$axios$get.data;
+              console.log('this data in fetch single menu=>', data);
+              dispatch(setSingleMenu(data));
+              _context.next = 12;
+              break;
+
+            case 9:
+              _context.prev = 9;
+              _context.t0 = _context["catch"](0);
+              throw _context.t0;
+
+            case 12:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee, null, [[0, 9]]);
+    }));
+
+    return function (_x) {
+      return _ref.apply(this, arguments);
+    };
+  }();
+};
+function singleMenuReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+
+  switch (action.type) {
+    case SET_SINGLE_MENU:
+      return action.menu;
 
     default:
       return state;

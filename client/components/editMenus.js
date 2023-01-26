@@ -3,7 +3,7 @@ import {fetchMenus} from '../store/menus'
 import {connect} from 'react-redux'
 import './menus.css'
 
-class Menus extends React.Component {
+class EditMenus extends React.Component {
   componentDidMount() {
     this.props.getMenus()
   }
@@ -40,4 +40,4 @@ const mapDispatch = dispatch => {
   }
 }
 
-export default connect(mapState, mapDispatch)(Menus)
+export default connect(mapState, mapDispatch)(EditMenus)
