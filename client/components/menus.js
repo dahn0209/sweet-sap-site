@@ -12,17 +12,15 @@ class Menus extends React.Component {
     const menus = this.props.menus
     return (
       <section className="menuContainer">
-        {menus
-          .sort(({id: previousID}, {id: currentID}) => previousID - currentID)
-          .map(eachMenu => {
-            return (
-              <figure key={eachMenu.id} className="eachMenu">
-                <span className="description">{eachMenu.description}</span>
-                <br />
-                <img className="menuGridItem" src={eachMenu.imageUrl} />
-              </figure>
-            )
-          })}
+        {menus.map(eachMenu => {
+          return (
+            <figure key={eachMenu.id} className="eachMenu">
+              <span className="description">{eachMenu.description}</span>
+              <br />
+              <img className="menuGridItem" src={eachMenu.imageUrl} />
+            </figure>
+          )
+        })}
       </section>
     )
   }

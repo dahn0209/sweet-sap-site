@@ -5845,11 +5845,7 @@ var Menus = /*#__PURE__*/function (_React$Component) {
       var menus = this.props.menus;
       return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
         className: "menuContainer"
-      }, menus.sort(function (_ref, _ref2) {
-        var previousID = _ref.id;
-        var currentID = _ref2.id;
-        return previousID - currentID;
-      }).map(function (eachMenu) {
+      }, menus.map(function (eachMenu) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("figure", {
           key: eachMenu.id,
           className: "eachMenu"
@@ -7075,9 +7071,13 @@ function locationsReducer() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "createMenu": () => (/* binding */ createMenu),
+/* harmony export */   "createNewMenu": () => (/* binding */ createNewMenu),
 /* harmony export */   "default": () => (/* binding */ menusReducer),
+/* harmony export */   "deleteMenu": () => (/* binding */ deleteMenu),
 /* harmony export */   "fetchMenus": () => (/* binding */ fetchMenus),
-/* harmony export */   "setMenus": () => (/* binding */ setMenus)
+/* harmony export */   "setMenus": () => (/* binding */ setMenus),
+/* harmony export */   "updateMenu": () => (/* binding */ updateMenu)
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
@@ -7091,6 +7091,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  */
 
 var SET_MENUS = 'SET_MENUS';
+var CREATE_MENU = 'CREATE_MENU';
+var DELETE_MENU = 'DELETE_MENU';
+var UPDATE_MENU = 'UPDATE_MENU';
 /**
  * ACTION CREATORS
  */
@@ -7099,6 +7102,24 @@ var setMenus = function setMenus(menus) {
   return {
     type: SET_MENUS,
     menus: menus
+  };
+};
+var createMenu = function createMenu(menu) {
+  return {
+    type: CREATE_MENU,
+    menu: menu
+  };
+};
+var deleteMenu = function deleteMenu(menu) {
+  return {
+    type: DELETE_MENU,
+    menu: menu
+  };
+};
+var updateMenu = function updateMenu(menu) {
+  return {
+    type: UPDATE_MENU,
+    menu: menu
   };
 };
 /**
@@ -7133,6 +7154,44 @@ var fetchMenus = function fetchMenus() {
 
     return function (_x) {
       return _ref.apply(this, arguments);
+    };
+  }();
+};
+var createNewMenu = function createNewMenu(menu) {
+  return /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(dispatch) {
+      var response, newMenu;
+      return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+          switch (_context2.prev = _context2.next) {
+            case 0:
+              _context2.prev = 0;
+              _context2.next = 3;
+              return axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/menus', menu);
+
+            case 3:
+              response = _context2.sent;
+              newMenu = response.data;
+              console.log('menu store thunk==>', newMenu);
+              dispatch(createMenu(newMenu));
+              _context2.next = 12;
+              break;
+
+            case 9:
+              _context2.prev = 9;
+              _context2.t0 = _context2["catch"](0);
+              console.log(_context2.t0);
+
+            case 12:
+            case "end":
+              return _context2.stop();
+          }
+        }
+      }, _callee2, null, [[0, 9]]);
+    }));
+
+    return function (_x2) {
+      return _ref2.apply(this, arguments);
     };
   }();
 }; // Take a look at app/redux/index.js to see where this reducer is
