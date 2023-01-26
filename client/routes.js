@@ -13,6 +13,7 @@ import updateUser from './components/updateUser'
 import EditHome from './components/editHome'
 import AddHomePageImageForm from './components/addNewHomeImage'
 import editHomePageImage from './components/editHomePageImage'
+import EditMenus from './components/editMenus'
 
 import {me} from './store'
 
@@ -37,6 +38,7 @@ class Routes extends Component {
             {/* Routes placed here are only available after logging in */}
             <Route path="/home" component={UserHome} />
             <Route path="/edit-home" component={EditHome} />
+            <Route path="/edit-menu" component={EditMenus} />
             <Route exact path="/update-profile" component={updateUser} />
             <Route
               exact
