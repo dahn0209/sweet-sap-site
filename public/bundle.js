@@ -4378,9 +4378,8 @@ var AddHomePageImageForm = /*#__PURE__*/function (_React$Component) {
                 this.setState(defaultState);
                 path = '/edit-home';
                 this.props.history.push(path);
-                alert('The image has loaded!!!!');
 
-              case 17:
+              case 16:
               case "end":
                 return _context.stop();
             }

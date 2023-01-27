@@ -1,16 +1,15 @@
 import React from 'React'
-import {createHomePageImage, fetchHomepageImages} from '../store/homePageImages'
 import {connect} from 'react-redux'
+import {fetchMenus} from '../store/menus'
 import './addNewHomeImage.css'
 import axios from 'axios'
 
 const defaultState = {
-  // id:0,
   imageUrl: '',
   description: ''
 }
 
-class AddHomePageImageForm extends React.Component {
+class AddNewMenuForm extends React.Component {
   constructor() {
     super()
     this.state = defaultState
@@ -21,7 +20,7 @@ class AddHomePageImageForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchHomePageImages()
+    this.props.getMenus()
   }
 
   handleChange(event) {
@@ -52,22 +51,22 @@ class AddHomePageImageForm extends React.Component {
     fd.append('description', this.state.description)
     console.log('this.state after submit->', this.state)
     console.log('after add description=>', description)
-    await axios.post('/api/homePageImages', fd)
+    await axios.post('/api/menus', fd)
     await this.props.createHomePageImage({...this.state})
     this.setState(defaultState)
-    let path = '/edit-home'
+    let path = '/edit-menu'
     this.props.history.push(path)
+    alert('The image has loaded!!!!')
   }
 
   render() {
     const {description} = this.state
     console.log('this.props=>', this.props)
-    // console.log('prop homepageImages->',this.props.homePageImages.length)
     console.log('this.state in add render=>', this.state)
 
     return (
       <section className="addNewHomeImageSection">
-        <h2 className="addNewHomeImageTitle">New Image Detail</h2>
+        <h2 className="addNewHomeImageTitle">New Menu Detail</h2>
         <form
           onSubmit={this.handleSubmit}
           method="post"
@@ -100,7 +99,7 @@ class AddHomePageImageForm extends React.Component {
 
           <div className="addNewHomeImageContainer">
             <button className="addNewHomeImageSubmit" type="submit">
-              Add Image
+              Add Menu
             </button>
           </div>
         </form>
@@ -112,16 +111,17 @@ class AddHomePageImageForm extends React.Component {
 const mapState = state => {
   return {
     // homePageImages: state.homePageImages,
-    newHomePageImage: state.homePageImages
+    newMenu: state.menus
   }
 }
 
 const mapDispatch = dispatch => {
   return {
-    fetchHomePageImages: () => dispatch(fetchHomepageImages()),
-    createHomePageImage: homePageImage =>
-      dispatch(createHomePageImage(homePageImage))
+    getMenus: () => {
+      return dispatch(fetchMenus())
+    },
+    createMenu: menu => dispatch()
   }
 }
 
-export default connect(mapState, mapDispatch)(AddHomePageImageForm)
+export default connect(mapState, mapDispatch)(AddNewMenuForm)
