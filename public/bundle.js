@@ -4461,6 +4461,212 @@ var mapDispatch = function mapDispatch(dispatch) {
 
 /***/ }),
 
+/***/ "./client/components/addNewMenu.js":
+/*!*****************************************!*\
+  !*** ./client/components/addNewMenu.js ***!
+  \*****************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var React__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! React */ "./node_modules/React/index.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _store_menus__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/menus */ "./client/store/menus.js");
+/* harmony import */ var _addNewHomeImage_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./addNewHomeImage.css */ "./client/components/addNewHomeImage.css");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_4__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(source, true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(source).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+
+var defaultState = {
+  imageUrl: '',
+  description: ''
+};
+
+var AddNewMenuForm = /*#__PURE__*/function (_React$Component) {
+  _inherits(AddNewMenuForm, _React$Component);
+
+  function AddNewMenuForm() {
+    var _this;
+
+    _classCallCheck(this, AddNewMenuForm);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(AddNewMenuForm).call(this));
+    _this.state = defaultState;
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_this));
+    _this.handleChangeDescription = _this.handleChangeDescription.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(AddNewMenuForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      this.props.getMenus();
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      var eachFile = event.target.files[0];
+      console.log('event.target.file->', event.target.files);
+      console.log('eachFile=>', eachFile);
+      this.setState({
+        imageUrl: eachFile
+      });
+    }
+  }, {
+    key: "handleChangeDescription",
+    value: function handleChangeDescription(event) {
+      console.log('event.target.value in description=>', event.target.value);
+      this.setState({
+        description: event.target.value
+      });
+    }
+  }, {
+    key: "handleSubmit",
+    value: function () {
+      var _handleSubmit = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(event) {
+        var _this$state, imageUrl, description, fd, path;
+
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                event.preventDefault();
+                _this$state = this.state, imageUrl = _this$state.imageUrl, description = _this$state.description;
+                console.log('imageUrl in add=>', imageUrl);
+                console.log('description in add=>', description);
+                fd = new FormData(); // fd.append('imageUrl', imageUrl, imageUrl.name)
+
+                fd.append('imageUrl', imageUrl);
+                fd.append('description', this.state.description);
+                console.log('this.state after submit->', this.state);
+                console.log('after add description=>', description);
+                _context.next = 11;
+                return axios__WEBPACK_IMPORTED_MODULE_4___default().post('/api/menus', fd);
+
+              case 11:
+                _context.next = 13;
+                return this.props.createMenu(_objectSpread({}, this.state));
+
+              case 13:
+                this.setState(defaultState);
+                path = '/edit-menu';
+                this.props.history.push(path);
+
+              case 16:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee, this);
+      }));
+
+      function handleSubmit(_x) {
+        return _handleSubmit.apply(this, arguments);
+      }
+
+      return handleSubmit;
+    }()
+  }, {
+    key: "render",
+    value: function render() {
+      var description = this.state.description;
+      console.log('this.props=>', this.props);
+      console.log('this.state in add render=>', this.state);
+      return React__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
+        className: "addNewHomeImageSection"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("h2", {
+        className: "addNewHomeImageTitle"
+      }, "New Menu Detail"), React__WEBPACK_IMPORTED_MODULE_0__.createElement("form", {
+        onSubmit: this.handleSubmit,
+        method: "post",
+        encType: "multipart/form-data"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "imageUrl"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Image")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "file",
+        name: "imageUrl",
+        placeholder: "imageUrl",
+        accept: "image/*",
+        onChange: this.handleChange
+      })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("label", {
+        htmlFor: "description"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("b", null, "Description")), React__WEBPACK_IMPORTED_MODULE_0__.createElement("input", {
+        type: "text",
+        name: "description",
+        value: description,
+        onChange: this.handleChangeDescription
+      })), React__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "addNewHomeImageContainer"
+      }, React__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        className: "addNewHomeImageSubmit",
+        type: "submit"
+      }, "Add Menu"))));
+    }
+  }]);
+
+  return AddNewMenuForm;
+}(React__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+var mapState = function mapState(state) {
+  return {
+    newMenu: state.menus
+  };
+};
+
+var mapDispatch = function mapDispatch(dispatch) {
+  return {
+    getMenus: function getMenus() {
+      return dispatch((0,_store_menus__WEBPACK_IMPORTED_MODULE_2__.fetchMenus)());
+    },
+    createMenu: function createMenu(menu) {
+      return dispatch((0,_store_menus__WEBPACK_IMPORTED_MODULE_2__.createMenu)(menu));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(AddNewMenuForm));
+
+/***/ }),
+
 /***/ "./client/components/auth-form.js":
 /*!****************************************!*\
   !*** ./client/components/auth-form.js ***!
@@ -6502,9 +6708,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
-/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_16__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/esm/react-router.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_17__);
 /* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components */ "./client/components/index.js");
 /* harmony import */ var _components_homePageImages__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/homePageImages */ "./client/components/homePageImages.js");
 /* harmony import */ var _components_hourLocation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/hourLocation */ "./client/components/hourLocation.js");
@@ -6517,7 +6723,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_addNewHomeImage__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/addNewHomeImage */ "./client/components/addNewHomeImage.js");
 /* harmony import */ var _components_editHomePageImage__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/editHomePageImage */ "./client/components/editHomePageImage.js");
 /* harmony import */ var _components_editMenus__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/editMenus */ "./client/components/editMenus.js");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
+/* harmony import */ var _components_addNewMenu__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/addNewMenu */ "./client/components/addNewMenu.js");
+/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./store */ "./client/store/index.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -6535,6 +6742,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -6575,53 +6783,56 @@ var Routes = /*#__PURE__*/function (_Component) {
     key: "render",
     value: function render() {
       var isLoggedIn = this.props.isLoggedIn;
-      return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      return react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         path: "/login",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.Login
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         path: "/signup",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.Signup
-      }), isLoggedIn && react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), isLoggedIn && react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Switch, null, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         path: "/home",
         component: _components__WEBPACK_IMPORTED_MODULE_2__.UserHome
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         path: "/edit-home",
         component: _components_editHome__WEBPACK_IMPORTED_MODULE_10__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         path: "/edit-menu",
         component: _components_editMenus__WEBPACK_IMPORTED_MODULE_13__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         exact: true,
         path: "/update-profile",
         component: _components_updateUser__WEBPACK_IMPORTED_MODULE_9__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         exact: true,
         path: "/add-homepage-image",
         component: _components_addNewHomeImage__WEBPACK_IMPORTED_MODULE_11__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         path: "/homePageImages/:homePageImageId/edit",
         component: _components_editHomePageImage__WEBPACK_IMPORTED_MODULE_12__["default"]
-      })), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
+        path: "/add-menu",
+        component: _components_addNewMenu__WEBPACK_IMPORTED_MODULE_14__["default"]
+      })), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         exact: true,
         path: "/",
         component: _components_homePageImages__WEBPACK_IMPORTED_MODULE_3__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         exact: true,
         path: "/hours-location",
         component: _components_hourLocation__WEBPACK_IMPORTED_MODULE_4__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         exact: true,
         path: "/menu",
         component: _components_menus__WEBPACK_IMPORTED_MODULE_5__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         exact: true,
         path: "/private-events",
         component: _components_privateEvents__WEBPACK_IMPORTED_MODULE_6__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         exact: true,
         path: "/happening",
         component: _components_happenings__WEBPACK_IMPORTED_MODULE_7__["default"]
-      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_15__.Route, {
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_16__.Route, {
         exact: true,
         path: "/contact-us",
         component: _components_contactUs__WEBPACK_IMPORTED_MODULE_8__["default"]
@@ -6647,21 +6858,21 @@ var mapState = function mapState(state) {
 var mapDispatch = function mapDispatch(dispatch) {
   return {
     loadInitialData: function loadInitialData() {
-      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_14__.me)());
+      dispatch((0,_store__WEBPACK_IMPORTED_MODULE_15__.me)());
     }
   };
 }; // The `withRouter` wrapper makes sure that updates are not blocked
 // when the url changes
 
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_15__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_router_dom__WEBPACK_IMPORTED_MODULE_16__.withRouter)((0,react_redux__WEBPACK_IMPORTED_MODULE_1__.connect)(mapState, mapDispatch)(Routes)));
 /**
  * PROP TYPES
  */
 
 Routes.propTypes = {
-  loadInitialData: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().func.isRequired),
-  isLoggedIn: (prop_types__WEBPACK_IMPORTED_MODULE_16___default().bool.isRequired)
+  loadInitialData: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().func.isRequired),
+  isLoggedIn: (prop_types__WEBPACK_IMPORTED_MODULE_17___default().bool.isRequired)
 };
 
 /***/ }),

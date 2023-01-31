@@ -1,6 +1,6 @@
 import React from 'React'
 import {connect} from 'react-redux'
-import {fetchMenus} from '../store/menus'
+import {fetchMenus, createMenu} from '../store/menus'
 import './addNewHomeImage.css'
 import axios from 'axios'
 
@@ -52,11 +52,10 @@ class AddNewMenuForm extends React.Component {
     console.log('this.state after submit->', this.state)
     console.log('after add description=>', description)
     await axios.post('/api/menus', fd)
-    await this.props.createHomePageImage({...this.state})
+    await this.props.createMenu({...this.state})
     this.setState(defaultState)
     let path = '/edit-menu'
     this.props.history.push(path)
-    alert('The image has loaded!!!!')
   }
 
   render() {
@@ -110,7 +109,6 @@ class AddNewMenuForm extends React.Component {
 
 const mapState = state => {
   return {
-    // homePageImages: state.homePageImages,
     newMenu: state.menus
   }
 }
@@ -120,7 +118,7 @@ const mapDispatch = dispatch => {
     getMenus: () => {
       return dispatch(fetchMenus())
     },
-    createMenu: menu => dispatch()
+    createMenu: menu => dispatch(createMenu(menu))
   }
 }
 
