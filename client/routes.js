@@ -14,6 +14,7 @@ import EditHome from './components/editHome'
 import AddHomePageImageForm from './components/addNewHomeImage'
 import editHomePageImage from './components/editHomePageImage'
 import EditMenus from './components/editMenus'
+import addNewMenu from './components/addNewMenu'
 
 import {me} from './store'
 
@@ -49,6 +50,7 @@ class Routes extends Component {
               path="/homePageImages/:homePageImageId/edit"
               component={editHomePageImage}
             />
+            <Route path="/add-menu" component={addNewMenu} />
           </Switch>
         )}
         {/* Displays our Login component as a fallback */}

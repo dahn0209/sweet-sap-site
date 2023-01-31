@@ -1,5 +1,8 @@
 import React from 'react'
-import {updateHomePageImageThunk} from '../store/homePageImages'
+import {
+  updateHomePageImage,
+  updateHomePageImageThunk
+} from '../store/homePageImages'
 import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 import axios from 'axios'
@@ -79,7 +82,7 @@ class EditHomePageImageForm extends React.Component {
 
     console.log('both imageUrl and description')
     await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
-    await this.props.updateHomePageImageThunk({
+    await this.props.updateHomePageImage({
       ...this.props.homePageImage,
       ...this.state
     })
@@ -145,8 +148,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateHomePageImageThunk: homePageImage =>
-      dispatch(updateHomePageImageThunk(homePageImage)),
+    updateHomePageImage: homePageImage =>
+      dispatch(updateHomePageImage(homePageImage)),
     getSingleHomePageImage: homePageImageId =>
       dispatch(fetchSingleHomePageImage(homePageImageId))
   }
