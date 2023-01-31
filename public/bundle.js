@@ -5410,7 +5410,7 @@ var EditHomePageImageForm = /*#__PURE__*/function (_React$Component) {
 
               case 13:
                 _context.next = 15;
-                return this.props.updateHomePageImageThunk(_objectSpread({}, this.props.homePageImage, {}, this.state));
+                return this.props.updateHomePageImage(_objectSpread({}, this.props.homePageImage, {}, this.state));
 
               case 15:
                 path = '/edit-home';
@@ -5488,8 +5488,8 @@ var mapStateToProps = function mapStateToProps(state) {
 
 var mapDispatchToProps = function mapDispatchToProps(dispatch) {
   return {
-    updateHomePageImageThunk: function updateHomePageImageThunk(homePageImage) {
-      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.updateHomePageImageThunk)(homePageImage));
+    updateHomePageImage: function updateHomePageImage(homePageImage) {
+      return dispatch((0,_store_homePageImages__WEBPACK_IMPORTED_MODULE_1__.updateHomePageImage)(homePageImage));
     },
     getSingleHomePageImage: function getSingleHomePageImage(homePageImageId) {
       return dispatch((0,_store_singleHomePageImage__WEBPACK_IMPORTED_MODULE_3__.fetchSingleHomePageImage)(homePageImageId));
