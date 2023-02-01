@@ -75,8 +75,9 @@ router.put('/:menuId', upload.single('imageUrl'), async (req, res, next) => {
 
 router.delete('/:menuId', async (req, res, next) => {
   try {
-    const menuId = req.params.homePageImageId
+    const menuId = req.params.menuId
     const deleteMenu = await Menu.findByPk(menuId)
+    console.log('let deleteMenu delete', deleteMenu)
 
     if (!deleteMenu) {
       res.sendStatus(404)
