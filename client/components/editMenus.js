@@ -3,6 +3,7 @@ import {fetchMenus} from '../store/menus'
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import './menus.css'
+import EachEditMenu from './eachEditMenu'
 
 class EditMenus extends React.Component {
   componentDidMount() {
@@ -30,16 +31,17 @@ class EditMenus extends React.Component {
       <section className="menuContainer">
         <div className="addNewButton">
           <Link to="/add-menu">
-            <button type="button">Add Menu </button>
+            <button type="button">Add Menu</button>
           </Link>
         </div>
         {menus.map(eachMenu => {
           return (
-            <figure key={eachMenu.id} className="eachMenu">
-              <span className="description">{eachMenu.description}</span>
-              <br />
-              <img className="menuGridItem" src={eachMenu.imageUrl} />
-            </figure>
+            // <figure key={eachMenu.id} className="eachMenu">
+            //   <span className="description">{eachMenu.description}</span>
+            //   <br />
+            //   <img className="menuGridItem" src={eachMenu.imageUrl} />
+            // </figure>
+            <EachEditMenu key={eachMenu.id} eachMenu={eachMenu} />
           )
         })}
       </section>

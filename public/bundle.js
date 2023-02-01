@@ -5142,6 +5142,101 @@ var mapDispatchToProps = function mapDispatchToProps(dispatch) {
 
 /***/ }),
 
+/***/ "./client/components/eachEditMenu.js":
+/*!*******************************************!*\
+  !*** ./client/components/eachEditMenu.js ***!
+  \*******************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "EachEditMenu": () => (/* binding */ EachEditMenu),
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var _store_menus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/menus */ "./client/store/menus.js");
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _editHome_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./editHome.css */ "./client/components/editHome.css");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+ // import {Draggable} from 'react-beautiful-dnd'
+
+
+
+
+var EachEditMenu = /*#__PURE__*/function (_React$Component) {
+  _inherits(EachEditMenu, _React$Component);
+
+  function EachEditMenu() {
+    _classCallCheck(this, EachEditMenu);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(EachEditMenu).apply(this, arguments));
+  }
+
+  _createClass(EachEditMenu, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      var eachMenu = this.props.eachMenu;
+      return react__WEBPACK_IMPORTED_MODULE_0__.createElement("figure", {
+        key: eachMenu.id,
+        className: "eachMenu"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
+        className: "description"
+      }, eachMenu.description), react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
+        className: "menuGridItem",
+        src: eachMenu.imageUrl
+      }), react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+        className: "editHomePageImagesEditDelete"
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        to: "/homePageImages/".concat(eachMenu.id, "/edit")
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "button"
+      }, "Edit")), react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
+        type: "button",
+        id: "deleteBtn",
+        onClick: function onClick() {
+          return _this.props.deleteMenuThunk(eachMenu);
+        }
+      }, "Delete")));
+    }
+  }]);
+
+  return EachEditMenu;
+}(react__WEBPACK_IMPORTED_MODULE_0__.Component);
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    deleteMenuThunk: function deleteMenuThunk(eachMenuId) {
+      return dispatch((0,_store_menus__WEBPACK_IMPORTED_MODULE_1__.deleteMenuThunk)(eachMenuId));
+    }
+  };
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ((0,react_redux__WEBPACK_IMPORTED_MODULE_2__.connect)(null, mapDispatchToProps)(EachEditMenu));
+
+/***/ }),
+
 /***/ "./client/components/editHome.js":
 /*!***************************************!*\
   !*** ./client/components/editHome.js ***!
@@ -5514,9 +5609,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _store_menus__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/menus */ "./client/store/menus.js");
-/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _menus_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./menus.css */ "./client/components/menus.css");
+/* harmony import */ var _eachEditMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./eachEditMenu */ "./client/components/eachEditMenu.js");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -5534,6 +5630,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
 
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 
 
 
@@ -5563,7 +5660,7 @@ var EditMenus = /*#__PURE__*/function (_React$Component) {
       if (!menus.length) {
         return react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", null, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
           className: "addNewButton"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
           to: "/add-menu"
         }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
           type: "button"
@@ -5576,20 +5673,21 @@ var EditMenus = /*#__PURE__*/function (_React$Component) {
         className: "menuContainer"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
         className: "addNewButton"
-      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_4__.Link, {
+      }, react__WEBPACK_IMPORTED_MODULE_0__.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_5__.Link, {
         to: "/add-menu"
       }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("button", {
         type: "button"
-      }, "Add Menu "))), menus.map(function (eachMenu) {
-        return react__WEBPACK_IMPORTED_MODULE_0__.createElement("figure", {
-          key: eachMenu.id,
-          className: "eachMenu"
-        }, react__WEBPACK_IMPORTED_MODULE_0__.createElement("span", {
-          className: "description"
-        }, eachMenu.description), react__WEBPACK_IMPORTED_MODULE_0__.createElement("br", null), react__WEBPACK_IMPORTED_MODULE_0__.createElement("img", {
-          className: "menuGridItem",
-          src: eachMenu.imageUrl
-        }));
+      }, "Add Menu"))), menus.map(function (eachMenu) {
+        return (// <figure key={eachMenu.id} className="eachMenu">
+          //   <span className="description">{eachMenu.description}</span>
+          //   <br />
+          //   <img className="menuGridItem" src={eachMenu.imageUrl} />
+          // </figure>
+          react__WEBPACK_IMPORTED_MODULE_0__.createElement(_eachEditMenu__WEBPACK_IMPORTED_MODULE_4__["default"], {
+            key: eachMenu.id,
+            eachMenu: eachMenu
+          })
+        );
       }));
     }
   }]);
