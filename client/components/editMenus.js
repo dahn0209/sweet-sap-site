@@ -35,14 +35,7 @@ class EditMenus extends React.Component {
           </Link>
         </div>
         {menus.map(eachMenu => {
-          return (
-            // <figure key={eachMenu.id} className="eachMenu">
-            //   <span className="description">{eachMenu.description}</span>
-            //   <br />
-            //   <img className="menuGridItem" src={eachMenu.imageUrl} />
-            // </figure>
-            <EachEditMenu key={eachMenu.id} eachMenu={eachMenu} />
-          )
+          return <EachEditMenu key={eachMenu.id} eachMenu={eachMenu} />
         })}
       </section>
     )
