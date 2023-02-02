@@ -1,14 +1,15 @@
 import React from 'react'
-import {updateHomePageImage} from '../store/homePageImages'
+import {updateMenu} from '../store/menus'
 import {connect} from 'react-redux'
-import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
+import {fetchSingleMenu} from '../store/singleMenu'
 import axios from 'axios'
 import './editHomePageImage.css'
 
-class EditHomePageImageForm extends React.Component {
-  constructor(props) {
-    super(props)
-    console.log('props in super=>', this.props.homePageImage)
+class EditEachMenu extends React.Component {
+  constructor() {
+    super()
+    // console.log('props in super=>', this.props.menu)
+
     this.state = {
       imageUrl: '',
       description: ''
@@ -20,12 +21,12 @@ class EditHomePageImageForm extends React.Component {
   }
 
   componentDidMount() {
-    const homePageImageId = this.props.match.params.homePageImageId
-    this.props.getSingleHomePageImage(homePageImageId)
-    const {imageUrl, description} = this.props.homePageImage
+    const menuId = this.props.match.params.menuId
+    this.props.getSingleMenu(menuId)
+    const {imageUrl, description} = this.props.menu
     console.log('description in edit=>', description)
     console.log('imageUrl in edit=>', imageUrl)
-    if (homePageImageId) {
+    if (menuId) {
       this.setState({
         imageUrl: imageUrl,
         description: description
@@ -36,14 +37,14 @@ class EditHomePageImageForm extends React.Component {
 
   componentDidUpdate(prevProps) {
     console.log('prevProps in update=>', prevProps)
-    console.log('prevProps.update dee in update=>', prevProps.homePageImage)
+    console.log('prevProps.update dee in update=>', prevProps.menu)
 
-    const {imageUrl, description, id} = this.props.homePageImage
+    const {imageUrl, description, id} = this.props.menu
     console.log('update imageUrl=>', imageUrl)
     console.log('update description=>', description)
     console.log('update id=>', id)
 
-    if (prevProps.homePageImage.id !== id) {
+    if (prevProps.menu.id !== id) {
       this.setState({
         imageUrl: imageUrl,
         description: description
@@ -68,7 +69,7 @@ class EditHomePageImageForm extends React.Component {
   async handleSubmit(event) {
     event.preventDefault()
     console.log('submit state all=>', this.state)
-    console.log('submit  props=>', this.props.homePageImage)
+    console.log('submit  props=>', this.props.menu)
     let {imageUrl, description} = this.state
     console.log('submit imageUrl=>', imageUrl)
     console.log('sumb description=>', description)
@@ -78,24 +79,24 @@ class EditHomePageImageForm extends React.Component {
     fd.append('imageUrl', imageUrl)
 
     console.log('both imageUrl and description')
-    await axios.put(`/api/homePageImages/${this.props.homePageImage.id}`, fd)
-    await this.props.updateHomePageImage({
-      ...this.props.homePageImage,
+    await axios.put(`/api/menus/${this.props.menu.id}`, fd)
+    await this.props.updateMenu({
+      ...this.props.menu,
       ...this.state
     })
-    let path = '/edit-home'
+    let path = '/edit-menu'
     this.props.history.push(path)
   }
 
   render() {
     console.log('let look at state=>', this.state)
-    console.log('updatedHomePageImage at prop', this.props.homePageImage)
+    console.log('updatedMenu at prop', this.props.menu)
     const {imageUrl, description} = this.state
     console.log('imageUrl render=>', imageUrl)
     console.log('description render=>', description)
     return (
       <section className="editHomeImageSection">
-        <h2 className="editHomeImageTitle">Edit Image Detail</h2>
+        <h2 className="editHomeImageTitle">Edit Menu Detail</h2>
         <form
           onSubmit={this.handleSubmit}
           method="put"
@@ -128,7 +129,7 @@ class EditHomePageImageForm extends React.Component {
           </div>
           <div className="editHomeImageContainer">
             <button className="editHomeImageSubmit" type="submit">
-              Update Image
+              Update Menu
             </button>
           </div>
         </form>
@@ -139,19 +140,15 @@ class EditHomePageImageForm extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    homePageImage: state.homePageImage
+    menu: state.menu
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    updateHomePageImage: homePageImage =>
-      dispatch(updateHomePageImage(homePageImage)),
-    getSingleHomePageImage: homePageImageId =>
-      dispatch(fetchSingleHomePageImage(homePageImageId))
+    updateMenu: menu => dispatch(updateMenu(menu)),
+    getSingleMenu: menuId => dispatch(fetchSingleMenu(menuId))
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  EditHomePageImageForm
-)
+export default connect(mapStateToProps, mapDispatchToProps)(EditEachMenu)

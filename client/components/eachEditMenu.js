@@ -15,7 +15,7 @@ export class EachEditMenu extends React.Component {
         <br />
         <img className="menuGridItem" src={eachMenu.imageUrl} />
         <div className="editHomePageImagesEditDelete">
-          <Link to={`/homePageImages/${eachMenu.id}/edit`}>
+          <Link to={`/menus/${eachMenu.id}/edit`}>
             <button type="button">Edit</button>
           </Link>
           <button
