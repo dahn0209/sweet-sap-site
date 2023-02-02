@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-  updateHomePageImage,
-  updateHomePageImageThunk
-} from '../store/homePageImages'
+import {updateHomePageImage} from '../store/homePageImages'
 import {connect} from 'react-redux'
 import {fetchSingleHomePageImage} from '../store/singleHomePageImage'
 import axios from 'axios'
