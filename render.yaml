@@ -9,4 +9,10 @@ services:
     plan: free # optional; defaults to starter
     numInstances: 0
     envVars:
+    databases:
+  # db 1
+  - name: sweet-sap
+    databaseName: sweet_sap
+    user: sweet_sap_user
 
+ 
