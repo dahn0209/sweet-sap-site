@@ -2,7 +2,6 @@
 # https://www.npmjs.com/package/@renderinc/heroku-import
 # Schema documented at https://render.com/docs/yaml-spec
 services:
-#A Docker web service
   - type: web # valid values: https://render.com/docs/yaml-spec#type
     name: sweet-sap
     env: docker # valid values: https://render.com/docs/yaml-spec#environment
@@ -11,11 +10,3 @@ services:
     numInstances: 1
     envVars:
 
-
-databases:
-  # db 1
-  - name: sweet-sap
-    databaseName: sweet_sap
-    user: sweet_sap_user
-
- 
