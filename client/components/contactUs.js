@@ -10,6 +10,7 @@ class ContactUs extends React.Component {
 
   render() {
     const locations = this.props.locations
+
     return (
       <section className="contactContainer">
         <header className="contactRow" id="contactHeader">

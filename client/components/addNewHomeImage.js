@@ -21,7 +21,7 @@ class AddHomePageImageForm extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchHomePageImages()
+    this.props.fetchHomePageImages() //////fetching all homepage image data from
   }
 
   handleChange(event) {
@@ -56,7 +56,7 @@ class AddHomePageImageForm extends React.Component {
     await this.props.createHomePageImage({...this.state})
     this.setState(defaultState)
     let path = '/edit-home'
-    this.props.history.push(path)
+    this.props.history.push(path) ////takes you back to edit-home
   }
 
   render() {

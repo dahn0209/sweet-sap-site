@@ -1,7 +1,11 @@
 import axios from 'axios'
-
+// Initial State
+// This sets up the default state for this reducer.
+// Part of Redux state management.
 const initialState = {}
 
+//ACTION TYPE
+//A constant representing the type of action that will be dispatched.
 const SET_SINGLE_HOMEPAGEIMAGE = 'SET_SINGLE_HOMEPAGEIMAGE'
 
 export const setSingleHomePageImage = homePageImage => {
@@ -11,6 +15,10 @@ export const setSingleHomePageImage = homePageImage => {
   }
 }
 
+// Thunk (Async Action Creator)
+// This is a thunk, enabled by redux-thunk middleware.
+// It allows for asynchronous logic (like API calls) before dispatching a regular action.
+// Part of Redux async middleware.
 export const fetchSingleHomePageImage = id => {
   return async dispatch => {
     try {
@@ -23,7 +31,10 @@ export const fetchSingleHomePageImage = id => {
     }
   }
 }
+//Reducer
+// This function receives actions and updates the Redux state accordingly.
 
+// Part of Redux reducers.
 export default function singleHomePageImageReducer(
   state = initialState,
   action
@@ -35,3 +46,13 @@ export default function singleHomePageImageReducer(
       return state
   }
 }
+
+// Component or another piece of code calls fetchSingleHomePageImage(id).
+
+// Inside the thunk, it does an Axios GET request.
+
+// On success, it dispatches setSingleHomePageImage(data).
+
+// The reducer handles the action and updates the state.
+
+// Let me know if you want to see how this connects to a React component!
